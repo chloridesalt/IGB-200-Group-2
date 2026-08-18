@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: a15d783305f1cef4ba1d9d7f2f3e9e8d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rootTexture: {fileID: 2800000, guid: 9091209a5039b7c46963d3ab4719ab17, type: 3}
+  - holeTexture: {fileID: 2800000, guid: 6aff1d38194bed9478eb645ea99983f3, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
