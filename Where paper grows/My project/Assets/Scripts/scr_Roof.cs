@@ -37,18 +37,48 @@ public class scr_Roof : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //RayCast();
-            MergeTextures(250, 250);
+            RayCast();
+            //MergeTextures(250, 250);
         }
     }
 
     private void RayCast()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit);
-        Debug.Log(hit.collider);
-    }
+        float maxDistance = 1000f;
 
+        Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.red, 5f);
+
+        if (Physics.Raycast(ray, out hit, maxDistance))
+        {
+            Vector2 texturePos = hit.textureCoord;
+            MergeTextures((int)texturePos.x, (int)texturePos.y);
+            return;
+        }
+
+        float planeY = 0f;
+        var cols = FindObjectsOfType<Collider>();
+        foreach (var c in cols)
+        {
+            if (c == null) continue;
+            if (c.gameObject.CompareTag("Floor") || c.gameObject.name.ToLower().Contains("ground"))
+            {
+                planeY = c.transform.position.y;
+                break;
+            }
+        }
+
+        Plane groundPlane = new Plane(Vector3.forward, new Vector3(0, planeY, 0));
+        float enter;
+        if (groundPlane.Raycast(ray, out enter))
+        {
+            /*Vector3 planePoint = ray.Get;
+            Vector2 texturePos = 
+            MergeTextures((int)texturePos.x, (int)texturePos.y);*/
+            return;
+        }
+    }
     private void MergeTextures(int startX, int startY)
     {
         int halfHoleX = newHoleTexture.width / 2;
