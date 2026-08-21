@@ -62,7 +62,7 @@ public class scr_Roof : MonoBehaviour
         foreach (var c in cols)
         {
             if (c == null) continue;
-            if (c.gameObject.CompareTag("Floor") || c.gameObject.name.ToLower().Contains("ground"))
+            if (c.gameObject.CompareTag("Roof") || c.gameObject.name.ToLower().Contains("roof"))
             {
                 planeY = c.transform.position.y;
                 break;
