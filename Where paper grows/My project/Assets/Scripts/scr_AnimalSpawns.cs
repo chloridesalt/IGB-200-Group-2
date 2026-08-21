@@ -4,7 +4,7 @@ using UnityEngine;
 public class scr_AnimalSpawns : MonoBehaviour
 {
     [SerializeField] public GameObject[] Animals;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +19,6 @@ public class scr_AnimalSpawns : MonoBehaviour
 
     private void Spawn()
     {
-        
+
     }
 }
