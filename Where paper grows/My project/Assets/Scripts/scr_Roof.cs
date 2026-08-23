@@ -46,37 +46,17 @@ public class scr_Roof : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        float maxDistance = 1000f;
-
-        Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.red, 5f);
-
-        if (Physics.Raycast(ray, out hit, maxDistance))
+        
+        Physics.Raycast(ray, out hit);
+        Debug.DrawLine(ray.origin, hit.point, Color.green, Mathf.Infinity);
+        if (hit.collider.gameObject == this.gameObject)
         {
-            Vector2 texturePos = hit.textureCoord;
-            MergeTextures((int)texturePos.x, (int)texturePos.y);
-            return;
-        }
+            Vector2 textureCoords = hit.textureCoord;
+            textureCoords.x *= newHoleTexture.width * 2;
+            textureCoords.y *= newHoleTexture.height * 2;
 
-        float planeY = 0f;
-        var cols = FindObjectsOfType<Collider>();
-        foreach (var c in cols)
-        {
-            if (c == null) continue;
-            if (c.gameObject.CompareTag("Roof") || c.gameObject.name.ToLower().Contains("roof"))
-            {
-                planeY = c.transform.position.y;
-                break;
-            }
-        }
-
-        Plane groundPlane = new Plane(Vector3.forward, new Vector3(0, planeY, 0));
-        float enter;
-        if (groundPlane.Raycast(ray, out enter))
-        {
-            /*Vector3 planePoint = ray.Get;
-            Vector2 texturePos = 
-            MergeTextures((int)texturePos.x, (int)texturePos.y);*/
-            return;
+            Debug.Log($"{textureCoords.x}, {textureCoords.y}");
+            MergeTextures((int)textureCoords.x, (int)textureCoords.y);
         }
     }
     private void MergeTextures(int startX, int startY)
@@ -85,7 +65,7 @@ public class scr_Roof : MonoBehaviour
         int halfHoleY = newHoleTexture.height / 2;
 
         Texture2D cutTexture = new Texture2D(newHoleTexture.width, newHoleTexture.height);
-        Debug.Log($"{cutTexture.width}, {cutTexture.height}");
+        //Debug.Log($"{cutTexture.width}, {cutTexture.height}");
 
         for (int y=startY-halfHoleY; y<startY+halfHoleY; y++)
         {
