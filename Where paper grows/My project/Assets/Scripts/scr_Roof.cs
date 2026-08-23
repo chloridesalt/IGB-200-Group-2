@@ -44,52 +44,79 @@ public class scr_Roof : MonoBehaviour
 
     private void RayCast()
     {
+        // Draw a raycast from the place clicked on the screen forward
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        
         Physics.Raycast(ray, out hit);
-        Debug.DrawLine(ray.origin, hit.point, Color.green, Mathf.Infinity);
-        if (hit.collider.gameObject == this.gameObject)
-        {
-            Vector2 textureCoords = hit.textureCoord;
-            textureCoords.x *= newHoleTexture.width * 2;
-            textureCoords.y *= newHoleTexture.height * 2;
 
-            Debug.Log($"{textureCoords.x}, {textureCoords.y}");
+        // If the object hit is not null and is this game object
+        if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+        {
+            // Find the texture coordinates that the raycast hits and multiply it by the roof texture size to get the true pixels
+            Vector2 textureCoords = hit.textureCoord;
+            textureCoords.x *= newRoofTexture.width;
+            textureCoords.y *= newRoofTexture.height;
+
+            // Create the hole in the texture
             MergeTextures((int)textureCoords.x, (int)textureCoords.y);
+
+            // Attempt at inversing the texture removal for 3D objects to make the hole appear on the underside
+            /*textureCoords = hit.textureCoord;
+            textureCoords.x = (1 - textureCoords.x) * newRoofTexture.width;
+            textureCoords.y = (1 - textureCoords.y) * newRoofTexture.height;
+            MergeTextures((int)textureCoords.x, (int)textureCoords.y);*/
         }
     }
     private void MergeTextures(int startX, int startY)
     {
+        // Get half the hole size to allow centering the hole on the cursor
         int halfHoleX = newHoleTexture.width / 2;
         int halfHoleY = newHoleTexture.height / 2;
 
+        // Creates a temporary texture storing the texture being removed
         Texture2D cutTexture = new Texture2D(newHoleTexture.width, newHoleTexture.height);
-        //Debug.Log($"{cutTexture.width}, {cutTexture.height}");
 
+        // For each pixel in the y coordinate of the hole
         for (int y=startY-halfHoleY; y<startY+halfHoleY; y++)
         {
+            // Skips if it goes over the edge of the sprite
+            if (y < 0 || y > newRoofTexture.height) continue;
+
+            // For each pixel in the x coordinate of the hole
             for (int x=startX-halfHoleX; x<startX+halfHoleX; x++)
             {
+                // Skips if it goes over the edge of the sprite
+                if (x < 0 || x > newRoofTexture.width) continue;
+
+                // Get the position of this pixel of the hole
                 int holePosX = x - startX + halfHoleX;
                 int holePosY = y - startY + halfHoleY;
-
+                
+                // Get the pixels on both the hole texture and roof texture
                 Color holePixel = newHoleTexture.GetPixel(holePosX, holePosY);
                 Color roofPixel = newRoofTexture.GetPixel(x, y);
 
+                // Checks if the hole pixel is below a certain transparency
                 if (holePixel.a < 0.5f)
                 {
+                    // Adds the roof pixel to the temporary cutout texture
                     cutTexture.SetPixel(holePosX, holePosY, roofPixel);
-                    newRoofTexture.SetPixel(x, y, new Color(holePixel.r, holePixel.g, holePixel.b, holePixel.a));
+
+                    // Sets the roof pixel's opacity to the hole pixel's transparency
+                    newRoofTexture.SetPixel(x, y, new Color(roofPixel.r, roofPixel.g, roofPixel.b, holePixel.a));
                 }
                 else
                 {
+                    // Makes the pixel on the temporary cutout texture transparent
                     cutTexture.SetPixel(holePosX, holePosY , new Color(0,0,0,0));
                 }
             }
         }
+        // Confirms the temporary cutout texture and adds it to a list
         cutTexture.Apply();
         holeTextures.Add(cutTexture);
+
+        // Confirms and applies the hole to the roof texture render
         newRoofTexture.Apply();
     }
 }
