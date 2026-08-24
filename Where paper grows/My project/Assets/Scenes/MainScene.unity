@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 95749400}
   - component: {fileID: 95749399}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ViewChange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 95749400}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1813042901}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: ChangeView
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &95749400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2224,6 +2236,8 @@ MonoBehaviour:
   VcamTarget: {fileID: 207057223}
   triggerKey: 32
   triggerKey2: 112
+  EnableTear: 0
+  RoofView: 0
 --- !u!4 &1813042902
 Transform:
   m_ObjectHideFlags: 0
@@ -2562,6 +2576,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToPlace: {fileID: 2664775595931888947, guid: f5a4fd7c9aca63f44ac8ca358d8b2282, type: 3}
+  TreeCount: 0
+  BushCount: 0
+  FlowerCount: 0
 --- !u!4 &2011382273
 Transform:
   m_ObjectHideFlags: 0
@@ -2589,7 +2606,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af574eaf5d8be544a574d867ce63896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Animals: []
+  Animals:
+  - {fileID: 2664775595931888947, guid: e87fd0f1430d4b14891c2f04ebafe369, type: 3}
+  Interactions:
+  - {fileID: 11400000, guid: 9e0d2b4ec17063a4c94477b47d133d73, type: 2}
+  PlaceObjectController: {fileID: 2011382272}
 --- !u!1 &2055369292
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,4 +16,4 @@ MonoBehaviour:
   EName: 0
   ObjectCount: 2
   TimeLowerBound: 0
-  TimeUpperBound: 0
+  TimeUpperBound: 2

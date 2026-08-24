@@ -31,7 +31,7 @@ public class scr_PlaceObject : MonoBehaviour
 
     public void PlaceObject()
     {
-        ObjectName += ObjectToPlace.name;
+        ObjectName = ObjectToPlace.name;
         if (MainCamera == null)
         {
             MainCamera = Camera.main;

@@ -35,10 +35,11 @@ public class scr_Roof : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && GameManager.s_Instance != null && GameManager.s_Instance.EnableTear)
         {
             RayCast();
             //MergeTextures(250, 250);
+            GameManager.s_Instance.EnableTear = false;
         }
     }
 

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public CinemachineCamera VcamTarget;
     public KeyCode triggerKey = KeyCode.Space;
     public KeyCode triggerKey2 = KeyCode.P;
+    public bool EnableTear = false;
+    public bool RoofView = false;
 
     private void Awake()
     {
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour
     {
         VcamStart.Priority = 5;
         VcamTarget.Priority = 10;
+        EnableTear = true;
+        RoofView = true;
     }
 
     // Use this function to change the camera view to the bottom of the paper bag
@@ -51,8 +55,20 @@ public class GameManager : MonoBehaviour
     {
         VcamStart.Priority = 10;
         VcamTarget.Priority = 5;
+        EnableTear = false;
+        RoofView = false;
     }
 
-
+    public void ChangeView()
+    {
+        if (RoofView)
+        {
+            CameraTransitionBottom();
+        }
+        else
+        {
+            CameraTransitionTop();
+        }
+    }
 
 }
