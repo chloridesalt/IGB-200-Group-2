@@ -3,14 +3,14 @@ using UnityEngine;
 
 public enum AnimalName
 {
-    Fox,
-    Bird
+    pre_Fox,
+    pre_Bird
 }
 public enum EnvironmentName
 {
-    Tree,
-    Bush,
-    Flower
+    pre_Tree,
+    pre_Bush,
+    pre_Flower
 }
 [CreateAssetMenu(fileName = "AnimalEnvironment", menuName = "Scriptable Objects/AnimalEnvironment")]
 public class scr_AnimalEnvironment : ScriptableObject

@@ -1,10 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class scr_PlaceObject : MonoBehaviour
 {
     private bool IsPlacingObject = false;
     private Camera MainCamera;
     public GameObject ObjectToPlace;
+    public int TreeCount = 0;
+    public int BushCount = 0;
+    public int FlowerCount = 0;
+    private string ObjectName;
 
     void Start()
     {
@@ -26,6 +31,7 @@ public class scr_PlaceObject : MonoBehaviour
 
     public void PlaceObject()
     {
+        ObjectName += ObjectToPlace.name;
         if (MainCamera == null)
         {
             MainCamera = Camera.main;
@@ -38,33 +44,31 @@ public class scr_PlaceObject : MonoBehaviour
 
         Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.red, 5f);
 
-        if (Physics.Raycast(ray, out hit, maxDistance))
+        if (Physics.Raycast(ray, out hit, maxDistance) && hit.collider.CompareTag("Floor") )
         {
             Instantiate(ObjectToPlace, hit.point, Quaternion.identity);
-            IsPlacingObject = false;
-            return;
-        }
-
-        float planeY = 0f;
-        var cols = FindObjectsOfType<Collider>();
-        foreach (var c in cols)
-        {
-            if (c == null) continue;
-            if (c.gameObject.CompareTag("Floor") || c.gameObject.name.ToLower().Contains("ground"))
+            switch (ObjectName)
             {
-                planeY = c.transform.position.y;
-                break;
+                case "pre_Tree":
+                    IsPlacingObject = false;
+                    TreeCount += 1;
+                    return;
+                case "pre_Bush":
+                    IsPlacingObject = false;
+                    BushCount += 1;
+                    return;
+                case "pre_Flower":
+                    IsPlacingObject = false;
+                    FlowerCount += 1;
+                    return;
             }
+            
         }
 
-        Plane groundPlane = new Plane(Vector3.up, new Vector3(0, planeY, 0));
-        float enter;
-        if (groundPlane.Raycast(ray, out enter))
-        {
-            Vector3 planePoint = ray.GetPoint(enter);
-            Instantiate(ObjectToPlace, planePoint, Quaternion.identity);
-            IsPlacingObject = false;
-            return;
+
+          
+
         }
+
     }
-}
+
