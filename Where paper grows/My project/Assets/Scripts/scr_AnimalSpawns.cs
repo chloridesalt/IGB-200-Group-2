@@ -51,6 +51,7 @@ public class scr_AnimalSpawns : MonoBehaviour
         if (!LastLoggedObjectCounts.TryGetValue(interaction.EName, out int lastLoggedCount) ||
             lastLoggedCount != associatedEnvironmentCount)
         {
+            Debug.Log($"[AnimalSpawns] {interaction.EName} object count: {associatedEnvironmentCount}");
             LastLoggedObjectCounts[interaction.EName] = associatedEnvironmentCount;
         }
 
@@ -80,6 +81,7 @@ public class scr_AnimalSpawns : MonoBehaviour
         {
             Spawn(associatedAnimal);
             SpawnedAnimalCounts[interaction] = spawnedAnimalCount + 1;
+            Debug.Log($"[AnimalSpawns] Spawned {associatedAnimal.name} for {interaction.EName} at object count {associatedEnvironmentCount}");
         }  
     }
 

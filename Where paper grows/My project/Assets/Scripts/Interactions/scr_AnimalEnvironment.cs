@@ -4,7 +4,8 @@ using UnityEngine;
 public enum AnimalName
 {
     pre_Fox,
-    pre_Bird
+    pre_Bird,
+    pre_Snake
 }
 public enum EnvironmentName
 {

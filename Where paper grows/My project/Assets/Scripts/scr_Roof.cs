@@ -40,6 +40,7 @@ public class scr_Roof : MonoBehaviour
             RayCast();
             //MergeTextures(250, 250);
             GameManager.s_Instance.EnableTear = false;
+            GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().ChoiceContainer.SetActive(true);
         }
     }
 

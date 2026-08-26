@@ -21,15 +21,16 @@ public class scr_PlaceObject : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && IsPlacingObject)
-            PlaceObject();
+            PlaceObject(ObjectToPlace);
     }
 
-    public void TargetPosition()
+    public void TargetPosition(GameObject ObjectToPlace)
     {
+        this.ObjectToPlace = ObjectToPlace;
         IsPlacingObject = true;
     }
 
-    public void PlaceObject()
+    public void PlaceObject(GameObject ObjectToPlace)
     {
         ObjectName = ObjectToPlace.name;
         if (MainCamera == null)

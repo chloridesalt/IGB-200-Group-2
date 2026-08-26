@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject Sun;
     public CinemachineCamera VcamStart;
     public CinemachineCamera VcamTarget;
-    public KeyCode triggerKey = KeyCode.Space;
-    public KeyCode triggerKey2 = KeyCode.P;
+    public GameObject UI;
     public bool EnableTear = false;
     public bool RoofView = false;
 
@@ -27,15 +26,7 @@ public class GameManager : MonoBehaviour
     }
      void Update()
     {
-       // Used to test camera transition  
-        if (Input.GetKeyDown(triggerKey))
-        {
-            CameraTransitionTop();
-        }
-        if (Input.GetKeyDown(triggerKey2))
-        {
-            CameraTransitionBottom();
-        }
+        
 
 
     }
