@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class scr_Roof : MonoBehaviour
 {
-    [SerializeField] private Texture2D rootTexture;
     [SerializeField] private Texture2D holeTexture;
-
     [SerializeField] private List<Texture2D> holeTextures = new List<Texture2D>();
-
     [SerializeField] private float holeScale = 1.0f;
 
     private Texture2D newRoofTexture;
@@ -17,9 +14,12 @@ public class scr_Roof : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Texture2D rootTexture = (Texture2D)GetComponent<MeshRenderer>().material.mainTexture;
+
         // Copy roof texture onto a new texture
         newRoofTexture = new Texture2D(rootTexture.width, rootTexture.height);
         newRoofTexture.SetPixels(rootTexture.GetPixels());
+        newRoofTexture.Apply();
 
         // Apply the new texture back onto the material
         GetComponent<MeshRenderer>().material.mainTexture = newRoofTexture;
@@ -27,6 +27,7 @@ public class scr_Roof : MonoBehaviour
         // Copy hole texture onto a new texture
         newHoleTexture = new Texture2D(holeTexture.width, holeTexture.height);
         newHoleTexture.SetPixels(holeTexture.GetPixels());
+        newRoofTexture.Apply();
 
         // Here will be a segment to rescale the image to the holeScale
 
@@ -38,7 +39,6 @@ public class scr_Roof : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && GameManager.s_Instance != null && GameManager.s_Instance.EnableTear)
         {
             RayCast();
-            //MergeTextures(250, 250);
             GameManager.s_Instance.EnableTear = false;
             GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().ChoiceContainer.SetActive(true);
         }
@@ -61,12 +61,6 @@ public class scr_Roof : MonoBehaviour
 
             // Create the hole in the texture
             MergeTextures((int)textureCoords.x, (int)textureCoords.y);
-
-            // Attempt at inversing the texture removal for 3D objects to make the hole appear on the underside
-            /*textureCoords = hit.textureCoord;
-            textureCoords.x = (1 - textureCoords.x) * newRoofTexture.width;
-            textureCoords.y = (1 - textureCoords.y) * newRoofTexture.height;
-            MergeTextures((int)textureCoords.x, (int)textureCoords.y);*/
         }
     }
     private void MergeTextures(int startX, int startY)
