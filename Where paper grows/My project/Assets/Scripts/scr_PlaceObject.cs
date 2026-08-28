@@ -1,8 +1,11 @@
+using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class scr_PlaceObject : MonoBehaviour
 {
+    [SerializeField] private NavMeshSurface navmesh;
+
     private bool IsPlacingObject = false;
     private Camera MainCamera;
     public GameObject ObjectToPlace;
