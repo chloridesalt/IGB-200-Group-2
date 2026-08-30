@@ -7,6 +7,8 @@ public class scr_Sunlight : MonoBehaviour
     private float Alpha = 0f;
     private const int MaxTransparentHits = 32;
     private const float RayOffset = 0.001f;
+    public GameObject GrassPrefab;
+    public GameObject Godray;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,7 +37,24 @@ public class scr_Sunlight : MonoBehaviour
 
             if (IsHitSolid(hitInfo))
             {
-                //Start grass growth at the hit point 
+                if (hitInfo.collider.CompareTag("Floor"))
+                {
+                    Instantiate(GrassPrefab, hitInfo.point, Quaternion.identity);
+                    Godray.SetActive(true);
+                }
+                else if (hitInfo.collider.CompareTag("Grass"))
+                {
+                    scr_GrassGrowth grassGrowth = hitInfo.collider.GetComponent<scr_GrassGrowth>();
+                    if (grassGrowth != null)
+                    {
+                        grassGrowth.GrowGrass();
+                    }
+                    Godray.SetActive(true);
+                } else
+                {
+                    Godray.SetActive(false);
+                }
+                transform.LookAt(hitInfo.point);
                 break;
             }
 
@@ -47,21 +66,33 @@ public class scr_Sunlight : MonoBehaviour
 
     bool IsHitSolid(RaycastHit hit)
     {
-
         Renderer renderer = hit.collider.GetComponent<Renderer>();
         if (renderer == null || renderer.sharedMaterial == null) return true;
 
         Material material = renderer.sharedMaterial;
-        if (material.color.a <= Alpha) return false;
+        if (material == null) return true;
 
-        Texture2D tex = material.mainTexture as Texture2D;
-        if (tex == null) return true; 
+        Texture texture = material.mainTexture;
+        if (texture == null) return true;
+
+        if (material.color.a <= Alpha)
+        {
+            return false;
+        }
+
+        if (texture is not Texture2D tex)
+        {
+            return true;
+        }
 
         Vector2 pixelUV = hit.textureCoord;
-        
-        Color pixelColor = tex.GetPixelBilinear(pixelUV.x, pixelUV.y);
-        
-        return pixelColor.a * material.color.a > Alpha;
+        if (pixelUV.x < 0f || pixelUV.x > 1f || pixelUV.y < 0f || pixelUV.y > 1f)
+        {
+            return true;
+        }
+
+        Color pixelColor = tex.GetPixelBilinear(Mathf.Clamp01(pixelUV.x), Mathf.Clamp01(pixelUV.y));
+        return (pixelColor.a * material.color.a) > Alpha;
     }
 
 }
