@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Growth: 0
-  GrowthRate: 0.1
+  GrowthRate: 0.2
   TimeToGrow: 5
   MaxScale: 1
 --- !u!65 &403445996535860696

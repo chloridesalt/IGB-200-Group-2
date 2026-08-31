@@ -88,7 +88,7 @@ public class scr_AnimalSpawns : MonoBehaviour
     private void Spawn(GameObject animal)
     {
         System.Random rand = new System.Random();
-        Vector3 spawnPosition = new Vector3(Random.Range(-10, 11), 5f, rand.Next(-50, 50));
+        Vector3 spawnPosition = new Vector3(Random.Range(-19, 15), 5f, Random.Range(-20, 20));
         Instantiate(animal, spawnPosition, Quaternion.identity);
     }
 }

@@ -12,7 +12,7 @@ public class scr_Roof : MonoBehaviour
 
     private Texture2D newRoofTexture;
     private Texture2D newHoleTexture;
-    private GameObject newCutoutShape;
+    //private GameObject newCutoutShape;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,6 +44,7 @@ public class scr_Roof : MonoBehaviour
             RayCast();
             GameManager.s_Instance.EnableTear = false;
             GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().ChoiceContainer.SetActive(true);
+            GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = false;
         }
     }
 
@@ -58,7 +59,7 @@ public class scr_Roof : MonoBehaviour
         if (hit.collider != null && hit.collider.gameObject == this.gameObject)
         {
             // Instantiate the cutout
-            newCutoutShape = Instantiate(cutoutShape, hit.point, Quaternion.Euler(0, 0, 90));
+            //newCutoutShape = Instantiate(cutoutShape, hit.point, Quaternion.Euler(0, 0, 90));
 
             // Find the texture coordinates that the raycast hits and multiply it by the roof texture size to get the true pixels
             Vector2 textureCoords = hit.textureCoord;
@@ -116,7 +117,7 @@ public class scr_Roof : MonoBehaviour
         }
         // Confirms the temporary cutout texture, applies it to the cutout, and adds it to a list
         cutTexture.Apply();
-        newCutoutShape.GetComponentInChildren<MeshRenderer>().material.mainTexture = cutTexture;
+        //newCutoutShape.GetComponentInChildren<MeshRenderer>().material.mainTexture = cutTexture;
 
         holeTextures.Add(cutTexture);
 
