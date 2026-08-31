@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject UI;
     public bool EnableTear = false;
     public bool RoofView = false;
-
+    [SerializeField] private AudioData Test; 
     private void Awake()
     {
         if (s_Instance != null && s_Instance != this)
@@ -34,10 +34,12 @@ public class GameManager : MonoBehaviour
     public void CameraTransitionTop()
 
     {
+        AudioManager.Instance.PlayAtPosition(Test, transform.position);
         VcamStart.Priority = 5;
         VcamTarget.Priority = 10;
         EnableTear = true;
         RoofView = true;
+        
     }
 
     // Use this function to change the camera view to the bottom of the paper bag

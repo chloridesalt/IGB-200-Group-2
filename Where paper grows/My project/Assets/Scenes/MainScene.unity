@@ -1973,6 +1973,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 974882575}
   m_CullTransparentMesh: 1
+--- !u!1 &984932825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 984932827}
+  - component: {fileID: 984932826}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &984932826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984932825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ac550fef48cf643b49ce507e0e3b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emitterPrefab: {fileID: 8217664419398631028, guid: 59b9653c6ba2e3046880b526ef4298f9, type: 3}
+  initialPoolSize: 20
+--- !u!4 &984932827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984932825}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.818418, y: 10.404269, z: 2.8941581}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1137366264 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1654450578357315809, guid: 2df3ffe8890acd24e92d2abcdfce7c74, type: 3}
@@ -3874,6 +3920,7 @@ MonoBehaviour:
   UI: {fileID: 96393436}
   EnableTear: 0
   RoofView: 0
+  Test: {fileID: 11400000, guid: c61b2d22a373279489490a2ba658db2a, type: 2}
 --- !u!4 &1813042902
 Transform:
   m_ObjectHideFlags: 0
@@ -4222,7 +4269,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -173.09985, y: -12.800049}
+  m_AnchoredPosition: {x: -173.1001, y: -12.800049}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1965674774
@@ -4462,3 +4509,4 @@ SceneRoots:
   - {fileID: 347454918}
   - {fileID: 207057224}
   - {fileID: 1895074075}
+  - {fileID: 984932827}

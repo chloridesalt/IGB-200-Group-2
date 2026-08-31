@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 public class scr_PlaceObject : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface navmesh;
+    
 
     private bool IsPlacingObject = false;
     private Camera MainCamera;
@@ -41,6 +43,7 @@ public class scr_PlaceObject : MonoBehaviour
             MainCamera = Camera.main;
             if (MainCamera == null) return;
         }
+       
 
         Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
