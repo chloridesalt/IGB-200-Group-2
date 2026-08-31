@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
         RoofView = false;
     }
 
+
+
     public void ChangeView()
     {
         if (RoofView)

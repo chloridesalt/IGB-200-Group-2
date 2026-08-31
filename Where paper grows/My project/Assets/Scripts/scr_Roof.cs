@@ -1,15 +1,18 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class scr_Roof : MonoBehaviour
 {
     [SerializeField] private Texture2D holeTexture;
     [SerializeField] private List<Texture2D> holeTextures = new List<Texture2D>();
     [SerializeField] private float holeScale = 1.0f;
+    [SerializeField] private GameObject cutoutShape;
 
     private Texture2D newRoofTexture;
     private Texture2D newHoleTexture;
+    private GameObject newCutoutShape;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,6 +57,9 @@ public class scr_Roof : MonoBehaviour
         // If the object hit is not null and is this game object
         if (hit.collider != null && hit.collider.gameObject == this.gameObject)
         {
+            // Instantiate the cutout
+            newCutoutShape = Instantiate(cutoutShape, hit.point, Quaternion.Euler(0, 0, 90));
+
             // Find the texture coordinates that the raycast hits and multiply it by the roof texture size to get the true pixels
             Vector2 textureCoords = hit.textureCoord;
             textureCoords.x *= newRoofTexture.width;
@@ -108,11 +114,17 @@ public class scr_Roof : MonoBehaviour
                 }
             }
         }
-        // Confirms the temporary cutout texture and adds it to a list
+        // Confirms the temporary cutout texture, applies it to the cutout, and adds it to a list
         cutTexture.Apply();
+        newCutoutShape.GetComponentInChildren<MeshRenderer>().material.mainTexture = cutTexture;
+
         holeTextures.Add(cutTexture);
 
         // Confirms and applies the hole to the roof texture render
         newRoofTexture.Apply();
+    }
+
+    private void InstantiateCutout(Texture2D cutTexture, Vector3 position)
+    {
     }
 }
