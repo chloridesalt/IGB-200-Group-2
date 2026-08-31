@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public void CameraTransitionTop()
 
     {
+        /// this a test to see if function works
         AudioManager.Instance.PlayAtPosition(Test, transform.position);
         VcamStart.Priority = 5;
         VcamTarget.Priority = 10;
