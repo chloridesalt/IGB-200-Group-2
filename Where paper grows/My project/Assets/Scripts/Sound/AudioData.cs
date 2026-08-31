@@ -1,10 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewSoundEffect", menuName = "Audio/Sound Effect Data")]
+[CreateAssetMenu(fileName = "NewSoundEffect", menuName = "Audio/Audio Data")]
 public class AudioData : ScriptableObject
 {
     [Header("Clips")]
-    public AudioClip[] clips;    // im retarded  
+    public AudioClip[] clips; // Enables automatic variation
 
     [Header("Settings")]
     [Range(0f, 1f)] public float volume = 1f;

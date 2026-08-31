@@ -21,8 +21,8 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
-
-        // Pre-warm the pool
+        //// 3D AUDIO IS NOT ENABLED CURRENTLY 
+    
         for (int i = 0; i < initialPoolSize; i++)
         {
             SoundEmitter emitter = Instantiate(emitterPrefab, transform);
@@ -30,10 +30,9 @@ public class AudioManager : MonoBehaviour
             pool.Enqueue(emitter);
         }
     }
-
-    /// <summary>
+    
     /// Plays a 3D spatial sound at a fixed world coordinate.
-    /// </summary>
+
     public SoundEmitter PlayAtPosition(
         AudioClip clip,
         Vector3 position,
@@ -51,9 +50,9 @@ public class AudioManager : MonoBehaviour
         return emitter;
     }
 
-    /// <summary>
+
     /// Plays a 3D sound attached to a moving object 
-    /// </summary>
+    // im retarded  this work? 
     public SoundEmitter PlayAtPosition(AudioData data, Vector3 position, Transform parent = null)
     {
         AudioClip clip = data.GetClip();
