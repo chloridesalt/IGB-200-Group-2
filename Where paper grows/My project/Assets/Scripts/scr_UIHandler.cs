@@ -29,7 +29,7 @@ public class scr_UIHandler : MonoBehaviour
     }
 
     public void ChooseObject(GameObject ObjectName)
-    {        
+    {  
         ChoiceContainer.SetActive(false);
         GameManager.s_Instance.ChangeView();
         ObjectHandler.GetComponent<scr_PlaceObject>().TargetPosition(ObjectName);

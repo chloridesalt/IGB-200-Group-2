@@ -12,7 +12,7 @@ public class scr_Roof : MonoBehaviour
 
     private Texture2D newRoofTexture;
     private Texture2D newHoleTexture;
-    //private GameObject newCutoutShape;
+    private GameObject newCutoutShape;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -59,7 +59,7 @@ public class scr_Roof : MonoBehaviour
         if (hit.collider != null && hit.collider.gameObject == this.gameObject)
         {
             // Instantiate the cutout
-            //newCutoutShape = Instantiate(cutoutShape, hit.point, Quaternion.Euler(0, 0, 90));
+            //newCutoutShape = Instantiate(cutoutShape, new Vector3(0, hit.point.y + 5, 0), Quaternion.Euler(0, 0, 90));
 
             // Find the texture coordinates that the raycast hits and multiply it by the roof texture size to get the true pixels
             Vector2 textureCoords = hit.textureCoord;
@@ -123,9 +123,5 @@ public class scr_Roof : MonoBehaviour
 
         // Confirms and applies the hole to the roof texture render
         newRoofTexture.Apply();
-    }
-
-    private void InstantiateCutout(Texture2D cutTexture, Vector3 position)
-    {
     }
 }
