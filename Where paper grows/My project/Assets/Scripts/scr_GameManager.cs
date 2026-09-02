@@ -11,6 +11,11 @@ public class GameManager : MonoBehaviour
     public GameObject UI;
     public bool EnableTear = false;
     public bool RoofView = false;
+    public float SunRotationSpeed = 1f;
+    public float SunMax = 40f;
+    public float SunMin = -40f;
+    public bool AutoSunMovement = true;
+    public float SunTime = 0f;
     [SerializeField] private AudioData Test; 
     private void Awake()
     {
@@ -26,7 +31,11 @@ public class GameManager : MonoBehaviour
     }
      void Update()
     {
-        
+        if (AutoSunMovement)
+        {
+            SunTime += Time.deltaTime;
+        }
+        SunMovement();
 
 
     }
@@ -67,4 +76,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void SunMovement()
+    {
+        float value = Mathf.PingPong(SunTime * SunRotationSpeed, SunMax - SunMin) + SunMin;
+        Sun.transform.position = new Vector3(Sun.transform.position.x, Sun.transform.position.y, value);
+    }
+
+    public void DisableAutoSunMovement()
+    {
+        AutoSunMovement = false;
+    }
+
+    public void EnableAutoSunMovement()
+    {
+        AutoSunMovement = true;
+    }
+    
 }

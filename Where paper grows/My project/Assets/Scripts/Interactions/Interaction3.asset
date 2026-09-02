@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7fa5da5cffda4489f452432e179c6c, type: 3}
   m_Name: Interaction3
   m_EditorClassIdentifier: 
-  AName: 0
-  EName: 0
-  ObjectCount: 0
-  TimeLowerBound: 0
-  TimeUpperBound: 0
+  AName: 2
+  EName: 2
+  ObjectCount: 1
+  TimeLowerBound: 1
+  TimeUpperBound: 6

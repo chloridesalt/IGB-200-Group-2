@@ -7,6 +7,9 @@ TagManager:
   - Floor
   - Roof
   - Grass
+  - pre_Bush
+  - pre_Tree
+  - pre_Flower
   layers:
   - Default
   - TransparentFX

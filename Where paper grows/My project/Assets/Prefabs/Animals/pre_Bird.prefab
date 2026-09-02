@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3854157645233084791}
+  - component: {fileID: 7852984984451582762}
+  - component: {fileID: 4286293093783839664}
   m_Layer: 0
   m_Name: pre_Bird
   m_TagString: Untagged
@@ -32,6 +34,41 @@ Transform:
   - {fileID: 7447634521742843742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &7852984984451582762
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664775595931888947}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &4286293093783839664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664775595931888947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf5f5eea61bd384aba20abc69e9f565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimalEnvironmentData: {fileID: 11400000, guid: a5fc5db177967ae40b9e8cab140c74a2, type: 2}
 --- !u!1 &3820660342460553776
 GameObject:
   m_ObjectHideFlags: 0
