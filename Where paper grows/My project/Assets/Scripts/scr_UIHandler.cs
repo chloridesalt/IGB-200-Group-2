@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 
 public class scr_UIHandler : MonoBehaviour
 {
-    public GameObject ObjectHandler;
     public GameObject ChoiceContainer;
     public GameObject RoofViewButton;
     public bool RoofViewButtonOn = true;
@@ -65,11 +64,10 @@ public class scr_UIHandler : MonoBehaviour
         UpdateSunSlider();
     }
 
-    public void ChooseObject(GameObject ObjectName)
+    public void ChooseObject(scr_EnvironmentObjects ObjectName)
     {  
         ChoiceContainer.SetActive(false);
-        GameManager.s_Instance.ChangeView();
-        ObjectHandler.GetComponent<scr_PlaceObject>().TargetPosition(ObjectName);
+        FindAnyObjectByType<scr_CutoutShape>().EnvironmentObject = ObjectName;
     }
 
     public void MoveSun()

@@ -8,7 +8,9 @@ public class scr_Roof : MonoBehaviour
     [SerializeField] private Texture2D holeTexture;
     [SerializeField] private List<Texture2D> holeTextures = new List<Texture2D>();
     [SerializeField] private float holeScale = 1.0f;
+    [SerializeField] private float cutoutSpawnOffset = 15f;
     [SerializeField] private GameObject cutoutShape;
+
 
     private Texture2D newRoofTexture;
     private Texture2D newHoleTexture;
@@ -59,7 +61,7 @@ public class scr_Roof : MonoBehaviour
         if (hit.collider != null && hit.collider.gameObject == this.gameObject)
         {
             // Instantiate the cutout
-            //newCutoutShape = Instantiate(cutoutShape, new Vector3(0, hit.point.y + 5, 0), Quaternion.Euler(0, 0, 90));
+            newCutoutShape = Instantiate(cutoutShape, new Vector3(0, hit.point.y + cutoutSpawnOffset, 0), Quaternion.Euler(0, 0, 90));
 
             // Find the texture coordinates that the raycast hits and multiply it by the roof texture size to get the true pixels
             Vector2 textureCoords = hit.textureCoord;
@@ -117,7 +119,7 @@ public class scr_Roof : MonoBehaviour
         }
         // Confirms the temporary cutout texture, applies it to the cutout, and adds it to a list
         cutTexture.Apply();
-        //newCutoutShape.GetComponentInChildren<MeshRenderer>().material.mainTexture = cutTexture;
+        newCutoutShape.GetComponentInChildren<MeshRenderer>().material.mainTexture = cutTexture;
 
         holeTextures.Add(cutTexture);
 
