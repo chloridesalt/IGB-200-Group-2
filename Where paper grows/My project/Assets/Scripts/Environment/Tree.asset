@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Tree
   m_EditorClassIdentifier: 
   environmentPrefab: {fileID: 2664775595931888947, guid: f5a4fd7c9aca63f44ac8ca358d8b2282, type: 3}
-  environmentSilhouette: {fileID: 2800000, guid: d36a273ee6d20524696ddccbbed38293, type: 3}
+  environmentSilhouette: {fileID: 1727724740071832263, guid: b25c95904500f0f4eb0654380e5c5d30, type: 3}

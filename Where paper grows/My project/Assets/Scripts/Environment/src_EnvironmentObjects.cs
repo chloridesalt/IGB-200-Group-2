@@ -4,5 +4,5 @@ using UnityEngine;
 public class scr_EnvironmentObjects : ScriptableObject
 {
     public GameObject environmentPrefab;
-    public Texture2D environmentSilhouette;
+    public GameObject environmentSilhouette;
 }

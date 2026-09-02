@@ -3048,6 +3048,7 @@ MonoBehaviour:
   holeTexture: {fileID: 2800000, guid: 6aff1d38194bed9478eb645ea99983f3, type: 3}
   holeTextures: []
   holeScale: 0.1
+  cutoutSpawnOffset: 15
   cutoutShape: {fileID: 4010349050062655704, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
 --- !u!23 &1364685196
 MeshRenderer:
@@ -4491,67 +4492,6 @@ Transform:
   - {fileID: 1551853660}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1950986138
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 35.033554
-      objectReference: {fileID: 0}
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20.35241
-      objectReference: {fileID: 0}
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 976281829726559512, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4010349050062655704, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: m_Name
-      value: Cutout_Shape
-      objectReference: {fileID: 0}
-    - target: {fileID: 8401537716243400583, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
-      propertyPath: ObjectHandler
-      value: 
-      objectReference: {fileID: 2011382271}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
 --- !u!1 &1965674772
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,4 +4918,3 @@ SceneRoots:
   - {fileID: 207057224}
   - {fileID: 1895074075}
   - {fileID: 984932827}
-  - {fileID: 1950986138}
