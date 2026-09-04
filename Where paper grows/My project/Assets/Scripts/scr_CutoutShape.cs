@@ -26,16 +26,20 @@ public class scr_CutoutShape : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (!lateInit && EnvironmentObject != null)
-        {
-            LateStart();
-        }*/
-
         if (EnvironmentObject != null)
         {
+            if (!lateInit)
+            {
+                //LateStart();
+            }
             //CheckCutout();
             CutoutComplete();
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        
     }
 
     private void CutoutComplete()
@@ -49,12 +53,16 @@ public class scr_CutoutShape : MonoBehaviour
     {
         for(int i = 0; i < colliders.Count; i++)
         {
-            if (EventSystem.current.IsPointerOverGameObject() && EventSystem.current.currentSelectedGameObject == colliders[i])
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            /*if (Physics.Raycast(ray, out hit) && hit.collider == colliders[i])
             {
+                SpriteMask spriteMask = colliders[i].gameObject.AddComponent<SpriteMask>();
+                spriteMask.sprite = new Texture2D(colliders[i])
                 colliders.Remove(colliders[i]);
                 Debug.Log("Collider Removed");
                 i--;
-            }
+            }*/
         }
     }
 
