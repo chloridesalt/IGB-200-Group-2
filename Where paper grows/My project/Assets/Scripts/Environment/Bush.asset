@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Bush
   m_EditorClassIdentifier: 
   environmentPrefab: {fileID: 2664775595931888947, guid: 1b25d93ef3e985f4399fb6ae1c63ac89, type: 3}
-  environmentSilhouette: {fileID: 2800000, guid: 7fca2cdb77342c248a1d434d95bc3745, type: 3}
+  environmentSilhouette: {fileID: 1727724740071832263, guid: 85b656f1f6f50e54e8281f35110fefd4, type: 3}
