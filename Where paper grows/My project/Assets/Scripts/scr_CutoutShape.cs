@@ -58,19 +58,8 @@ public class scr_CutoutShape : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit) && hit.collider == colliders[i])
             {
-/*                SpriteMask spriteMask = colliders[i].GetComponent<SpriteMask>();
+                SpriteMask spriteMask = colliders[i].GetComponent<SpriteMask>();
                 spriteMask.enabled = true;
-
-                Vector3 posStart = Camera.main.WorldToScreenPoint(new Vector3(colliders[i].bounds.min.x, colliders[i].bounds.min.y, colliders[i].bounds.min.z));
-                Vector3 posEnd = Camera.main.WorldToScreenPoint(new Vector3(colliders[i].bounds.max.x, colliders[i].bounds.max.y, colliders[i].bounds.min.z));
-
-                int widthX = (int)(posEnd.x - posStart.x);
-                int widthY = (int)(posEnd.y - posStart.y);
-
-                Debug.Log($"{widthX}, {widthY}");
-
-                Texture2D spriteTex = new Texture2D(widthX, widthY);
-                spriteMask.sprite = Sprite.Create(spriteTex, new Rect(0, 0, spriteTex.width, spriteTex.height), Vector2.zero);*/
                 colliders.Remove(colliders[i]);
                 Debug.Log("Collider Removed");
                 i--;
