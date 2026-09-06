@@ -87,7 +87,40 @@ public class AudioManager : MonoBehaviour
         emitter.transform.SetParent(transform);
         pool.Enqueue(emitter);
     }
+    public void PlaySequence(AudioData data, Vector3 position, Transform parent = null)
+    {
+        StartCoroutine(PlaySequenceRoutine(data, position, parent));
+    }
 
+    private System.Collections.IEnumerator PlaySequenceRoutine(AudioData data, Vector3 position, Transform parent)
+    {
+        for (int i = 0; i < data.clips.Length; i++)
+        {
+            AudioClip clip = data.clips[i];
+            if (clip == null) continue;
+
+            SoundEmitter emitter = GetEmitter();
+            bool isFinished = false;
+
+            emitter.Play(
+                clip: clip,
+                position: position,
+                volume: data.volume,
+                pitch: data.GetPitch(),
+                minDistance: data.minDistance,
+                maxDistance: data.maxDistance,
+                attachTo: parent,
+                onComplete: (completedEmitter) =>
+                {
+                    ReturnToPool(completedEmitter);
+                    isFinished = true;
+                }
+            );
+
+           
+            yield return new WaitUntil(() => isFinished);
+        }
+    }
     private void StartMusic(bool isOn)
     {
         print("Received! State is: " + isOn);
@@ -95,7 +128,7 @@ public class AudioManager : MonoBehaviour
         
         if (isOn)
         {
-            PlayAtPosition(Music, transform.position);
+            PlaySequence(Music, transform.position);
             EventManager.OnMusicStart -= StartMusic;
         }
         else
@@ -105,7 +138,7 @@ public class AudioManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        // Match this with whatever your Event Manager script/event is named
+        
         EventManager.OnMusicStart += StartMusic;
     }
 
