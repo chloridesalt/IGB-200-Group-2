@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: fd539680d4592404097e5106543930f2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - navmesh: {instanceID: 0}
+  - placeObjectSound: {fileID: 11400000, guid: 4d811b641da56aa4594ce3611316cfc2, type: 2}
+  - ObjectToPlace: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

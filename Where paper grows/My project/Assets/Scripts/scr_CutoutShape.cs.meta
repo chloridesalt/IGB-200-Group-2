@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: ae2fa095f272eee40b6ae15393fa5320
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - EnvironmentObject: {instanceID: 0}
+  - ObjectHandler: {instanceID: 0}
+  - cutoutSound: {fileID: 11400000, guid: 61185a274eedbb840af080190ca2c973, type: 2}
+  - cutoutComplete: {fileID: 11400000, guid: bfdb26af308352246bacadbcfdb12662, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

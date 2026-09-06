@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class scr_PlaceObject : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface navmesh;
+    [SerializeField] private AudioData placeObjectSound;
     
 
     private bool IsPlacingObject = false;
@@ -59,16 +60,19 @@ public class scr_PlaceObject : MonoBehaviour
             {
                 case "pre_Tree":
                     IsPlacingObject = false;
+                    AudioManager.Instance.PlayAtPosition(placeObjectSound, transform.position);
                     TreeCount += 1;
                     
                     return;
                 case "pre_Bush":
                     IsPlacingObject = false;
+                    AudioManager.Instance.PlayAtPosition(placeObjectSound, transform.position);
                     BushCount += 1;
         
                     return;
                 case "pre_Flower":
                     IsPlacingObject = false;
+                    AudioManager.Instance.PlayAtPosition(placeObjectSound, transform.position);
                     FlowerCount += 1;
                     return;
             }

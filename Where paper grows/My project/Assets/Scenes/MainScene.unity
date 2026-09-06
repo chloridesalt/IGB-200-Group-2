@@ -4197,6 +4197,7 @@ MonoBehaviour:
   holeScale: 0.1
   cutoutSpawnOffset: 15
   cutoutShape: {fileID: 4010349050062655704, guid: 8d8a6777cb388564da36d170c8e634e1, type: 3}
+  tearSound: {fileID: 11400000, guid: f182cc7951fe41e42a162906c681b4cb, type: 2}
 --- !u!23 &1364685196
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5943,7 +5944,7 @@ MonoBehaviour:
   SunMin: -40
   AutoSunMovement: 1
   SunTime: 0
-  Test: {fileID: 11400000, guid: c61b2d22a373279489490a2ba658db2a, type: 2}
+  view: {fileID: 11400000, guid: c61b2d22a373279489490a2ba658db2a, type: 2}
 --- !u!4 &1813042902
 Transform:
   m_ObjectHideFlags: 0
@@ -6421,6 +6422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navmesh: {fileID: 1551853661}
+  placeObjectSound: {fileID: 11400000, guid: 4d811b641da56aa4594ce3611316cfc2, type: 2}
   ObjectToPlace: {fileID: 2664775595931888947, guid: f5a4fd7c9aca63f44ac8ca358d8b2282, type: 3}
   TreeCount: 0
   BushCount: 0
@@ -6461,6 +6463,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5fc5db177967ae40b9e8cab140c74a2, type: 2}
   - {fileID: 11400000, guid: 509b074a142244f41bb47deba9422650, type: 2}
   PlaceObjectController: {fileID: 2011382272}
+  spawnSound: {fileID: 11400000, guid: 4b1284f0233bf704493a26c75574db06, type: 2}
 --- !u!1 &2030640326
 GameObject:
   m_ObjectHideFlags: 0

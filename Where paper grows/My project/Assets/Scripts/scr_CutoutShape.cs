@@ -16,6 +16,9 @@ public class scr_CutoutShape : MonoBehaviour
     private GameObject environmentSilhouette;
     private bool lateInit = false;
 
+    [SerializeField] private AudioData cutoutSound;
+    [SerializeField] private AudioData cutoutComplete;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -62,11 +65,13 @@ public class scr_CutoutShape : MonoBehaviour
                 spriteMask.enabled = true;
                 colliders.Remove(colliders[i]);
                 Debug.Log("Collider Removed");
+                AudioManager.Instance.PlayAtPosition(cutoutSound, transform.position);
                 i--;
             }
         }
         if (colliders.Count < 1)
         {
+            AudioManager.Instance.PlayAtPosition(cutoutComplete, transform.position);
             CutoutComplete();
         }
     }

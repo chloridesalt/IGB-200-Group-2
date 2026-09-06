@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnvironmentObject: {fileID: 0}
   ObjectHandler: {fileID: 0}
+  cutoutSound: {fileID: 11400000, guid: 61185a274eedbb840af080190ca2c973, type: 2}
+  cutoutComplete: {fileID: 11400000, guid: bfdb26af308352246bacadbcfdb12662, type: 2}
 --- !u!1 &5102707781534299171
 GameObject:
   m_ObjectHideFlags: 0

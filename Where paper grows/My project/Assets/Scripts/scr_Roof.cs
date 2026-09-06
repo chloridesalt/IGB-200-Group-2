@@ -16,6 +16,8 @@ public class scr_Roof : MonoBehaviour
     private Texture2D newHoleTexture;
     private GameObject newCutoutShape;
 
+    [SerializeField] private AudioData tearSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -61,6 +63,7 @@ public class scr_Roof : MonoBehaviour
         if (hit.collider != null && hit.collider.gameObject == this.gameObject)
         {
             // Instantiate the cutout
+            AudioManager.Instance.PlayAtPosition(tearSound, transform.position);
             newCutoutShape = Instantiate(cutoutShape, new Vector3(0, hit.point.y + cutoutSpawnOffset, 0), Quaternion.Euler(0, 0, 90));
 
             // Find the texture coordinates that the raycast hits and multiply it by the roof texture size to get the true pixels

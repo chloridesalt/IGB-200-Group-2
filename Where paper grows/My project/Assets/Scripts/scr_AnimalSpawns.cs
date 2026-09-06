@@ -10,6 +10,9 @@ public class scr_AnimalSpawns : MonoBehaviour
     private readonly Dictionary<EnvironmentName, int> LastLoggedObjectCounts = new();
     private readonly Dictionary<scr_AnimalEnvironment, int> SpawnedAnimalCounts = new();
     private float GameTime;
+
+    [SerializeField] private AudioData spawnSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -80,6 +83,7 @@ public class scr_AnimalSpawns : MonoBehaviour
         if (hasEnoughEnvironment && hasReachedSpawnTime)
         {
             Spawn(associatedAnimal);
+            AudioManager.Instance.PlayAtPosition(spawnSound, transform.position);
             SpawnedAnimalCounts[interaction] = spawnedAnimalCount + 1;
             Debug.Log($"[AnimalSpawns] Spawned {associatedAnimal.name} for {interaction.EName} at object count {associatedEnvironmentCount}");
         }  

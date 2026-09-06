@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public float SunMin = -40f;
     public bool AutoSunMovement = true;
     public float SunTime = 0f;
-    [SerializeField] private AudioData Test; 
+    [SerializeField] private AudioData view; 
     private void Awake()
     {
         if (s_Instance != null && s_Instance != this)
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     {
         /// this a test to see if function works
-        AudioManager.Instance.PlayAtPosition(Test, transform.position);
+        AudioManager.Instance.PlayAtPosition(view, transform.position);
         VcamStart.Priority = 5;
         VcamTarget.Priority = 10;
         EnableTear = true;
