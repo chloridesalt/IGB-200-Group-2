@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 11d5940ece57361469a0f6630bcd90dc, type: 3}
   - {fileID: 8300000, guid: 640eea6bcc21b3b45aff8fd0effb7a1d, type: 3}
   selectionMode: 2
-  volume: 0.301
+  volume: 0.133
   pitchRange: {x: 1, y: 1}
   minDistance: 2
   maxDistance: 35
