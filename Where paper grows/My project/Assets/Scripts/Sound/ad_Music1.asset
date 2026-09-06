@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ad_Music1
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 640eea6bcc21b3b45aff8fd0effb7a1d, type: 3}
   - {fileID: 8300000, guid: 40871c8f1aabb604db7aa9bbf3301c32, type: 3}
   - {fileID: 8300000, guid: 3169c2f7e97376448af4689dcd2a03a3, type: 3}
   - {fileID: 8300000, guid: dae4c3346bd2eb3429134b6c55390d68, type: 3}
   - {fileID: 8300000, guid: 11d5940ece57361469a0f6630bcd90dc, type: 3}
+  - {fileID: 8300000, guid: 640eea6bcc21b3b45aff8fd0effb7a1d, type: 3}
   selectionMode: 2
-  volume: 0.481
+  volume: 0.301
   pitchRange: {x: 1, y: 1}
   minDistance: 2
   maxDistance: 35
