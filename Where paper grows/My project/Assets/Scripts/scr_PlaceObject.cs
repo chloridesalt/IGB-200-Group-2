@@ -16,6 +16,7 @@ public class scr_PlaceObject : MonoBehaviour
     public int BushCount = 0;
     public int FlowerCount = 0;
     private string ObjectName;
+    private bool MusicOn = false;
 
     void Start()
     {
@@ -27,7 +28,13 @@ public class scr_PlaceObject : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && IsPlacingObject)
+        {
+
+
             PlaceObject(ObjectToPlace);
+            MusicOn = !MusicOn;
+            EventManager.RaiseOnMusicStart(MusicOn);
+        }
     }
 
     public void TargetPosition(GameObject ObjectToPlace)
@@ -54,6 +61,7 @@ public class scr_PlaceObject : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, maxDistance) && hit.collider.CompareTag("Floor") )
         {
+            
             Instantiate(ObjectToPlace, hit.point, Quaternion.identity);
             GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = true;
             switch (ObjectName)

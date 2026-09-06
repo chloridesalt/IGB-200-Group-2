@@ -3053,6 +3053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emitterPrefab: {fileID: 8217664419398631028, guid: 59b9653c6ba2e3046880b526ef4298f9, type: 3}
   initialPoolSize: 20
+  Music: {fileID: 11400000, guid: e134addda82c3964887fb3069b3f4f08, type: 2}
 --- !u!4 &984932827
 Transform:
   m_ObjectHideFlags: 0
@@ -5913,6 +5914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1813042902}
   - component: {fileID: 1813042901}
+  - component: {fileID: 1813042903}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5960,6 +5962,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1813042903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813042900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bbef45897797524da5d9202fab61e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1895074071
 GameObject:
   m_ObjectHideFlags: 0

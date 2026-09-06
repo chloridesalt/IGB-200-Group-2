@@ -7,7 +7,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("Pool Setup")]
     [SerializeField] private SoundEmitter emitterPrefab;
-    [SerializeField] private int initialPoolSize = 20;
+    [SerializeField] private int initialPoolSize = 40;
+   [ SerializeField] private AudioData Music;
 
     private Queue<SoundEmitter> pool = new Queue<SoundEmitter>();
 
@@ -86,4 +87,27 @@ public class AudioManager : MonoBehaviour
         emitter.transform.SetParent(transform);
         pool.Enqueue(emitter);
     }
+
+    private void StartMusic(bool isOn)
+    {
+        print("Received! State is: " + isOn);
+
+        
+        if (isOn)
+        {
+            PlayAtPosition(Music, transform.position);
+            EventManager.OnMusicStart -= StartMusic;
+        }
+        else
+        {
+           
+        }
+    }
+    private void OnEnable()
+    {
+        // Match this with whatever your Event Manager script/event is named
+        EventManager.OnMusicStart += StartMusic;
+    }
+
+
 }
