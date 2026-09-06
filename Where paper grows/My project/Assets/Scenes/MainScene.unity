@@ -3227,6 +3227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: pre_Flower
       objectReference: {fileID: 0}
+    - target: {fileID: 2664775595931888947, guid: ec9c652d884debd49bf5b85a85b2534e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3854157645233084791, guid: ec9c652d884debd49bf5b85a85b2534e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.967226
@@ -6546,6 +6550,10 @@ PrefabInstance:
     - target: {fileID: 2664775595931888947, guid: 1b25d93ef3e985f4399fb6ae1c63ac89, type: 3}
       propertyPath: m_Name
       value: pre_Bush
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664775595931888947, guid: 1b25d93ef3e985f4399fb6ae1c63ac89, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3695535130407163207, guid: 1b25d93ef3e985f4399fb6ae1c63ac89, type: 3}
       propertyPath: m_Materials.Array.size
