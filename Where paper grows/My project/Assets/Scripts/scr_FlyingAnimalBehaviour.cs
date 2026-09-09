@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
-public class scr_GroundAnimalBehaviour : MonoBehaviour
+public class scr_FlyingAnimalBehaviour : MonoBehaviour
 {
     private NavMeshAgent agent;
     public scr_AnimalEnvironment AnimalEnvironmentData;
     public Animator animator;
+    public float BaseOffset = 5f;
     private GameObject[] environmentObjects;
     private GameObject currentTarget;
     private int currentTargetIndex = 0;
@@ -16,6 +17,7 @@ public class scr_GroundAnimalBehaviour : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.baseOffset = BaseOffset;
         FindEnvironmentObjects();
         if (environmentObjects.Length > 0)
         {
@@ -78,31 +80,31 @@ public class scr_GroundAnimalBehaviour : MonoBehaviour
         if (!IsOnNavMesh())
         {
             Vector3 randomPosition = GetRandomPositionOnNavMesh();
-            transform.position = randomPosition;
+            agent.Warp(randomPosition);
         }
 
         if (currentTarget != null)
         {
-            agent.destination = currentTarget.transform.position;
+            agent.SetDestination(currentTarget.transform.position);
         }
     }
 
     private bool IsOnNavMesh()
     {
-        NavMeshHit hit;
-        return NavMesh.SamplePosition(transform.position, out hit, 1.0f, NavMesh.AllAreas);
+        return agent != null && agent.isOnNavMesh;
     }
 
     private Vector3 GetRandomPositionOnNavMesh()
     {
-        Vector3 randomDirection = Random.insideUnitSphere * 10f; 
-        randomDirection += transform.position;
+        Vector3 navMeshPosition = transform.position - Vector3.up * agent.baseOffset;
+        Vector3 randomDirection = Random.insideUnitSphere * 10f;
+        randomDirection += navMeshPosition;
         NavMeshHit hit;
         if (NavMesh.SamplePosition(randomDirection, out hit, 10f, NavMesh.AllAreas))
         {
             return hit.position;
         }
-        return transform.position;
+        return navMeshPosition;
     }
 
     public void Interact()

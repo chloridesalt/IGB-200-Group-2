@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3854157645233084791}
   - component: {fileID: 6448232185587894672}
   - component: {fileID: 3298656037074188157}
+  - component: {fileID: 9012138207030395645}
   m_Layer: 0
   m_Name: pre_Fox
   m_TagString: Untagged
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimalEnvironmentData: {fileID: 11400000, guid: 9e0d2b4ec17063a4c94477b47d133d73, type: 2}
+  animator: {fileID: 9012138207030395645}
 --- !u!195 &3298656037074188157
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -60,7 +62,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -69,6 +71,28 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &9012138207030395645
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664775595931888947}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 95fb8bf2185659e40b237434de67fbba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3820660342460553776
 GameObject:
   m_ObjectHideFlags: 0
