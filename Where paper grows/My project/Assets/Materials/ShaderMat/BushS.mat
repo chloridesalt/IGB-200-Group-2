@@ -7,14 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tree_v2
+  m_Name: BushS
   m_Shader: {fileID: -6465566751694194690, guid: d1adfebe77fef4a40b87f332180157ef, type: 3}
-  m_Parent: {fileID: 2100000, guid: 4b34b83ec687b74418ca8e35b79c0e15, type: 2}
-  m_ModifiedSerializedProperties: 2
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _SURFACE_TYPE_TRANSPARENT
-  m_LightmapFlags: 4
+  m_InvalidKeywords: []
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -24,15 +23,36 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 920bf4cb309ae1642aa8fd17aa346b8f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ExternalInfluence: -0.41
-    - _WindIntensity: 1.21
+    - _ExternalInfluence: 0
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _WindIntensity: 0.5
+    - _WindScale: 0.5
+    - _Windspeeed: 3
+    - _Ymaskinflu: 1
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &3505665934098197859
+--- !u!114 &5569438911771520343
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
