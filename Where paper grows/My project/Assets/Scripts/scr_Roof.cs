@@ -16,6 +16,7 @@ public class scr_Roof : MonoBehaviour
     private Texture2D newHoleTexture;
     private scr_InputManager inputManager;
     private GameObject newCutoutShape;
+    private bool isCutoutSuccess = false;
 
     [SerializeField] private AudioData tearSound;
 
@@ -49,9 +50,13 @@ public class scr_Roof : MonoBehaviour
         if (inputManager.interactAction.WasPerformedThisFrame() && GameManager.s_Instance != null && GameManager.s_Instance.EnableTear)
         {
             RayCast();
-            GameManager.s_Instance.EnableTear = false;
-            GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().ChoiceContainer.SetActive(true);
-            GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = false;
+            if (isCutoutSuccess)
+            {
+                GameManager.s_Instance.EnableTear = false;
+                GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().ChoiceContainer.SetActive(true);
+                GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = false;
+            }
+            isCutoutSuccess = false;
         }
     }
 
@@ -63,7 +68,7 @@ public class scr_Roof : MonoBehaviour
         Physics.Raycast(ray, out hit);
 
         // If the object hit is not null and is this game object
-        if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+        if ( hit.collider != null && inputManager.IsHitSolid(hit) && hit.collider.gameObject == this.gameObject)
         {
             // Instantiate the cutout
             AudioManager.Instance.PlayAtPosition(tearSound, transform.position);
@@ -131,5 +136,6 @@ public class scr_Roof : MonoBehaviour
 
         // Confirms and applies the hole to the roof texture render
         newRoofTexture.Apply();
+        isCutoutSuccess = true;
     }
 }

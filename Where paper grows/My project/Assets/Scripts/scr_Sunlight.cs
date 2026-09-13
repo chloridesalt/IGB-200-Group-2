@@ -4,7 +4,7 @@ public class scr_Sunlight : MonoBehaviour
 {
     private Vector3 SunPosition;
     private Vector3 AimPosition;
-    private float Alpha = 0f;
+    private scr_InputManager inputManager;
     private const int MaxTransparentHits = 32;
     private const float RayOffset = 0.001f;
     public GameObject GrassPrefab;
@@ -12,7 +12,7 @@ public class scr_Sunlight : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        inputManager = GameManager.s_Instance.GetComponent<scr_InputManager>();
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class scr_Sunlight : MonoBehaviour
                 break;
             }
 
-            if (IsHitSolid(hitInfo))
+            if (inputManager.IsHitSolid(hitInfo))
             {
                 if (hitInfo.collider.CompareTag("Floor"))
                 {
@@ -63,36 +63,4 @@ public class scr_Sunlight : MonoBehaviour
 
         Debug.DrawRay(SunPosition, rayDirection * 10000f, Color.yellow);
     }
-
-    bool IsHitSolid(RaycastHit hit)
-    {
-        Renderer renderer = hit.collider.GetComponent<Renderer>();
-        if (renderer == null || renderer.sharedMaterial == null) return true;
-
-        Material material = renderer.sharedMaterial;
-        if (material == null) return true;
-
-        Texture texture = material.mainTexture;
-        if (texture == null) return true;
-
-        if (material.color.a <= Alpha)
-        {
-            return false;
-        }
-
-        if (texture is not Texture2D tex)
-        {
-            return true;
-        }
-
-        Vector2 pixelUV = hit.textureCoord;
-        if (pixelUV.x < 0f || pixelUV.x > 1f || pixelUV.y < 0f || pixelUV.y > 1f)
-        {
-            return true;
-        }
-
-        Color pixelColor = tex.GetPixelBilinear(Mathf.Clamp01(pixelUV.x), Mathf.Clamp01(pixelUV.y));
-        return (pixelColor.a * material.color.a) > Alpha;
-    }
-
 }
