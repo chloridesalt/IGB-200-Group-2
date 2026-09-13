@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
         s_Instance = this;
 
-        DontDestroyOnLoad(gameObject); 
+        DontDestroyOnLoad(gameObject);
     }
      void Update()
     {
@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
             SunTime += Time.deltaTime;
         }
         SunMovement();
-
 
     }
     // Use this function to change the camera view to the top of the paper bag

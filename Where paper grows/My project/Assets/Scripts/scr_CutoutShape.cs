@@ -13,6 +13,7 @@ public class scr_CutoutShape : MonoBehaviour
     public GameObject ObjectHandler;
 
     private List<BoxCollider> colliders = new List<BoxCollider>();
+    private scr_InputManager inputManager;
     private GameObject environmentSilhouette;
     private bool lateInit = false;
 
@@ -24,6 +25,7 @@ public class scr_CutoutShape : MonoBehaviour
     void Start()
     {
         ObjectHandler = FindObjectOfType<scr_PlaceObject>().gameObject;
+        inputManager = GameManager.s_Instance.GetComponent<scr_InputManager>();
     }
 
     // Update is called once per frame
@@ -57,7 +59,7 @@ public class scr_CutoutShape : MonoBehaviour
     {
         for(int i = 0; i < colliders.Count; i++)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(inputManager.lookValue);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit) && hit.collider == colliders[i])
             {

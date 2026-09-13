@@ -14,6 +14,7 @@ public class scr_Roof : MonoBehaviour
 
     private Texture2D newRoofTexture;
     private Texture2D newHoleTexture;
+    private scr_InputManager inputManager;
     private GameObject newCutoutShape;
 
     [SerializeField] private AudioData tearSound;
@@ -21,6 +22,8 @@ public class scr_Roof : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        inputManager = GameManager.s_Instance.GetComponent<scr_InputManager>();
+
         Texture2D rootTexture = (Texture2D)GetComponent<MeshRenderer>().material.mainTexture;
 
         // Copy roof texture onto a new texture
@@ -43,7 +46,7 @@ public class scr_Roof : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && GameManager.s_Instance != null && GameManager.s_Instance.EnableTear)
+        if (inputManager.interactAction.WasPerformedThisFrame() && GameManager.s_Instance != null && GameManager.s_Instance.EnableTear)
         {
             RayCast();
             GameManager.s_Instance.EnableTear = false;
@@ -55,7 +58,7 @@ public class scr_Roof : MonoBehaviour
     private void RayCast()
     {
         // Draw a raycast from the place clicked on the screen forward
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(inputManager.lookValue);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
 
