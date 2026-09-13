@@ -27,7 +27,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _ExternalInfluence: -0.41
+    - _ExternalInfluence: 3.5
     - _WindIntensity: 1.21
     m_Colors: []
   m_BuildTextureStacks: []
