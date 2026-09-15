@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimalEnvironmentData: {fileID: 11400000, guid: 9e0d2b4ec17063a4c94477b47d133d73, type: 2}
-  animator: {fileID: 9012138207030395645}
+  animator: {fileID: 0}
 --- !u!195 &3298656037074188157
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -81,7 +81,7 @@ Animator:
   m_GameObject: {fileID: 2664775595931888947}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 95fb8bf2185659e40b237434de67fbba, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
