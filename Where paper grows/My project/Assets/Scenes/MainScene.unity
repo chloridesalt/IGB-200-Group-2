@@ -1324,7 +1324,7 @@ MonoBehaviour:
       Owner: {fileID: 347454920}
       Enabled: 1
       Input:
-        InputAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+        InputAction: {fileID: -8705162920423206293, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: 1
         LegacyInput: 
         LegacyGain: 1
