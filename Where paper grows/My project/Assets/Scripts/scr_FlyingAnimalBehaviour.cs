@@ -16,6 +16,8 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator = GetComponent<Animator>();
+        Debug.Log(animator);
         agent = GetComponent<NavMeshAgent>();
         agent.baseOffset = BaseOffset;
         FindEnvironmentObjects();
@@ -56,6 +58,12 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
             }
         }
 
+        if (animator != null)
+        {
+            animator.SetBool("Perching", true);
+            animator.SetBool("Flying", false);
+        }
+
         currentTargetIndex = newIndex;
         currentTarget = environmentObjects[currentTargetIndex];
         timeSinceTargetReached = 0f;
@@ -87,6 +95,11 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
         {
             agent.SetDestination(currentTarget.transform.position);
         }
+        if (animator != null)
+        { 
+            animator.SetBool("Perching", false);
+            animator.SetBool("Flying", true);
+        }
     }
 
     private bool IsOnNavMesh()
@@ -109,6 +122,5 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
 
     public void Interact()
     {
-        //Animator trigger for interaction
     }
 }

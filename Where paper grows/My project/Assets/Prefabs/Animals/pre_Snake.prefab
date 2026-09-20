@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3854157645233084791}
   - component: {fileID: 7725653756173282346}
   - component: {fileID: 1032079253752397592}
+  - component: {fileID: 3973841679509863306}
   m_Layer: 0
   m_Name: pre_Snake
   m_TagString: Untagged
@@ -69,6 +70,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimalEnvironmentData: {fileID: 11400000, guid: 509b074a142244f41bb47deba9422650, type: 2}
+  animator: {fileID: 3973841679509863306}
+--- !u!95 &3973841679509863306
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664775595931888947}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68144b6e50a855f46a68017c975b8f01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3820660342460553776
 GameObject:
   m_ObjectHideFlags: 0

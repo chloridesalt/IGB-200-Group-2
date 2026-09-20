@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3854157645233084791}
   - component: {fileID: 7852984984451582762}
   - component: {fileID: -4220110761368607895}
+  - component: {fileID: 8225686282702352758}
   m_Layer: 0
   m_Name: pre_Bird
   m_TagString: Untagged
@@ -69,7 +70,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimalEnvironmentData: {fileID: 11400000, guid: a5fc5db177967ae40b9e8cab140c74a2, type: 2}
+  animator: {fileID: 8225686282702352758}
   BaseOffset: 5
+--- !u!95 &8225686282702352758
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664775595931888947}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b93a77fcfde80d449c35ac34392a461, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3820660342460553776
 GameObject:
   m_ObjectHideFlags: 0
