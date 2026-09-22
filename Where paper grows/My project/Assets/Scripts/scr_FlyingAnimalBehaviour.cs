@@ -58,11 +58,7 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
             }
         }
 
-        if (animator != null)
-        {
-            animator.SetBool("Perching", true);
-            animator.SetBool("Flying", false);
-        }
+     
 
         currentTargetIndex = newIndex;
         currentTarget = environmentObjects[currentTargetIndex];
@@ -78,6 +74,8 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
             timeSinceTargetReached += Time.deltaTime;
             if (timeSinceTargetReached >= targetWaitTime)
             {
+                animator.SetBool("Flying", true);
+
                 SelectNewTarget();
             }
         }
@@ -95,12 +93,8 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
         {
             agent.SetDestination(currentTarget.transform.position);
         }
-        if (animator != null)
-        { 
-            animator.SetBool("Perching", false);
-            animator.SetBool("Flying", true);
-        }
     }
+
 
     private bool IsOnNavMesh()
     {
@@ -122,5 +116,7 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
 
     public void Interact()
     {
+        animator.SetBool("Flying", false);
+
     }
 }
