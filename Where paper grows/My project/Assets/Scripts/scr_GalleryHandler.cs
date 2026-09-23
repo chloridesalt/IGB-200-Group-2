@@ -40,28 +40,36 @@ public class scr_GalleryHandler : MonoBehaviour
 
     private void UpdateImages()
     {
-        if (images.Length < index + 5)
+        if (images.Length - 1 > index + 5)
         {
-            for (int i = index; i < images.Length; i++)
+            forwardButton.SetActive(true);
+
+            for (int i = index; i < index + 6; i++)
             {
-                Debug.Log(i);
-                imageHolders[i/page].sprite = images[i];
-                imageHolders[i/page].color = Color.white;
+                imageHolders[i / page].sprite = images[i];
+                imageHolders[i / page].color = Color.white;
             }
         }
         else
         {
-            for (int i = index; i < index+6; i++)
+            forwardButton.SetActive(false);
+
+            int i = 0;
+
+            for (i=i; i < images.Length - index; i++)
             {
-                imageHolders[i/page].sprite = images[i];
-                imageHolders[i/page].color = Color.white;
-                imageHolders[i/page].color = Color.white;
+                imageHolders[i].sprite = images[index + i];
+                imageHolders[i].color = Color.white;
+            }
+
+            for (i=i; i < 6; i++)
+            {
+                imageHolders[i].sprite = null;
+                imageHolders[i].color = new Color(1,1,1,0);
             }
         }
 
-        if (images.Length-1 > index + 5)
-        {
-            forwardButton.SetActive(true);
-        }
+        if (page > 1) backButton.SetActive(true);
+        else backButton.SetActive(false);
     }
 }
