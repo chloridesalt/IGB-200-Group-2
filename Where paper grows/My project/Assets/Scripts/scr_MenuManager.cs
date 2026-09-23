@@ -12,6 +12,11 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("MainScene");
     }
 
+    public void ReturnToGame()
+    {
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(SceneManager.sceneCount-1));
+    }
+
     public void OpenCredits()
     {
         creditsPanel.SetActive(true);
@@ -34,7 +39,7 @@ public class MenuManager : MonoBehaviour
 
     public void GoToGallery()
     {
-        SceneManager.LoadScene("GalleryTemplate");
+        SceneManager.LoadScene("GalleryTemplate", LoadSceneMode.Additive);
     }
 
     public void MainMenu()
