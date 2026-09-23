@@ -8,6 +8,7 @@ public class scr_UIHandler : MonoBehaviour
     public GameObject RoofViewButton;
     public bool RoofViewButtonOn = true;
     public Slider SunSlider;
+    public Slider ScaleSlider;
     private bool isSliderBeingDragged = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -90,5 +91,10 @@ public class scr_UIHandler : MonoBehaviour
     public void ReEnableAutoSunMovement()
     {
         GameManager.s_Instance.EnableAutoSunMovement();
+    }
+
+    public void EnableScaleSlider()
+    {
+        ScaleSlider.gameObject.SetActive(true);
     }
 }

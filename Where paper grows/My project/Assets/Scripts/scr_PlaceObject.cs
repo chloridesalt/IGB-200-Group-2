@@ -16,6 +16,7 @@ public class scr_PlaceObject : MonoBehaviour
     private GameObject objectPreview;
     private GameObject placedObject;
     private bool hasSelectedPosition;
+    private bool scaleSliderInitialized;
     private scr_InputManager inputManager;
     public int TreeCount = 0;
     public int BushCount = 0;
@@ -192,6 +193,7 @@ public class scr_PlaceObject : MonoBehaviour
             }
 
             placedObject = Instantiate(ObjectToPlace, placementPosition, Quaternion.identity);
+            scaleSliderInitialized = false;
             hasSelectedPosition = true;
             DestroyPreview();
             ActivatePreviewBox();
@@ -206,13 +208,13 @@ public class scr_PlaceObject : MonoBehaviour
                 return;
             }
             Vector3 previewPosition = PreviewBoxDimensionCheck();
+            previewPosition.z = placedObject.transform.position.z - 0.5f;
             PreviewBox.SetActive(true);
             RectTransform uiTransform = PreviewBox.GetComponent<RectTransform>();
             Canvas canvas = PreviewBox.GetComponentInParent<Canvas>();
 
             if (uiTransform == null || canvas == null || canvas.renderMode == RenderMode.WorldSpace)
             {
-                PreviewBox.transform.position = previewPosition;
                 return;
             }
 
@@ -229,17 +231,30 @@ public class scr_PlaceObject : MonoBehaviour
         //resizes box to "fit" the object
         private Vector3 PreviewBoxDimensionCheck()
         {
-            if (placedObject.transform.childCount == 0)
+            Vector3 previewPosition = placedObject.transform.position;
+
+            if (placedObject.transform.childCount > 0)
             {
-                return placedObject.transform.position;
+                Transform placedObjectChild = placedObject.transform.GetChild(0);
+                float previewScale = Mathf.Max(placedObjectChild.localScale.x, placedObjectChild.localScale.z);
+                float previewPositionY = placedObject.transform.position.y + placedObjectChild.localPosition.y;
+                Debug.Log($"PreviewBox scale: {previewScale}, position Y: {previewPositionY}");
+                PreviewBox.transform.localScale = new Vector3(previewScale, 1f, previewScale);
+                previewPosition.y = previewPositionY;
             }
 
-            Transform placedObjectChild = placedObject.transform.GetChild(0);
-            float previewScale = Mathf.Max(placedObjectChild.localScale.x, placedObjectChild.localScale.z);
-            float previewPositionY = placedObject.transform.position.y + placedObjectChild.localPosition.y;
-            Debug.Log($"PreviewBox scale: {previewScale}, position Y: {previewPositionY}");
-            PreviewBox.transform.localScale = new Vector3(previewScale, 1f, previewScale);
-            return new Vector3(placedObject.transform.position.x, previewPositionY, placedObject.transform.position.z);
+            PreviewBox.transform.position = previewPosition;
+
+            Canvas canvas = PreviewBox.GetComponentInParent<Canvas>();
+            RectTransform uiTransform = PreviewBox.GetComponent<RectTransform>();
+            if (uiTransform != null && canvas != null && canvas.renderMode == RenderMode.WorldSpace)
+            {
+                Vector3 previewLocalPosition = uiTransform.localPosition;
+                previewLocalPosition.z -= 0.5f;
+                uiTransform.localPosition = previewLocalPosition;
+            }
+
+            return previewPosition;
         }
 
 
@@ -255,6 +270,38 @@ public class scr_PlaceObject : MonoBehaviour
             IsPlacingObject = false;
             hasSelectedPosition = false;
             PreviewBox.SetActive(false);
+            GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = true;
+        }
+
+        //scale button calls here, scales object
+        public void ScaleObject()
+        {
+            Slider scaleSlider = GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().ScaleSlider;
+            if (scaleSlider != null && placedObject != null)
+            {
+                if (!scaleSliderInitialized)
+                {
+                    scaleSliderInitialized = true;
+                    scaleSlider.value = placedObject.transform.localScale.x;
+                }
+
+                float scaleValue = scaleSlider.value;
+                placedObject.transform.localScale = new Vector3(scaleValue, scaleValue, scaleValue);
+
+                if (PreviewBox != null)
+                {
+                    PreviewBox.transform.localScale = new Vector3(scaleValue, scaleValue, 1f);
+
+                    if (placedObject.transform.childCount > 0)
+                    {
+                        Transform placedObjectChild = placedObject.transform.GetChild(0);
+                        Vector3 previewPosition = PreviewBox.transform.position;
+                        previewPosition.y = placedObject.transform.position.y + (placedObjectChild.localPosition.y * scaleValue);
+                        PreviewBox.transform.position = previewPosition;
+                    }
+                    
+                }
+            }
         }
     }
 
