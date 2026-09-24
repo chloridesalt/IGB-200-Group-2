@@ -5,6 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject photoCanvas;
     [SerializeField] private GameObject mainUI;
+    [SerializeField] private GameObject exampleGalleryPanel;
 
     public GameObject PopupPanel;
     public GameObject creditsPanel;
@@ -16,7 +17,7 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnToGame()
     {
-        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(SceneManager.sceneCount-1));
+        SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(SceneManager.sceneCount - 1));
     }
 
     public void OpenCredits()
@@ -54,6 +55,17 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void OpenExampleGallery()
+    {
+        exampleGalleryPanel.SetActive(true);
+    }
+
+    public void CloseExampleGallery()
+    {
+        exampleGalleryPanel.SetActive(false);
+    }
+
     public void QuitGame()
     {
         Application.Quit();

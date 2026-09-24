@@ -2793,6 +2793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photoCanvas: {fileID: 895053620}
   mainUI: {fileID: 119303853}
+  exampleGalleryPanel: {fileID: 0}
   PopupPanel: {fileID: 378689047}
   creditsPanel: {fileID: 0}
 --- !u!4 &668792967
