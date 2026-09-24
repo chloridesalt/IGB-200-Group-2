@@ -70,10 +70,17 @@ public class scr_PlaceObject : MonoBehaviour
 
         ObjectName = ObjectToPlace.name;
         GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = true;
+
+   
         switch (ObjectName)
         {
             case "pre_Tree":
                 TreeCount += 1;
+                src_ParticleEmitter particleScript = placedObject.GetComponentInChildren<src_ParticleEmitter>();
+                if (particleScript != null && src_WindManager.Instance != null)
+                {
+                    src_WindManager.Instance.RegisterObject(particleScript);
+                }
                 break;
             case "pre_Bush":
                 BushCount += 1;
@@ -88,6 +95,7 @@ public class scr_PlaceObject : MonoBehaviour
         IsPlacingObject = false;
         hasSelectedPosition = false;
         AudioManager.Instance.PlayAtPosition(placeObjectSound, placedObject.transform.position);
+
         placedObject = null;
     }
 
