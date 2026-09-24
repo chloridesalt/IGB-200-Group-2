@@ -218,6 +218,22 @@ PrefabInstance:
       propertyPath: VelocityModule.z.scalar
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7435227422466928856, guid: 553607aec8f9daf4e8b2d6341c77de90, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435227422466928856, guid: 553607aec8f9daf4e8b2d6341c77de90, type: 3}
+      propertyPath: EmissionModule.rateOverTime.minScalar
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435227422466928856, guid: 553607aec8f9daf4e8b2d6341c77de90, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435227422466928856, guid: 553607aec8f9daf4e8b2d6341c77de90, type: 3}
+      propertyPath: EmissionModule.rateOverTime.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -243,6 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f28024d1f1d2cc4f866fee94ff360b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minInterval: 0.1
+  maxInterval: 10
 --- !u!4 &2484463726383031105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4449309114931140162, guid: 553607aec8f9daf4e8b2d6341c77de90, type: 3}

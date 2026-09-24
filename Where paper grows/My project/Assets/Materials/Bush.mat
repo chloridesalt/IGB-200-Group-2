@@ -41,7 +41,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ExternalInfluence: 0
-    - _WindIntensity: 1.5
+    - _WindIntensity: 0.7
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

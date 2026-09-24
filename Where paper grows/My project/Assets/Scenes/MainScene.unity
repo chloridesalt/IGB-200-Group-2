@@ -2435,7 +2435,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3820660342460553776, guid: 1b25d93ef3e985f4399fb6ae1c63ac89, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b25d93ef3e985f4399fb6ae1c63ac89, type: 3}
@@ -7195,7 +7196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917663fef7d65cc4fb4f89c41af30aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emissionChance: 1
+  emissionChance: 0.71
   maxActiveEmitters: 5
   targetInfluence: 8
   targetInfluence2: -8
@@ -8304,7 +8305,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3820660342460553776, guid: ec9c652d884debd49bf5b85a85b2534e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec9c652d884debd49bf5b85a85b2534e, type: 3}

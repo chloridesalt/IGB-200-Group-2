@@ -42,7 +42,7 @@ Material:
     m_Floats:
     - _ExternalInfluence: 0.66
     - _PlaneScaleeffect: 0.5
-    - _WindIntensity: 2
+    - _WindIntensity: 1
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1
