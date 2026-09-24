@@ -40,10 +40,12 @@ public class scr_GalleryHandler : MonoBehaviour
 
     private void UpdateImages()
     {
+        // Checks if there's more images than can be placed on the page
         if (images.Length - 1 > index + 5)
         {
             forwardButton.SetActive(true);
 
+            // Sets the images
             for (int i = index; i < index + 6; i++)
             {
                 imageHolders[i / page].sprite = images[i];
@@ -56,12 +58,14 @@ public class scr_GalleryHandler : MonoBehaviour
 
             int i = 0;
 
+            // Sets as many image holders as there are images to the images
             for (i=i; i < images.Length - index; i++)
             {
                 imageHolders[i].sprite = images[index + i];
                 imageHolders[i].color = Color.white;
             }
 
+            // Turns the rest of the image holders transparent
             for (i=i; i < 6; i++)
             {
                 imageHolders[i].sprite = null;
@@ -69,6 +73,7 @@ public class scr_GalleryHandler : MonoBehaviour
             }
         }
 
+        // Enables back button if past page 1
         if (page > 1) backButton.SetActive(true);
         else backButton.SetActive(false);
     }

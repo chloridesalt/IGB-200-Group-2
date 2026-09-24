@@ -38,7 +38,6 @@ public class scr_CutoutShape : MonoBehaviour
                 LateStart();
             }
             CheckCutout();
-            //CutoutComplete();
         }
     }
 
@@ -55,18 +54,24 @@ public class scr_CutoutShape : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // Checks to see if the cursor is over a collider on the cutout and removes it if so
     private void CheckCutout()
     {
         for(int i = 0; i < colliders.Count; i++)
         {
+            // Gets mouse position
             Ray ray = Camera.main.ScreenPointToRay(inputManager.lookValue);
             RaycastHit hit;
+
+            // If mouse touching collider
             if (Physics.Raycast(ray, out hit) && hit.collider == colliders[i])
             {
+                // Hide sprite & remove collider
                 SpriteMask spriteMask = colliders[i].GetComponent<SpriteMask>();
                 spriteMask.enabled = true;
                 colliders.Remove(colliders[i]);
-                Debug.Log("Collider Removed");
+
+                // Play cutting sound
                 AudioManager.Instance.PlayAtPosition(cutoutSound, transform.position);
                 i--;
             }
@@ -78,6 +83,7 @@ public class scr_CutoutShape : MonoBehaviour
         }
     }
 
+    // A late initiation for when the set object is selected
     private void LateStart()
     {
         environmentSilhouette = Instantiate(EnvironmentObject.environmentSilhouette, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.Euler(-90, 90, 0));
