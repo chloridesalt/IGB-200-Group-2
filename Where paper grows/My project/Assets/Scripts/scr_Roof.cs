@@ -10,6 +10,7 @@ public class scr_Roof : MonoBehaviour
     [SerializeField] private float holeScale = 1.0f;
     [SerializeField] private float cutoutSpawnOffset = 15f;
     [SerializeField] private GameObject cutoutShape;
+    [SerializeField] public GameObject SunspotPrefab;
 
 
     private Texture2D newRoofTexture;
@@ -73,7 +74,8 @@ public class scr_Roof : MonoBehaviour
             // Instantiate the cutout
             AudioManager.Instance.PlayAtPosition(tearSound, transform.position);
             newCutoutShape = Instantiate(cutoutShape, new Vector3(0, hit.point.y + cutoutSpawnOffset, 0), Quaternion.Euler(0, 0, 90));
-
+            Instantiate(SunspotPrefab, new Vector3(hit.point.x, hit.point.y + 1f, hit.point.z), Quaternion.identity);
+            
             // Find the texture coordinates that the raycast hits and multiply it by the roof texture size to get the true pixels
             Vector2 textureCoords = hit.textureCoord;
             textureCoords.x *= newRoofTexture.width;

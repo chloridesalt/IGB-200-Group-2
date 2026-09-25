@@ -2,65 +2,64 @@ using UnityEngine;
 
 public class scr_Sunlight : MonoBehaviour
 {
-    private Vector3 SunPosition;
-    private Vector3 AimPosition;
-    private scr_InputManager inputManager;
-    private const int MaxTransparentHits = 32;
-    private const float RayOffset = 0.001f;
-    public GameObject GrassPrefab;
-    public GameObject Godray;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        inputManager = GameManager.s_Instance.GetComponent<scr_InputManager>();
-    }
+	public Vector3 SunPosition { get; private set; }
+	public Vector3 AimPosition { get; private set; }
+	private scr_InputManager inputManager;
+	private const int MaxTransparentHits = 32;
+	private const float RayOffset = 0.001f;
+	public Vector3 RayDirection { get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        SunPosition = transform.position;
-        AimPosition = new Vector3(-transform.position.x, 5, -transform.position.z);
-        Sunlight();
-    }
+	void Start()
+	{
+		inputManager = GameManager.s_Instance.GetComponent<scr_InputManager>();
+		RayDirection = transform.forward;
+	}
 
-    private void Sunlight()
-    {
-        Vector3 rayDirection = (AimPosition - SunPosition).normalized;
-        Vector3 rayOrigin = SunPosition;
+	void Update()
+	{
+		SunPosition = transform.position;
+		AimPosition = new Vector3(-SunPosition.x, 5, -SunPosition.z);
+		Vector3 calculatedDirection = AimPosition - SunPosition;
+		if (calculatedDirection.sqrMagnitude > 0.000001f)
+		{
+			RayDirection = calculatedDirection.normalized;
+		}
 
-        for (int hitCount = 0; hitCount < MaxTransparentHits; hitCount++)
-        {
-            if (!Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hitInfo))
-            {
-                break;
-            }
+		if (RayDirection.sqrMagnitude <= 0.000001f)
+		{
+			RayDirection = Vector3.down;
+		}
 
-            if (inputManager.IsHitSolid(hitInfo))
-            {
-                if (hitInfo.collider.CompareTag("Floor"))
-                {
-                    Instantiate(GrassPrefab, hitInfo.point, Quaternion.identity);
-                    Godray.SetActive(true);
-                }
-                else if (hitInfo.collider.CompareTag("Grass"))
-                {
-                    scr_GrassGrowth grassGrowth = hitInfo.collider.GetComponent<scr_GrassGrowth>();
-                    if (grassGrowth != null)
-                    {
-                        grassGrowth.GrowGrass();
-                    }
-                    Godray.SetActive(true);
-                } else
-                {
-                    Godray.SetActive(false);
-                }
-                transform.LookAt(hitInfo.point);
-                break;
-            }
+		transform.rotation = Quaternion.LookRotation(RayDirection);
+		Sunlight();
+	}
 
-            rayOrigin = hitInfo.point + rayDirection * RayOffset;
-        }
+	private void Sunlight()
+	{
+		Vector3 rayDirection = RayDirection;
+		Vector3 rayOrigin = SunPosition;
 
-        Debug.DrawRay(SunPosition, rayDirection * 10000f, Color.yellow);
-    }
+		for (int hitCount = 0; hitCount < MaxTransparentHits; hitCount++)
+		{
+			if (!Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hitInfo))
+			{
+				break;
+			}
+
+			if (inputManager.IsHitSolid(hitInfo))
+			{
+				Vector3 hitDirection = hitInfo.point - SunPosition;
+				if (hitDirection.sqrMagnitude > 0.000001f)
+				{
+					transform.LookAt(hitInfo.point);
+					RayDirection = transform.forward;
+				}
+				break;
+			}
+			rayOrigin = hitInfo.point + rayDirection * RayOffset;
+		}
+
+		RayDirection = transform.forward;
+		Debug.DrawRay(SunPosition, rayDirection * 10000f, Color.yellow);
+	}
 }
