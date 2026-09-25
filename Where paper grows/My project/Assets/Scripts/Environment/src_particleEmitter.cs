@@ -25,7 +25,14 @@ public class src_ParticleEmitter : MonoBehaviour
         StopEmitting();
         emitRoutine = StartCoroutine(EmitLeavesRoutine());
     }
-
+    public void WindRight()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+    public void WindLeft()
+    {
+        transform.rotation = Quaternion.Euler(-180, 0, 0);
+    }
     public void StopEmitting()
     {
         if (emitRoutine != null)

@@ -77,7 +77,7 @@ public class src_WindManager : MonoBehaviour
             list[randomIndex] = temp;
         }
     }
-    public void TriggerParticles()
+    public void TriggerParticles(float currentTargetInfluence)
     {
         // Reset all currently registered trees
         foreach (var item in registeredObjects)
@@ -98,7 +98,16 @@ public class src_WindManager : MonoBehaviour
             if (Random.value <= emissionChance)
             {
                 item.StartEmitting();
-                activeCount++;
+               
+                if (currentTargetInfluence < 1.0f)
+                {
+                    item.WindRight();
+                }
+                else
+                {
+                    item.WindLeft();
+                }
+                    activeCount++;
             }
         }
 
@@ -115,7 +124,7 @@ public class src_WindManager : MonoBehaviour
 
         float currentTargetInfluence = (Random.value < 0.5f) ? targetInfluence : targetInfluence2;
         Debug.Log($"Wind has started with target influence: {currentTargetInfluence}");
-        TriggerParticles();
+        TriggerParticles(currentTargetInfluence);
         Debug.Log(string.Join(", ", registeredObjects));
         float elapsed = 0f;
 

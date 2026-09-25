@@ -11,12 +11,12 @@ public class scr_CutoutShape : MonoBehaviour
 {
     public scr_EnvironmentObjects EnvironmentObject;
     public GameObject ObjectHandler;
-
+    [SerializeField] private GameObject cutoutParticlePrefab;
     private List<BoxCollider> colliders = new List<BoxCollider>();
     private scr_InputManager inputManager;
     private GameObject environmentSilhouette;
     private bool lateInit = false;
-
+    
     [SerializeField] private AudioData cutoutSound;
     [SerializeField] private AudioData cutoutComplete;
 
@@ -24,8 +24,10 @@ public class scr_CutoutShape : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         ObjectHandler = FindObjectOfType<scr_PlaceObject>().gameObject;
         inputManager = GameManager.s_Instance.GetComponent<scr_InputManager>();
+        src_Cursor.OnMinigameStarted?.Invoke();
     }
 
     // Update is called once per frame
@@ -48,7 +50,9 @@ public class scr_CutoutShape : MonoBehaviour
 
     private void CutoutComplete()
     {
+        
         GameManager.s_Instance.ChangeView();
+        src_Cursor.OnMinigameEnded?.Invoke();
         ObjectHandler.GetComponent<scr_PlaceObject>().TargetPosition(EnvironmentObject.environmentPrefab);
         Destroy(environmentSilhouette);
         Destroy(gameObject);
@@ -70,7 +74,11 @@ public class scr_CutoutShape : MonoBehaviour
                 SpriteMask spriteMask = colliders[i].GetComponent<SpriteMask>();
                 spriteMask.enabled = true;
                 colliders.Remove(colliders[i]);
-
+                // Spawn particle effect at the exact hit point
+                if (cutoutParticlePrefab != null)
+                {
+                    Instantiate(cutoutParticlePrefab, hit.point, Quaternion.identity);
+                }
                 // Play cutting sound
                 AudioManager.Instance.PlayAtPosition(cutoutSound, transform.position);
                 i--;

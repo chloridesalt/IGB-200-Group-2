@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnvironmentObject: {fileID: 0}
   ObjectHandler: {fileID: 0}
+  cutoutParticlePrefab: {fileID: 3642966727169868236, guid: fe483a49115ec4645b2fcd7b340c3d84, type: 3}
   cutoutSound: {fileID: 11400000, guid: 61185a274eedbb840af080190ca2c973, type: 2}
   cutoutComplete: {fileID: 11400000, guid: bfdb26af308352246bacadbcfdb12662, type: 2}
 --- !u!1 &5102707781534299171
