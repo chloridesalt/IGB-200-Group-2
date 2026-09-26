@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bird_Perch
+  m_Name: NEW_Bird_Flying
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,10 +21,16 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 0f3f045092466d244ab33bcfa76141be, type: 3}
-    attribute: m_Sprite
-    path: 
-    classID: 212
+      value: {fileID: 2100000, guid: 13d7d26fdd3df5946a5e529c18037921, type: 2}
+    - time: 0.083333336
+      value: {fileID: 2100000, guid: 3a227fc05beab6a49877901d6d859f5b, type: 2}
+    - time: 0.16666667
+      value: {fileID: 2100000, guid: fa7acd4ac09cf5e4585d3604c0973c62, type: 2}
+    - time: 0.25
+      value: {fileID: 2100000, guid: 0f701a4913220dc43a73d1e796d57090, type: 2}
+    attribute: 'm_Materials.Array.data[0]'
+    path: BirdObject
+    classID: 23
     script: {fileID: 0}
     flags: 2
   m_SampleRate: 60
@@ -35,22 +41,25 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 105544054
       attribute: 0
       script: {fileID: 0}
-      typeID: 212
-      customType: 23
+      typeID: 23
+      customType: 21
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 0f3f045092466d244ab33bcfa76141be, type: 3}
+    - {fileID: 2100000, guid: 13d7d26fdd3df5946a5e529c18037921, type: 2}
+    - {fileID: 2100000, guid: 3a227fc05beab6a49877901d6d859f5b, type: 2}
+    - {fileID: 2100000, guid: fa7acd4ac09cf5e4585d3604c0973c62, type: 2}
+    - {fileID: 2100000, guid: 0f701a4913220dc43a73d1e796d57090, type: 2}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

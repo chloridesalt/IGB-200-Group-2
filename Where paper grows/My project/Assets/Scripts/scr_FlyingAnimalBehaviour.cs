@@ -117,6 +117,5 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
     public void Interact()
     {
         animator.SetBool("Flying", false);
-
     }
 }
