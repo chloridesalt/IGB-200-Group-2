@@ -5,14 +5,14 @@ using UnityEngine.UIElements;
 
 public class scr_Roof : MonoBehaviour
 {
-    [SerializeField] private Texture2D holeTexture;
+    [SerializeField] private Texture2D[] randomisedTextures;
     [SerializeField] private List<Texture2D> holeTextures = new List<Texture2D>();
     [SerializeField] private float holeScale = 1.0f;
     [SerializeField] private float cutoutSpawnOffset = 15f;
     [SerializeField] private GameObject cutoutShape;
     [SerializeField] public GameObject SunspotPrefab;
 
-
+    private Texture2D holeTexture;
     private Texture2D newRoofTexture;
     private Texture2D newHoleTexture;
     private scr_InputManager inputManager;
@@ -35,13 +35,6 @@ public class scr_Roof : MonoBehaviour
 
         // Apply the new texture back onto the material
         GetComponent<MeshRenderer>().material.mainTexture = newRoofTexture;
-
-        // Copy hole texture onto a new texture
-        newHoleTexture = new Texture2D(holeTexture.width, holeTexture.height);
-        newHoleTexture.SetPixels(holeTexture.GetPixels());
-        newRoofTexture.Apply();
-
-        // Here will be a segment to rescale the image to the holeScale
 
     }
 
@@ -71,6 +64,12 @@ public class scr_Roof : MonoBehaviour
         // If the object hit is not null and is this game object
         if ( hit.collider != null && inputManager.IsHitSolid(hit) && hit.collider.gameObject == this.gameObject)
         {
+            // Choose a random cutout shape
+            holeTexture = randomisedTextures[Random.Range(0,randomisedTextures.Length)];
+            newHoleTexture = new Texture2D(holeTexture.width, holeTexture.height);
+            newHoleTexture.SetPixels(holeTexture.GetPixels());
+            newHoleTexture.Apply();
+
             // Instantiate the cutout
             AudioManager.Instance.PlayAtPosition(tearSound, transform.position);
             newCutoutShape = Instantiate(cutoutShape, new Vector3(0, hit.point.y + cutoutSpawnOffset, 0), Quaternion.Euler(0, 0, 90));

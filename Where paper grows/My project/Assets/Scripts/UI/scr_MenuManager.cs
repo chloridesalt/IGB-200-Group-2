@@ -5,6 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject exampleGalleryPanel;
+    [SerializeField] private AudioData view;
 
     public GameObject photoCanvas;
     public GameObject PopupPanel;
@@ -17,6 +18,7 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnToGame()
     {
+        AudioManager.Instance.PlayAtPosition(view, transform.position);
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(SceneManager.sceneCount - 1));
     }
 
@@ -42,17 +44,20 @@ public class MenuManager : MonoBehaviour
 
     public void GoToGallery()
     {
+        AudioManager.Instance.PlayAtPosition(view, transform.position);
         SceneManager.LoadScene("GalleryTemplate", LoadSceneMode.Additive); 
     }
 
     public void EnablePhoto()
     {
+        AudioManager.Instance.PlayAtPosition(view, transform.position);
         photoCanvas.SetActive(true);
         mainUI.SetActive(false);
     }
 
     public void ClosePhoto()
     {
+        AudioManager.Instance.PlayAtPosition(view, transform.position);
         photoCanvas.SetActive(false);
         mainUI.SetActive(true);
     }

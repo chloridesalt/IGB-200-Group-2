@@ -1023,7 +1023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 31d96abbe9cba824bba47987aae915d6, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1915,6 +1915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainUI: {fileID: 0}
   exampleGalleryPanel: {fileID: 216864249}
+  view: {fileID: 11400000, guid: c61b2d22a373279489490a2ba658db2a, type: 2}
   photoCanvas: {fileID: 0}
   PopupPanel: {fileID: 0}
   creditsPanel: {fileID: 0}
