@@ -7,12 +7,16 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
     public Animator animator;
     public float BaseOffset = 5f;
     private GameObject[] environmentObjects;
-    private GameObject currentTarget;
+    private GameObject currentTargetObject;
+    private Vector3 currentTargetPosition;
     private int currentTargetIndex = 0;
+    private bool hasCurrentTarget;
+    private bool isRandomTarget;
     private float timeSinceTargetReached = 0f;
     private float targetWaitTime = 0f;
     private const float targetReachedDistance = 1.5f;
     public Transform BirdObject;
+    public float LocationRandomizeChance = 0.5f; // Chance to random walk instead of object
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,14 +36,18 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
     void Update()
     {
 
-        if (currentTarget == null && environmentObjects.Length > 0)
+        if (hasCurrentTarget && !isRandomTarget && currentTargetObject == null)
+        {
+            hasCurrentTarget = false;
+        }
+
+        if (!hasCurrentTarget && environmentObjects.Length > 0)
         {
             SelectNewTarget();
         }
         Movement();
-        UpdateFacingDirection();
         UpdateTargetWait();
-
+        UpdateFacingDirection();
     }
     private void UpdateFacingDirection()
     {
@@ -67,33 +75,47 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
         if (environmentObjects.Length == 0)
             return;
 
-        int newIndex = currentTargetIndex;
+        timeSinceTargetReached = 0f;
+        targetWaitTime = 0f;
+        hasCurrentTarget = true;
+
+        if (Random.value < LocationRandomizeChance)
+        {
+            isRandomTarget = true;
+            currentTargetObject = null;
+            currentTargetPosition = GetRandomPositionOnNavMesh();
+            return;
+        }
+
+        int newIndex = Random.Range(0, environmentObjects.Length);
         if (environmentObjects.Length > 1)
         {
             while (newIndex == currentTargetIndex)
             {
                 newIndex = Random.Range(0, environmentObjects.Length);
+
             }
         }
-
-     
-
         currentTargetIndex = newIndex;
-        currentTarget = environmentObjects[currentTargetIndex];
-        timeSinceTargetReached = 0f;
+        isRandomTarget = false;
+        currentTargetObject = environmentObjects[currentTargetIndex];
         Interact(); //this is where the animation triggers
         targetWaitTime = 5f; //Change for length of animation or whatever
     }
 
     private void UpdateTargetWait()
     {
-        if (currentTarget != null && Vector3.Distance(transform.position, currentTarget.transform.position) < targetReachedDistance)
+        Vector3 targetPosition = currentTargetObject != null ? currentTargetObject.transform.position : currentTargetPosition;
+        Vector3 navMeshPosition = transform.position - Vector3.up * agent.baseOffset;
+        if (hasCurrentTarget && Vector3.Distance(navMeshPosition, targetPosition) < targetReachedDistance)
         {
             timeSinceTargetReached += Time.deltaTime;
             if (timeSinceTargetReached >= targetWaitTime)
             {
                 animator.SetBool("Flying", true);
 
+                FindEnvironmentObjects();
+                hasCurrentTarget = false;
                 SelectNewTarget();
             }
         }
@@ -104,19 +126,20 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
         if (!IsOnNavMesh())
         {
             Vector3 randomPosition = GetRandomPositionOnNavMesh();
-            agent.Warp(randomPosition);
+            transform.position = randomPosition;
         }
 
-        if (currentTarget != null)
+        if (hasCurrentTarget)
         {
-            agent.SetDestination(currentTarget.transform.position);
+            agent.destination = currentTargetObject != null ? currentTargetObject.transform.position : currentTargetPosition;
         }
     }
 
-
     private bool IsOnNavMesh()
     {
-        return agent != null && agent.isOnNavMesh;
+        NavMeshHit hit;
+        Vector3 navMeshPosition = transform.position - Vector3.up * agent.baseOffset;
+        return NavMesh.SamplePosition(navMeshPosition, out hit, 1.0f, NavMesh.AllAreas);
     }
 
     private Vector3 GetRandomPositionOnNavMesh()

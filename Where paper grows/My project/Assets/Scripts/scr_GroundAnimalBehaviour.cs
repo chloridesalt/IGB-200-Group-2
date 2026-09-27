@@ -6,12 +6,16 @@ public class scr_GroundAnimalBehaviour : MonoBehaviour
     public scr_AnimalEnvironment AnimalEnvironmentData;
     public Animator animator;
     private GameObject[] environmentObjects;
-    private GameObject currentTarget;
+    private GameObject currentTargetObject;
+    private Vector3 currentTargetPosition;
+    private bool hasCurrentTarget;
+    private bool isRandomTarget;
     private int currentTargetIndex = 0;
     private float timeSinceTargetReached = 0f;
     private float targetWaitTime = 0f;
     private const float targetReachedDistance = 1.5f;
     public Transform plane;
+    public float LocationRandomizeChance = 0.5f; // Chance to random walk instead of object
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,12 +33,18 @@ public class scr_GroundAnimalBehaviour : MonoBehaviour
     {
     
 
-        if (currentTarget == null && environmentObjects.Length > 0)
+        if (hasCurrentTarget && !isRandomTarget && currentTargetObject == null)
+        {
+            hasCurrentTarget = false;
+        }
+
+        if (!hasCurrentTarget && environmentObjects.Length > 0)
         {
             SelectNewTarget();
         }
         Movement();
         UpdateTargetWait();
+        UpdateFacingDirection();
     }
 
     private void FindEnvironmentObjects()
@@ -48,34 +58,66 @@ public class scr_GroundAnimalBehaviour : MonoBehaviour
         if (environmentObjects.Length == 0)
             return;
 
-        int newIndex = currentTargetIndex;
+        timeSinceTargetReached = 0f;
+        targetWaitTime = 0f;
+        hasCurrentTarget = true;
+
+        if (Random.value < LocationRandomizeChance)
+        {
+            isRandomTarget = true;
+            currentTargetObject = null;
+            currentTargetPosition = GetRandomPositionOnNavMesh();
+            return;
+        }
+
+        int newIndex = Random.Range(0, environmentObjects.Length);
         if (environmentObjects.Length > 1)
         {
             while (newIndex == currentTargetIndex)
             {
                 newIndex = Random.Range(0, environmentObjects.Length);
+
             }
         }
-
         currentTargetIndex = newIndex;
-        currentTarget = environmentObjects[currentTargetIndex];
-        timeSinceTargetReached = 0f;
+        isRandomTarget = false;
+        currentTargetObject = environmentObjects[currentTargetIndex];
         Interact(); //this is where the animation triggers
         targetWaitTime = 5f; //Change for length of animation or whatever
     }
 
     private void UpdateTargetWait()
     {
-        if (currentTarget != null && Vector3.Distance(transform.position, currentTarget.transform.position) < targetReachedDistance)
+        Vector3 targetPosition = currentTargetObject != null ? currentTargetObject.transform.position : currentTargetPosition;
+        if (hasCurrentTarget && Vector3.Distance(transform.position, targetPosition) < targetReachedDistance)
         {
             timeSinceTargetReached += Time.deltaTime;
             if (timeSinceTargetReached >= targetWaitTime)
             {
+                FindEnvironmentObjects();
+                hasCurrentTarget = false;
                 SelectNewTarget();
             }
         }
     }
 
+    private void UpdateFacingDirection()
+    {
+        if (agent.velocity.z < -0.1f) //look left
+        {
+            Vector3 scale = plane.localScale;
+            scale.x = Mathf.Abs(scale.x);
+            plane.localScale = scale;
+
+        }
+        else if (agent.velocity.z > 0.1f) //look right 
+        {
+            Vector3 scale = plane.localScale;
+            scale.x = -Mathf.Abs(scale.x);
+            plane.localScale = scale;
+
+        }
+    }
     public void Movement()
     {
         if (!IsOnNavMesh())
@@ -84,9 +126,9 @@ public class scr_GroundAnimalBehaviour : MonoBehaviour
             transform.position = randomPosition;
         }
 
-        if (currentTarget != null)
+        if (hasCurrentTarget)
         {
-            agent.destination = currentTarget.transform.position;
+            agent.destination = currentTargetObject != null ? currentTargetObject.transform.position : currentTargetPosition;
         }
     }
 

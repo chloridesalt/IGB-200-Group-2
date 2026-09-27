@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 3854157645233084791}
   - component: {fileID: 7725653756173282346}
   - component: {fileID: 1032079253752397592}
-  - component: {fileID: 3973841679509863306}
-  - component: {fileID: 6215024646397238672}
   m_Layer: 0
   m_Name: pre_Snake
   m_TagString: Untagged
@@ -71,43 +69,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimalEnvironmentData: {fileID: 11400000, guid: 509b074a142244f41bb47deba9422650, type: 2}
-  animator: {fileID: 3973841679509863306}
+  animator: {fileID: 617227237000552083}
   plane: {fileID: 7447634521742843742}
---- !u!95 &3973841679509863306
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2664775595931888947}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 68144b6e50a855f46a68017c975b8f01, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6215024646397238672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2664775595931888947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f51cfe2b6de86604aa4968314f692f43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flipHolder: {fileID: 7447634521742843742}
 --- !u!1 &3820660342460553776
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +83,7 @@ GameObject:
   - component: {fileID: 9026518374367018529}
   - component: {fileID: 3695535130407163207}
   - component: {fileID: 6227562952720403672}
-  - component: {fileID: 2874195290215745011}
+  - component: {fileID: 617227237000552083}
   m_Layer: 0
   m_Name: SnakeObject
   m_TagString: Untagged
@@ -217,7 +180,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.000002, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &2874195290215745011
+--- !u!95 &617227237000552083
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
