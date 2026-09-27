@@ -12,16 +12,18 @@ public class src_Cursor : MonoBehaviour
     public static System.Action OnMinigameEnded;
     [SerializeField] private float hideDelayDuration = 3f;
     private float mouseStillTimer = 0f;
+    private Animator myAnimator;
 
 
     void Awake()
     {
         cursorImage = GetComponent<Image>();
         DeactivateCursor();
-
+        myAnimator = GetComponent<Animator>();
         // Subscribe to the global start and end events
         OnMinigameStarted += ActivateCursor;
         OnMinigameEnded += DeactivateCursor;
+        scr_CutoutShape.OnAnimationTriggerRequest += HandleTriggerRequest;
     }
 
     void OnDestroy()
@@ -29,8 +31,15 @@ public class src_Cursor : MonoBehaviour
 
         OnMinigameStarted -= ActivateCursor;
         OnMinigameEnded -= DeactivateCursor;
-    }
 
+    }
+    private void HandleTriggerRequest(string Cutting)
+    {
+        if (myAnimator != null)
+        {
+            myAnimator.SetTrigger(Cutting);
+        }
+    }
     private void ActivateCursor()
     {
         isMinigameActive = true;

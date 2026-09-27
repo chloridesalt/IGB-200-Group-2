@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -16,7 +17,7 @@ public class scr_CutoutShape : MonoBehaviour
     private scr_InputManager inputManager;
     private GameObject environmentSilhouette;
     private bool lateInit = false;
-    
+    public static event Action<string> OnAnimationTriggerRequest;
     [SerializeField] private AudioData cutoutSound;
     [SerializeField] private AudioData cutoutComplete;
 
@@ -75,6 +76,7 @@ public class scr_CutoutShape : MonoBehaviour
                 spriteMask.enabled = true;
                 colliders.Remove(colliders[i]);
                 // Spawn particle effect at the exact hit point
+                OnAnimationTriggerRequest?.Invoke("Cutting");
                 if (cutoutParticlePrefab != null)
                 {
                     Instantiate(cutoutParticlePrefab, hit.point, Quaternion.identity);
