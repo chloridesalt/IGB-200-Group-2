@@ -12,6 +12,7 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
     private float timeSinceTargetReached = 0f;
     private float targetWaitTime = 0f;
     private const float targetReachedDistance = 1.5f;
+    public Transform BirdObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,14 +31,31 @@ public class scr_FlyingAnimalBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (currentTarget == null && environmentObjects.Length > 0)
         {
             SelectNewTarget();
         }
         Movement();
+        UpdateFacingDirection();
         UpdateTargetWait();
-    }
 
+    }
+    private void UpdateFacingDirection()
+    {
+        if (agent.velocity.x > 0.1f) //look right
+        {
+            Vector3 scale = BirdObject.localScale;
+            scale.x = Mathf.Abs(scale.x);
+            BirdObject.localScale = scale;
+        }
+        else if (agent.velocity.x < -0.1f) //look left i think idk my directions i forgot ill find out soon
+        {
+            Vector3 scale = BirdObject.localScale;
+            scale.x = -Mathf.Abs(scale.x);
+            BirdObject.localScale = scale;
+        }
+    }
     private void FindEnvironmentObjects()
     {
         string environmentTag = AnimalEnvironmentData.EName.ToString();

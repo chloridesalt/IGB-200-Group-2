@@ -72,6 +72,7 @@ MonoBehaviour:
   AnimalEnvironmentData: {fileID: 11400000, guid: a5fc5db177967ae40b9e8cab140c74a2, type: 2}
   animator: {fileID: 8225686282702352758}
   BaseOffset: 5
+  BirdObject: {fileID: 7447634521742843742}
 --- !u!95 &8225686282702352758
 Animator:
   serializedVersion: 7
