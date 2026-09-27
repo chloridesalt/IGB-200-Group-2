@@ -723,7 +723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e07c83c9360b0a41b97356599951936, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d39ddf449b2c66242a2ffe899323a22f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1078,6 +1078,7 @@ MonoBehaviour:
   - {fileID: 1243758333}
   - {fileID: 364700630}
   - {fileID: 1444068457}
+  photoHandler: {fileID: 0}
 --- !u!1 &944977828
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,9 +1913,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43f3967c3ed2de46b2482a6ed012232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photoCanvas: {fileID: 0}
   mainUI: {fileID: 0}
   exampleGalleryPanel: {fileID: 216864249}
+  photoCanvas: {fileID: 0}
   PopupPanel: {fileID: 0}
   creditsPanel: {fileID: 0}
 --- !u!4 &1346229723
@@ -2841,7 +2842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0e07c83c9360b0a41b97356599951936, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d39ddf449b2c66242a2ffe899323a22f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

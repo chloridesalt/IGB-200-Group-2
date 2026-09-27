@@ -3,10 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject photoCanvas;
     [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject exampleGalleryPanel;
 
+    public GameObject photoCanvas;
     public GameObject PopupPanel;
     public GameObject creditsPanel;
 
@@ -42,13 +42,19 @@ public class MenuManager : MonoBehaviour
 
     public void GoToGallery()
     {
-        SceneManager.LoadScene("GalleryTemplate", LoadSceneMode.Additive);
+        SceneManager.LoadScene("GalleryTemplate", LoadSceneMode.Additive); 
     }
 
     public void EnablePhoto()
     {
         photoCanvas.SetActive(true);
         mainUI.SetActive(false);
+    }
+
+    public void ClosePhoto()
+    {
+        photoCanvas.SetActive(false);
+        mainUI.SetActive(true);
     }
 
     public void MainMenu()

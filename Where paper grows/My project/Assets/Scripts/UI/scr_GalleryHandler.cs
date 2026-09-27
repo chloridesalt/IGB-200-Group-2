@@ -1,3 +1,6 @@
+using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +11,7 @@ public class scr_GalleryHandler : MonoBehaviour
 
     public Sprite[] images;
     public Image[] imageHolders;
+    public scr_PhotoHandler photoHandler;
 
     private int index = 0;
     private int page = 1;
@@ -15,6 +19,8 @@ public class scr_GalleryHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        photoHandler = FindAnyObjectByType<scr_PhotoHandler>(FindObjectsInactive.Include);
+        SetImages();
         UpdateImages();
     }
 
@@ -36,6 +42,17 @@ public class scr_GalleryHandler : MonoBehaviour
         index += 6;
         page++;
         UpdateImages();
+    }
+
+    private void SetImages()
+    {
+        Debug.Log(photoHandler.photos.Count(s => s != null));
+        images = new Sprite[photoHandler.photos.Count(s => s != null)];
+        Debug.Log(images.Length);
+        for (int i = 0; i < images.Length; i++)
+        {
+            images[i] = Sprite.Create(photoHandler.photos[i], new Rect(0, 0, photoHandler.photos[i].width, photoHandler.photos[i].height), new Vector2(0.5f,0.5f));
+        }   
     }
 
     private void UpdateImages()
