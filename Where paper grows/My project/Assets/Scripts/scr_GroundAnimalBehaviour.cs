@@ -34,25 +34,9 @@ public class scr_GroundAnimalBehaviour : MonoBehaviour
             SelectNewTarget();
         }
         Movement();
-        UpdateFacingDirection();
         UpdateTargetWait();
     }
-    private void UpdateFacingDirection()
-    {
-        if (agent.velocity.x > 0.1f)
-        {
-            Vector3 scale = plane.localScale;
-            scale.x = -Mathf.Abs(scale.x);
-            plane.localScale = scale;
-        }
-        else if (agent.velocity.x < -0.1f)
-        {
-            // same as bird :P flips the sprite left n right 
-            Vector3 scale = plane.localScale;
-            scale.x = Mathf.Abs(scale.x);
-            plane.localScale = scale;
-        }
-    }
+
     private void FindEnvironmentObjects()
     {
         string environmentTag = AnimalEnvironmentData.EName.ToString();

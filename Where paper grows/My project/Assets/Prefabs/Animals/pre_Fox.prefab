@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6448232185587894672}
   - component: {fileID: 3298656037074188157}
   - component: {fileID: 9012138207030395645}
+  - component: {fileID: 2218767085817719715}
   m_Layer: 0
   m_Name: pre_Fox
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7447634521742843742}
+  - {fileID: 8484031117778097386}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6448232185587894672
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AnimalEnvironmentData: {fileID: 11400000, guid: 9e0d2b4ec17063a4c94477b47d133d73, type: 2}
   animator: {fileID: 0}
-  plane: {fileID: 7447634521742843742}
+  plane: {fileID: 8484031117778097386}
 --- !u!195 &3298656037074188157
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -94,6 +95,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2218767085817719715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664775595931888947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f46994f0e3317941aceae9743a04b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flipHolder: {fileID: 8484031117778097386}
 --- !u!1 &3820660342460553776
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,7 +119,6 @@ GameObject:
   - component: {fileID: 7447634521742843742}
   - component: {fileID: 9026518374367018529}
   - component: {fileID: 3695535130407163207}
-  - component: {fileID: 6227562952720403672}
   - component: {fileID: 3433452428913313543}
   m_Layer: 0
   m_Name: FoxObject
@@ -123,11 +136,11 @@ Transform:
   m_GameObject: {fileID: 3820660342460553776}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 1.3329, y: 1, z: 1}
+  m_LocalPosition: {x: 1.3152292, y: 0.37331542, z: 0.4143611}
+  m_LocalScale: {x: 0.53316003, y: 1, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3854157645233084791}
+  m_Father: {fileID: 8484031117778097386}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!33 &9026518374367018529
 MeshFilter:
@@ -182,27 +195,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6227562952720403672
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820660342460553776}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10.000002, y: 1, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &3433452428913313543
 Animator:
   serializedVersion: 7
@@ -225,3 +217,57 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &9159984754017159952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8484031117778097386}
+  - component: {fileID: 4144110389304228502}
+  m_Layer: 0
+  m_Name: FoxFlipper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8484031117778097386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9159984754017159952}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.3152292, y: 4.0667114, z: -1.0359027}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7447634521742843742}
+  m_Father: {fileID: 3854157645233084791}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4144110389304228502
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9159984754017159952}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
