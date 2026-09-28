@@ -124,7 +124,8 @@ public class scr_PlaceObject : MonoBehaviour
             }
 
             Ray ray = MainCamera.ScreenPointToRay(inputManager.lookValue);
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000f) && hit.collider.CompareTag("Floor"))
+            LayerMask mask = LayerMask.GetMask("Particle Boundry");
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000f, mask) && hit.collider.CompareTag("Floor"))
             {
                 placementPosition = hit.point;
                 return true;
