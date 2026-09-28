@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.orbitalnine.qrcode": {
+      "version": "https://github.com/shirleyman/unity-qrcode.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ui": "1.0.0"
+      },
+      "hash": "e5f2d607db862f35decb9348e98107e82e34e60d"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -239,6 +248,12 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.unity.ui": {
+      "version": "2.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {}
     },
     "com.unity.visualscripting": {
       "version": "1.9.5",
