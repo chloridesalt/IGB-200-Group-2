@@ -8,7 +8,7 @@ public class scr_PhotoHandler : MonoBehaviour
 
     public Texture2D[] photos = new Texture2D[30];
 
-    private int index = 0;
+    private int index = 4;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

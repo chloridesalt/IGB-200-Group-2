@@ -3535,10 +3535,10 @@ MonoBehaviour:
   photoCamera: {fileID: 215694486}
   menuManager: {fileID: 668792966}
   photos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2800000, guid: ee4f9eb1faedc5e4f865f2b480b78e9e, type: 3}
+  - {fileID: 2800000, guid: daf6ea43115fe844dad60da41c13b143, type: 3}
+  - {fileID: 2800000, guid: edd1758548eea0d4e892ee49588bedd5, type: 3}
+  - {fileID: 2800000, guid: 1d264d2eb458a1244a6716cc86d2bc79, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
