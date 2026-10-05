@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private SoundEmitter emitterPrefab;
     [SerializeField] private int initialPoolSize = 40;
    [ SerializeField] private AudioData Music;
+        
 
     private Queue<SoundEmitter> pool = new Queue<SoundEmitter>();
 
@@ -136,6 +137,7 @@ public class AudioManager : MonoBehaviour
            
         }
     }
+
     private void OnEnable()
     {
         
