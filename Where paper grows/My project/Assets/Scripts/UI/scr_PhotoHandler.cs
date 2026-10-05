@@ -13,7 +13,14 @@ public class scr_PhotoHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        for (int i = 0; i < photos.Length; i++)
+        {
+            if (photos[i] == null)
+            {
+                index = i;
+                break;
+            }
+        }
     }
 
     // Update is called once per frame

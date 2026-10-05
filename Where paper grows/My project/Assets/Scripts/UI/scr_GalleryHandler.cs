@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using OrbitalNine.QRCode;
 
 public class scr_GalleryHandler : MonoBehaviour
 {
     [SerializeField] private GameObject forwardButton;
     [SerializeField] private GameObject backButton;
+    [SerializeField] private GameObject openedImage;
 
-    public Sprite[] images;
-    public Image[] imageHolders;
+    public Texture2D[] images;
+    public RawImage[] imageHolders;
     public scr_PhotoHandler photoHandler;
 
     private int index = 0;
@@ -44,14 +47,29 @@ public class scr_GalleryHandler : MonoBehaviour
         UpdateImages();
     }
 
+    public void OpenImage(RawImage image)
+    {
+        openedImage.SetActive(true);
+        openedImage.GetComponentInChildren<RawImage>().texture = image.texture;
+    }
+
+    public void CloseImage()
+    {
+        openedImage.SetActive(false);
+    }
+
+    public void DownloadImage(RawImage image)
+    {
+        /*string textToEncode = "https://unity.com/";
+        openedImage.GetComponentInChildren<QRCodeGenerator>().GenerateQRCode(textToEncode);*/
+    }
+
     private void SetImages()
     {
-        Debug.Log(photoHandler.photos.Count(s => s != null));
-        images = new Sprite[photoHandler.photos.Count(s => s != null)];
-        Debug.Log(images.Length);
+        images = new Texture2D[photoHandler.photos.Count(s => s != null)];
         for (int i = 0; i < images.Length; i++)
         {
-            images[i] = Sprite.Create(photoHandler.photos[i], new Rect(0, 0, photoHandler.photos[i].width, photoHandler.photos[i].height), new Vector2(0.5f,0.5f));
+            images[i] = photoHandler.photos[i];
         }   
     }
 
@@ -65,7 +83,7 @@ public class scr_GalleryHandler : MonoBehaviour
             // Sets the images
             for (int i = index; i < index + 6; i++)
             {
-                imageHolders[i / page].sprite = images[i];
+                imageHolders[i / page].texture = images[i];
                 imageHolders[i / page].color = Color.white;
             }
         }
@@ -78,14 +96,14 @@ public class scr_GalleryHandler : MonoBehaviour
             // Sets as many image holders as there are images to the images
             for (i=i; i < images.Length - index; i++)
             {
-                imageHolders[i].sprite = images[index + i];
+                imageHolders[i].texture = images[index + i];
                 imageHolders[i].color = Color.white;
             }
 
             // Turns the rest of the image holders transparent
             for (i=i; i < 6; i++)
             {
-                imageHolders[i].sprite = null;
+                imageHolders[i].texture = null;
                 imageHolders[i].color = new Color(1,1,1,0);
             }
         }
