@@ -3985,7 +3985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &943230433
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4052,8 +4052,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 2105588882}
   m_HandleRect: {fileID: 2030640327}
   m_Direction: 0
-  m_MinValue: -40
-  m_MaxValue: 40
+  m_MinValue: 0
+  m_MaxValue: 80
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -7490,6 +7490,12 @@ MonoBehaviour:
   UI: {fileID: 96393436}
   EnableTear: 0
   RoofView: 0
+  SunRotationSpeed: 1
+  SunMax: 40
+  SunMin: -40
+  AutoSunMovement: 1
+  SunTime: 0
+  FirstObjectPlaced: 0
   view: {fileID: 11400000, guid: c61b2d22a373279489490a2ba658db2a, type: 2}
 --- !u!4 &1813042902
 Transform:
@@ -8617,7 +8623,7 @@ RectTransform:
   m_Father: {fileID: 95220376}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 4.0324707, y: 0}
   m_SizeDelta: {x: 35, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9094,7 +9100,7 @@ RectTransform:
   m_Father: {fileID: 1807493885}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 8.998, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

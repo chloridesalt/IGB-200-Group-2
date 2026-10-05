@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public float SunMin = -40f;
     public bool AutoSunMovement = true;
     public float SunTime = 0f;
+    public bool FirstObjectPlaced = false;
     [SerializeField] private AudioData view; 
     private void Awake()
     {
