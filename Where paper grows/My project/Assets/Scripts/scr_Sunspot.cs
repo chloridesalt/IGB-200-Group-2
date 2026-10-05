@@ -6,6 +6,7 @@ public class scr_Sunspot : MonoBehaviour
     private scr_Sunlight sunlight;
     private const int MaxTransparentHits = 32;
     private const float RayOffset = 0.001f;
+    private const int GrassLayer = 3;
     public GameObject GrassPrefab;
     public GameObject Godray;
 
@@ -39,9 +40,10 @@ public class scr_Sunspot : MonoBehaviour
 
         rayDirection.Normalize();
 
+        int layerMask = LayerMask.GetMask("Particle Boundry") | (1 << GrassLayer);
         for (int hitCount = 0; hitCount < MaxTransparentHits; hitCount++)
         {
-            if (!Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hitInfo))
+            if (!Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hitInfo, Mathf.Infinity, layerMask))
             {
                 break;
             }

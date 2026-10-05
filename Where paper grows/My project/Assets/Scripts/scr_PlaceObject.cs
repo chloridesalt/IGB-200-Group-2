@@ -6,7 +6,7 @@ public class scr_PlaceObject : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface navmesh;
     [SerializeField] private AudioData placeObjectSound;
-    [SerializeField] private Material hologramMaterial;
+    [SerializeField] public Material[] hologramMaterial;
     public GameObject PreviewBox;
     
 
@@ -30,6 +30,8 @@ public class scr_PlaceObject : MonoBehaviour
         MainCamera = GameManager.s_Instance != null ? GameManager.s_Instance.MainCamera : null;
         if (MainCamera == null)
             MainCamera = Camera.main;
+
+        
     }
 
     void Update()
@@ -56,7 +58,7 @@ public class scr_PlaceObject : MonoBehaviour
         placedObject = null;
         objectPreview = Instantiate(ObjectToPlace);
         objectPreview.name = ObjectToPlace.name + "_Hologram";
-        ConfigurePreview(objectPreview);
+        ConfigurePreview(objectPreview, ObjectToPlace);
         objectPreview.SetActive(false);
 
     }
@@ -124,7 +126,7 @@ public class scr_PlaceObject : MonoBehaviour
             }
 
             Ray ray = MainCamera.ScreenPointToRay(inputManager.lookValue);
-            LayerMask mask = LayerMask.GetMask("Particle Boundry");
+            LayerMask mask = LayerMask.GetMask("Particle Boundry") & ~(1 << 3);
             if (Physics.Raycast(ray, out RaycastHit hit, 1000f, mask) && hit.collider.CompareTag("Floor"))
             {
                 placementPosition = hit.point;
@@ -134,7 +136,7 @@ public class scr_PlaceObject : MonoBehaviour
             return false;
         }
 
-        private void ConfigurePreview(GameObject preview)
+        private void ConfigurePreview(GameObject preview, GameObject sourceObject)
         {
             foreach (Collider collider in preview.GetComponentsInChildren<Collider>())
             {
@@ -146,9 +148,19 @@ public class scr_PlaceObject : MonoBehaviour
                 component.enabled = false;
             }
 
+            int materialIndex = sourceObject.name switch
+            {
+                "pre_Tree" => 0,
+                "pre_Bush" => 1,
+                "pre_Flower" => 2,
+                _ => -1
+            };
             Material previewMaterial = hologramMaterial != null
-                ? hologramMaterial
-                : CreateDefaultHologramMaterial();
+                && materialIndex >= 0
+                && materialIndex < hologramMaterial.Length
+                && hologramMaterial[materialIndex] != null
+                    ? hologramMaterial[materialIndex]
+                    : CreateDefaultHologramMaterial();
 
             foreach (Renderer renderer in preview.GetComponentsInChildren<Renderer>())
             {

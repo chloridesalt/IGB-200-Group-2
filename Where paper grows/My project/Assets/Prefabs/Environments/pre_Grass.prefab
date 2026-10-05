@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6285546833130023152}
   - component: {fileID: 1673085864146997499}
   - component: {fileID: 2445927353872637278}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146661213803707433}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -0.1, y: 0, z: -0.489}
-  m_LocalScale: {x: 0.22, y: 1, z: 1}
+  m_LocalScale: {x: 0.22, y: 1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2600147752182288227}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!33 &6285546833130023152
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 8000537800379408831}
   - component: {fileID: 2906842446849720755}
   - component: {fileID: 3828299001252587626}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,13 +136,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973298861972490792}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.22, y: 1, z: 1}
+  m_LocalScale: {x: 0.22, y: 1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2600147752182288227}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!33 &8000537800379408831
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 2600147752182288227}
   - component: {fileID: 973202538397129726}
   - component: {fileID: 403445996535860696}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pre_Grass
   m_TagString: Grass
   m_Icon: {fileID: 0}
@@ -267,8 +267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Growth: 0
-  GrowthRate: 0.2
-  TimeToGrow: 5
+  GrowthRate: 0.3
+  TimeToGrow: 4
   MaxScale: 1
 --- !u!65 &403445996535860696
 BoxCollider:
@@ -289,7 +289,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 10}
+  m_Size: {x: 0.82, y: 1, z: 3.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6643139471189054906
 GameObject:
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 3889715549629218031}
   - component: {fileID: 1617045821847559492}
   - component: {fileID: 7605198787617030362}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GrassObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,13 +318,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6643139471189054906}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0, w: 0}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: -0.5}
   m_LocalPosition: {x: 0.1, y: -0, z: 0.306}
-  m_LocalScale: {x: 0.22, y: 1, z: 1}
+  m_LocalScale: {x: 0.22, y: 1, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2600147752182288227}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: -90}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: -90}
 --- !u!33 &3889715549629218031
 MeshFilter:
   m_ObjectHideFlags: 0
