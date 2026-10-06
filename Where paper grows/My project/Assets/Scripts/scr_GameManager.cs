@@ -92,4 +92,5 @@ public class GameManager : MonoBehaviour
         AutoSunMovement = true;
     }
     
+
 }

@@ -99,7 +99,6 @@ public class scr_PlaceObject : MonoBehaviour
         if (GameManager.s_Instance != null && !GameManager.s_Instance.FirstObjectPlaced)
         {
             GameManager.s_Instance.FirstObjectPlaced = true;
-            GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().SunSlider.gameObject.SetActive(true);
         }
         AudioManager.Instance.PlayAtPosition(placeObjectSound, placedObject.transform.position);
 
