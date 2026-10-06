@@ -35,10 +35,12 @@ public class scr_UIHandler : MonoBehaviour
     {  
         ChoiceContainer.SetActive(false);
         FindAnyObjectByType<scr_CutoutShape>().EnvironmentObject = ObjectName;
+        GameManager.s_Instance.TutorialHandler.GetComponent<scr_Tutorial>().ShowCutoutTutorial();
     }
 
     public void EnableScaleSlider()
     {
+        GameManager.s_Instance.TutorialHandler.GetComponent<scr_Tutorial>().ShowEditObjectTutorial();
         ScaleSlider.gameObject.SetActive(true);
     }
 

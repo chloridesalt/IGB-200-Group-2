@@ -49,6 +49,7 @@ public class scr_Roof : MonoBehaviour
                 GameManager.s_Instance.EnableTear = false;
                 GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().ChoiceContainer.SetActive(true);
                 GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = false;
+                GameManager.s_Instance.TutorialHandler.GetComponent<scr_Tutorial>().HideFirstTearTutorial();
             }
             isCutoutSuccess = false;
         }

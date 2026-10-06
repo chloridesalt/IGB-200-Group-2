@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public CinemachineCamera VcamStart;
     public CinemachineCamera VcamTarget;
     public GameObject UI;
+    public GameObject TutorialHandler;
     public bool EnableTear = false;
     public bool RoofView = false;
     public float SunRotationSpeed = 1f;
@@ -49,7 +50,8 @@ public class GameManager : MonoBehaviour
         VcamTarget.Priority = 10;
         EnableTear = true;
         RoofView = true;
-        
+        TutorialHandler.GetComponent<scr_Tutorial>().ShowFirstTearTutorial();
+        TutorialHandler.GetComponent<scr_Tutorial>().HideRoofViewTutorial();
     }
 
     // Use this function to change the camera view to the bottom of the paper bag
