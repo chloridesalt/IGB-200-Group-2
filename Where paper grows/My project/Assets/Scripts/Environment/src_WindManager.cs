@@ -9,7 +9,8 @@ public class src_WindManager : MonoBehaviour
     [Range(0f, 1f)]
     public float emissionChance = 0.3f; // 30% chance for any individual tree to emit
     public int maxActiveEmitters = 5;    // Hard cap on total simultaneous emitters
-   
+    public ParticleSystem Rightwind;
+    public ParticleSystem Leftwind;
     private readonly List<src_ParticleEmitter> registeredObjects = new List<src_ParticleEmitter>();
     
     [Header("Influence Timings")]
@@ -102,10 +103,12 @@ public class src_WindManager : MonoBehaviour
                 if (currentTargetInfluence < 1.0f)
                 {
                     item.WindRight();
+                    Rightwind.Play();
                 }
                 else
                 {
                     item.WindLeft();
+                    Leftwind.Play();
                 }
                     activeCount++;
             }
@@ -118,6 +121,8 @@ public class src_WindManager : MonoBehaviour
         {
             item.StopEmitting();
         }
+        Rightwind.Stop();
+        Leftwind.Stop();
     }
     public IEnumerator TriggerExternalInfluence()
     {
@@ -167,6 +172,7 @@ public class src_WindManager : MonoBehaviour
             yield return null;
         }
         StopParticle();
+        
         Shader.SetGlobalFloat("_ExternalInfluence", 0f);
         Debug.Log("Wind has finished.");
     }
