@@ -473,7 +473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &95749398
 RectTransform:
   m_ObjectHideFlags: 0
@@ -772,7 +772,6 @@ MonoBehaviour:
   startDelay: 2
   duration: 2
   staggerDelay: 0.4
-  RoofViewButtonOn: 1
 --- !u!225 &119303859
 CanvasGroup:
   m_ObjectHideFlags: 0

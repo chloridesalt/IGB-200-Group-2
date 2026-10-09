@@ -11,13 +11,11 @@ public class Popin : MonoBehaviour
     [SerializeField] private float startDelay = 0.5f;
     [SerializeField] private float duration = 0.35f;
     [SerializeField] private float staggerDelay = 0.08f;
-    public bool RoofViewButtonOn = true;
 
     private Vector3[] originalScales;
 
     private void Awake()
     {
-
         // Store initial scales set in the Inspector
         originalScales = new Vector3[uiElements.Length];
         for (int i = 0; i < uiElements.Length; i++)
@@ -28,6 +26,7 @@ public class Popin : MonoBehaviour
             }
         }
     }
+
     private void Start()
     {
         StartCoroutine(PopInAllWithDelay());
@@ -52,10 +51,11 @@ public class Popin : MonoBehaviour
             element.localScale = Vector3.zero;
             element.gameObject.SetActive(true);
 
+            GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = true;
+
             float delay = i * staggerDelay;
 
             // Animate back to its specific original scale
-
             element.DOScale(originalScales[i], duration)
                 .SetEase(Ease.OutBack)
                 .SetDelay(delay)
