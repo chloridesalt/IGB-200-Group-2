@@ -9,6 +9,7 @@ public class scr_Tutorial : MonoBehaviour
     [SerializeField] private GameObject IntroTutorial;
     [SerializeField] private GameObject PlaceObjectTutorial;
     [SerializeField] private GameObject EditObjectTutorial;
+    [SerializeField] private float startDelay = 0.5f;
     private bool IntroTutorialShown = false;
     private bool FirstTearTutorialShown = false;
     private bool CutoutTutorialShown = false;
@@ -18,7 +19,7 @@ public class scr_Tutorial : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ShowRoofViewTutorial();
+        StartCoroutine(ShowWithDelay());
     }
 
     // Update is called once per frame
@@ -26,6 +27,12 @@ public class scr_Tutorial : MonoBehaviour
     {
         
     }
+    private System.Collections.IEnumerator ShowWithDelay()
+    {
+        yield return new WaitForSeconds(startDelay);
+        ShowRoofViewTutorial();
+    }
+
     // all of these go show/hide in order of appearance
     public void ShowRoofViewTutorial() //triggered at start, asks to press roof view button
     {
