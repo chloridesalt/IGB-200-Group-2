@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     public GameObject photoCanvas;
     public GameObject PopupPanel;
     public GameObject creditsPanel;
+    public GameObject brief;
+    public GameObject attributes;
     private const string MIXER_PARAMETER = "masterMixer";
     public Image Mainvolume;
     public GameObject Volume1;
@@ -57,6 +59,18 @@ public class MenuManager : MonoBehaviour
     public void CloseCredits()
     {
         creditsPanel.SetActive(false);
+    }
+
+    public void ShowAttributes()
+    {
+        attributes.SetActive(true);
+        brief.SetActive(false);
+    }
+
+    public void ShowBrief()
+    {
+        attributes.SetActive(false);
+        brief.SetActive(true);
     }
 
     public void OpenPanel()
