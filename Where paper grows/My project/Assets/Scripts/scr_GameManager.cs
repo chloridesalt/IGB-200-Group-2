@@ -49,8 +49,9 @@ public class GameManager : MonoBehaviour
         VcamTarget.Priority = 10;
         EnableTear = true;
         RoofView = true;
-        TutorialHandler.GetComponent<scr_Tutorial>().ShowFirstTearTutorial();
-        TutorialHandler.GetComponent<scr_Tutorial>().HideRoofViewTutorial();
+        scr_Tutorial tutorial = TutorialHandler.GetComponent<scr_Tutorial>();
+        tutorial.Invoke(nameof(scr_Tutorial.ShowFirstTearTutorial), 1f);
+        tutorial.HideRoofViewTutorial();
     }
 
     // Use this function to change the camera view to the bottom of the paper bag
