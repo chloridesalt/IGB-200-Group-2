@@ -1,16 +1,22 @@
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
-using System.IO;
 using OrbitalNine.QRCode;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class scr_GalleryHandler : MonoBehaviour
 {
     [SerializeField] private GameObject forwardButton;
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject openedImage;
+    [SerializeField] private GameObject qrCode;
+    [SerializeField] private GameObject imageHolder;
 
     public Texture2D[] images;
     public RawImage[] imageHolders;
@@ -18,6 +24,8 @@ public class scr_GalleryHandler : MonoBehaviour
 
     private int index = 0;
     private int page = 1;
+
+    private string downloadString;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -60,8 +68,12 @@ public class scr_GalleryHandler : MonoBehaviour
 
     public void DownloadImage(RawImage image)
     {
-        /*string textToEncode = "https://unity.com/";
-        openedImage.GetComponentInChildren<QRCodeGenerator>().GenerateQRCode(textToEncode);*/
+        StartCoroutine(PostImage(((Texture2D)image.texture).EncodeToPNG()));
+        /*OpenQR();
+
+        string textToEncode = $"https://tmper.co/{downloadString}";
+        Debug.Log(textToEncode);
+        qrCode.GetComponentInChildren<QRCodeGenerator>().GenerateQRCode(textToEncode);*/
     }
 
     private void SetImages()
@@ -111,5 +123,47 @@ public class scr_GalleryHandler : MonoBehaviour
         // Enables back button if past page 1
         if (page > 1) backButton.SetActive(true);
         else backButton.SetActive(false);
+    }
+
+    public void CloseQR()
+    {
+        qrCode.SetActive(false);
+        imageHolder.SetActive(true);
+    }
+
+    private void OpenQR()
+    {
+        qrCode.SetActive(true);
+        imageHolder.SetActive(false);
+    }
+
+    IEnumerator PostImage(byte[] image)
+    {
+        WWWForm form = new WWWForm();
+        form.AddBinaryData("image", image);
+
+        using (UnityWebRequest www = UnityWebRequest.Post("https://tmper.co/?time=5mins&n=1", form))
+        {
+            yield return www.SendWebRequest();
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                print(www.error);
+            }
+            else
+            {
+                downloadString = www.downloadHandler.text;
+                Debug.Log(downloadString);
+                SetupQR();
+            }
+        }
+    }
+
+    private void SetupQR()
+    {
+        OpenQR();
+
+        string textToEncode = $"https://tmper.co/{downloadString}";
+        Debug.Log(textToEncode);
+        qrCode.GetComponentInChildren<QRCodeGenerator>().GenerateQRCode(textToEncode);
     }
 }
