@@ -636,6 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChoiceContainer: {fileID: 731660672}
   RoofViewButton: {fileID: 95749397}
+  PhotoButton: {fileID: 1802003850}
   RoofViewButtonOn: 0
   ScaleSlider: {fileID: 1547042455}
 --- !u!1 &119303853
@@ -10298,6 +10299,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5ef5db687528c8a4e9db4cbb13c16cc7, type: 2}
   - {fileID: 2100000, guid: 06b5b351b55498445bf59c654285b034, type: 2}
   - {fileID: 2100000, guid: dea653bbe4883b74aa2e889382ad6b10, type: 2}
+  uiHandler: {fileID: 96393438}
   PreviewBox: {fileID: 1846883869}
   ObjectToPlace: {fileID: 2664775595931888947, guid: f5a4fd7c9aca63f44ac8ca358d8b2282, type: 3}
   TreeCount: 0
@@ -10721,7 +10723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2115289377
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10748,7 +10750,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115289376}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

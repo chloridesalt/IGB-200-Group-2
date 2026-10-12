@@ -16,6 +16,7 @@ public class scr_GalleryHandler : MonoBehaviour
     [SerializeField] private GameObject backButton;
     [SerializeField] private GameObject openedImage;
     [SerializeField] private GameObject qrCode;
+    [SerializeField] private GameObject qrExit;
     [SerializeField] private GameObject imageHolder;
 
     public Texture2D[] images;
@@ -68,12 +69,8 @@ public class scr_GalleryHandler : MonoBehaviour
 
     public void DownloadImage(RawImage image)
     {
+        OpenQR();
         StartCoroutine(PostImage(((Texture2D)image.texture).EncodeToPNG()));
-        /*OpenQR();
-
-        string textToEncode = $"https://tmper.co/{downloadString}";
-        Debug.Log(textToEncode);
-        qrCode.GetComponentInChildren<QRCodeGenerator>().GenerateQRCode(textToEncode);*/
     }
 
     private void SetImages()
@@ -127,6 +124,7 @@ public class scr_GalleryHandler : MonoBehaviour
 
     public void CloseQR()
     {
+        qrExit.SetActive(false);
         qrCode.SetActive(false);
         imageHolder.SetActive(true);
     }
@@ -134,6 +132,7 @@ public class scr_GalleryHandler : MonoBehaviour
     private void OpenQR()
     {
         qrCode.SetActive(true);
+        qrCode.GetComponentInChildren<QRCodeGenerator>().gameObject.GetComponent<RawImage>().texture = null;
         imageHolder.SetActive(false);
     }
 
@@ -160,10 +159,9 @@ public class scr_GalleryHandler : MonoBehaviour
 
     private void SetupQR()
     {
-        OpenQR();
-
         string textToEncode = $"https://tmper.co/{downloadString}";
         Debug.Log(textToEncode);
         qrCode.GetComponentInChildren<QRCodeGenerator>().GenerateQRCode(textToEncode);
+        qrExit.SetActive(true);
     }
 }

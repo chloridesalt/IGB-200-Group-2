@@ -751,7 +751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &194972108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,6 +1428,7 @@ MonoBehaviour:
   backButton: {fileID: 298760794}
   openedImage: {fileID: 1255490758}
   qrCode: {fileID: 1793389528}
+  qrExit: {fileID: 1829659473}
   imageHolder: {fileID: 188243799}
   images:
   - {fileID: 21300000, guid: ee4f9eb1faedc5e4f865f2b480b78e9e, type: 3}
@@ -3580,6 +3581,7 @@ GameObject:
   - component: {fileID: 1753190062}
   - component: {fileID: 1753190061}
   - component: {fileID: 1753190063}
+  - component: {fileID: 1753190064}
   m_Layer: 5
   m_Name: QRCode
   m_TagString: Untagged
@@ -3656,6 +3658,21 @@ MonoBehaviour:
   qrCodeSize: 700
   qrCodeMargin: 1
   qrCodeImage: {fileID: 1753190061}
+--- !u!114 &1753190064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1753190059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.5058824, g: 0.19607843, b: 0.08627451, a: 1}
+  m_EffectDistance: {x: 2, y: -2}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1767174033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3997,7 +4014,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1829659474
 RectTransform:
   m_ObjectHideFlags: 0

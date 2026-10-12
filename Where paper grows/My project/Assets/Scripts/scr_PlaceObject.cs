@@ -7,6 +7,7 @@ public class scr_PlaceObject : MonoBehaviour
     [SerializeField] private NavMeshSurface navmesh;
     [SerializeField] private AudioData placeObjectSound;
     [SerializeField] public Material[] hologramMaterial;
+    [SerializeField] private scr_UIHandler uiHandler;
     public GameObject PreviewBox;
     
 
@@ -96,6 +97,7 @@ public class scr_PlaceObject : MonoBehaviour
         PreviewBox.SetActive(false);
         IsPlacingObject = false;
         hasSelectedPosition = false;
+        uiHandler.ReActivateCamera();
         if (GameManager.s_Instance != null && !GameManager.s_Instance.FirstObjectPlaced)
         {
             GameManager.s_Instance.FirstObjectPlaced = true;
