@@ -176,10 +176,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Yuken Teruya / Japan b.1973 / Notice - Forest 2006  / The Queensland Government's
-    Gallery of Modern Art Acquisitions Fund / Accession No: 2007.013a-e / Collection:
-    Queensland Art Gallery | Gallery of Modern Art / \xA9 Yuken Teruya / Cited at
-    https://collection.qagoma.qld.gov.au/objects/9837 on 08/10/2026"
+  m_text: "Notice - Forest (2006)\nby Yuken Teruya \n\nQueensland Art Gallery | Gallery
+    of Modern Art"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc2adf89e44cc734c8600e53482c6eba, type: 2}
   m_sharedMaterial: {fileID: -1815852092270596144, guid: bc2adf89e44cc734c8600e53482c6eba, type: 2}
@@ -206,8 +204,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -731,7 +729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: -8}
+  m_AnchoredPosition: {x: 6, y: -6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &318581642
@@ -1575,7 +1573,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 250, y: -270}
+  m_AnchoredPosition: {x: 282, y: -270}
   m_SizeDelta: {x: 500, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &548197270
@@ -3201,7 +3199,7 @@ Transform:
   m_GameObject: {fileID: 1340846820}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -750, y: -243, z: 111.214714}
+  m_LocalPosition: {x: -718, y: -243, z: 111.214714}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
