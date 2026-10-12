@@ -49,5 +49,6 @@ public class scr_PhotoHandler : MonoBehaviour
         index++;
 
         menuManager.ClosePhoto();
+        menuManager.GoToGallery();
     }
 }
