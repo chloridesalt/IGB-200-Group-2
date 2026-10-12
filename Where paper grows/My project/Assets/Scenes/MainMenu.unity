@@ -1516,15 +1516,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9a4d550643fc13248b19e6b1abb3877d, type: 3}
   leafContainer: {fileID: 668795606}
   spawnInterval: 0.005
-  leafCount: 300
-  fallSpeedMin: 250
-  fallSpeedMax: 400
+  leafCount: 80
+  fallSpeedMin: 400
+  fallSpeedMax: 500
   driftMin: 40
   driftMax: 120
   rotationMin: 60
   rotationMax: 180
-  leafScaleMin: 0.75
-  leafScaleMax: 1.3
+  leafScaleMin: 1.25
+  leafScaleMax: 1.5
 --- !u!1 &548197268
 GameObject:
   m_ObjectHideFlags: 0
