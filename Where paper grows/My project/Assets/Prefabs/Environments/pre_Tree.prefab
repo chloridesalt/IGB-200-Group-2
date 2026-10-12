@@ -227,6 +227,10 @@ PrefabInstance:
       value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7435227422466928856, guid: 553607aec8f9daf4e8b2d6341c77de90, type: 3}
+      propertyPath: UVModule.sprites.Array.data[0].sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0ed0a76310c69e84686d0c7aa2f5b03f, type: 3}
+    - target: {fileID: 7435227422466928856, guid: 553607aec8f9daf4e8b2d6341c77de90, type: 3}
       propertyPath: EmissionModule.rateOverDistance.scalar
       value: 0
       objectReference: {fileID: 0}

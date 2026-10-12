@@ -6,8 +6,10 @@ public class scr_UIHandler : MonoBehaviour
 {
     public GameObject ChoiceContainer;
     public GameObject RoofViewButton;
+    public GameObject RoofViewButton2;
     public GameObject PhotoButton;
     public bool RoofViewButtonOn = true;
+
     public Slider ScaleSlider;
     private bool isSliderBeingDragged = false;
 
@@ -25,10 +27,12 @@ public class scr_UIHandler : MonoBehaviour
         if (RoofViewButtonOn)
         {
             RoofViewButton.SetActive(true);
+            RoofViewButton2.SetActive(true);
         }
         else
         {
             RoofViewButton.SetActive(false);
+            RoofViewButton2.SetActive(false);
             PhotoButton.SetActive(false);
         }
     }

@@ -72,7 +72,7 @@ public class scr_PlaceObject : MonoBehaviour
         }
 
         ObjectName = ObjectToPlace.name;
-        GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = true;
+        GameManager.s_Instance.UiTranstionTopReset();
 
    
         switch (ObjectName)
@@ -87,9 +87,21 @@ public class scr_PlaceObject : MonoBehaviour
                 break;
             case "pre_Bush":
                 BushCount += 1;
+                src_ParticleEmitter particleScript2 = placedObject.GetComponentInChildren<src_ParticleEmitter>();
+                if (particleScript2 != null && src_WindManager.Instance != null)
+                {
+                    src_WindManager.Instance.RegisterObject(particleScript2);
+                }
+
                 break;
             case "pre_Flower":
                 FlowerCount += 1;
+                src_ParticleEmitter particleScript3 = placedObject.GetComponentInChildren<src_ParticleEmitter>();
+                if (particleScript3 != null && src_WindManager.Instance != null)
+                {
+                    src_WindManager.Instance.RegisterObject(particleScript3);
+                }
+
                 break;
             default:
                 return;

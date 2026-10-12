@@ -56,7 +56,8 @@ public class scr_Tutorial : MonoBehaviour
         if (!FirstTearTutorialShown)
         {
             FirstTearTutorial.SetActive(true);
-            GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = false;
+            GameManager.s_Instance.UiTranstionTop();
+            GameManager.s_Instance.UiTranstionBottomReset();
             FirstTearTutorialShown = true;
         }
     }

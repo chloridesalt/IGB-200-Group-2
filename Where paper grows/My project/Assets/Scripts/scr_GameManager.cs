@@ -1,5 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,23 @@ public class GameManager : MonoBehaviour
     public bool AutoSunMovement = true;
     public float SunTime = 0f;
     public bool FirstObjectPlaced = false;
-    [SerializeField] private AudioData view; 
+    [Header("UISCENE ")]
+    [SerializeField] private RectTransform TransitonTopButton;
+    [SerializeField] private RectTransform TransitonBottomButton;
+
+    public Vector2 targetPosition = new Vector2(100f, 0f);
+
+    public Vector2 targetPosition3 = new Vector2(0f, 0f);
+
+    public Vector2 targetPosition2 = new Vector2(100f, 0f);
+
+    public Vector2 targetPosition4 = new Vector2(0f, 0f);
+   
+    public float duration = 0.5f;
+   
+    [SerializeField] private AudioData view;
+
+    private Vector2 originalPosition;
     private void Awake()
     {
         if (s_Instance != null && s_Instance != this)
@@ -26,6 +43,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); 
             return;
         }
+       
 
         s_Instance = this;
 
@@ -44,6 +62,8 @@ public class GameManager : MonoBehaviour
 
     {
         /// this a test to see if function works
+        UiTranstionTop();
+        UiTranstionBottom();
         AudioManager.Instance.PlayAtPosition(view, transform.position);
         VcamStart.Priority = 5;
         VcamTarget.Priority = 10;
@@ -58,14 +78,36 @@ public class GameManager : MonoBehaviour
     public void CameraTransitionBottom()
 
     {
+        UiTranstionTopReset();
+        UiTranstionBottomReset();
         VcamStart.Priority = 10;
         VcamTarget.Priority = 5;
         EnableTear = false;
         RoofView = false;
     }
 
+    public void UiTranstionTop()
+    {
+        TransitonTopButton.DOKill();
+        TransitonTopButton.DOAnchorPos(targetPosition, duration).SetEase(Ease.OutCubic);
+    }
 
+    public void UiTranstionTopReset()
+    {
+        TransitonTopButton.DOKill();
+        TransitonTopButton.DOAnchorPos(targetPosition3, duration).SetEase(Ease.OutCubic);
+    }
 
+    public void UiTranstionBottom()
+    {
+        TransitonBottomButton.DOKill();
+        TransitonBottomButton.DOAnchorPos(targetPosition2, duration).SetEase(Ease.OutCubic);
+    }
+    public void UiTranstionBottomReset()
+    {
+        TransitonBottomButton.DOKill();
+        TransitonBottomButton.DOAnchorPos(targetPosition4, duration).SetEase(Ease.OutCubic);
+    }
     public void ChangeView()
     {
         if (RoofView)
