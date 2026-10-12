@@ -1,2 +1,19 @@
 fileFormatVersion: 2
 guid: b2f1552ea87011a4e92ee1bb1e693b02
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - forwardButton: {instanceID: 0}
+  - backButton: {instanceID: 0}
+  - openedImage: {instanceID: 0}
+  - qrCode: {instanceID: 0}
+  - qrExit: {instanceID: 0}
+  - imageHolder: {instanceID: 0}
+  - pageFlip: {instanceID: 0}
+  - photoHandler: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

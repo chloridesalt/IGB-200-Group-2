@@ -5,6 +5,7 @@ public class scr_PhotoHandler : MonoBehaviour
 {
     [SerializeField] private Camera photoCamera;
     [SerializeField] private MenuManager menuManager;
+    [SerializeField] private AudioData cameraClick;
 
     public Texture2D[] photos = new Texture2D[30];
 
@@ -35,6 +36,7 @@ public class scr_PhotoHandler : MonoBehaviour
         {
             return;
         }
+        AudioManager.Instance.PlayAtPosition(cameraClick, transform.position);
         RenderTexture screenRender = new RenderTexture(Screen.width, Screen.height, 1000);
         photoCamera.targetTexture = screenRender;
         RenderTexture.active = screenRender;
@@ -49,6 +51,6 @@ public class scr_PhotoHandler : MonoBehaviour
         index++;
 
         menuManager.ClosePhoto();
-        menuManager.GoToGallery();
+        menuManager.GoToGalleryfromPhoto();
     }
 }

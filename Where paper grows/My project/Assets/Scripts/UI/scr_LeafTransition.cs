@@ -21,6 +21,9 @@ public class LeafTransition : MonoBehaviour
     [SerializeField] private float leafScaleMin = 0.6f;
     [SerializeField] private float leafScaleMax = 1.3f;
 
+    [Header("SFX")]
+    [SerializeField] private AudioData leafSound;
+
 
     private bool transitioning = false;
 
@@ -29,6 +32,7 @@ public class LeafTransition : MonoBehaviour
         if (transitioning)
             return;
 
+        AudioManager.Instance.PlayAtPosition(leafSound, transform.position);
         transitioning = true;
         StartCoroutine(LeafTransitionRoutine());
     }

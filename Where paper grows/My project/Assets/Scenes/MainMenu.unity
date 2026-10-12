@@ -471,6 +471,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78256013}
   m_CullTransparentMesh: 1
+--- !u!1 &115649057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115649059}
+  - component: {fileID: 115649058}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &115649058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115649057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ac550fef48cf643b49ce507e0e3b90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emitterPrefab: {fileID: 8217664419398631028, guid: 59b9653c6ba2e3046880b526ef4298f9, type: 3}
+  initialPoolSize: 40
+  Music: {fileID: 11400000, guid: e134addda82c3964887fb3069b3f4f08, type: 2}
+--- !u!4 &115649059
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115649057}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1160.9026, y: 462.5818, z: -537.76074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &181663507
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,6 +1661,7 @@ MonoBehaviour:
   rotationMax: 180
   leafScaleMin: 1.25
   leafScaleMax: 1.5
+  leafSound: {fileID: 11400000, guid: 5605a3638ab09ee4d8da97b78c18c0a6, type: 2}
 --- !u!1 &548197268
 GameObject:
   m_ObjectHideFlags: 0
@@ -4802,7 +4850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainUI: {fileID: 0}
   exampleGalleryPanel: {fileID: 0}
-  view: {fileID: 0}
   masterMixer: {fileID: 0}
   volumeSlider: {fileID: 0}
   photoCanvas: {fileID: 0}
@@ -4815,6 +4862,14 @@ MonoBehaviour:
   Volume11: {fileID: 0}
   Volume2: {fileID: 0}
   Volume22: {fileID: 0}
+  view: {fileID: 0}
+  paperFlip: {fileID: 11400000, guid: 89618ec0b1ddbca46a007348d40dc268, type: 2}
+  credOpen: {fileID: 11400000, guid: 005d2bc77795fdb4190dc1937c6c315a, type: 2}
+  credClose: {fileID: 11400000, guid: 97cf28ad7c36a4a468bff336e7167dd5, type: 2}
+  galleryOpen: {fileID: 0}
+  galleryClose: {fileID: 0}
+  confirm: {fileID: 0}
+  close: {fileID: 0}
   Maxvolume: {fileID: 0}
   HalfVolume: {fileID: 0}
   VolumeOff: {fileID: 0}
@@ -4827,3 +4882,4 @@ SceneRoots:
   - {fileID: 1088702758}
   - {fileID: 13112217}
   - {fileID: 2025497337}
+  - {fileID: 115649059}

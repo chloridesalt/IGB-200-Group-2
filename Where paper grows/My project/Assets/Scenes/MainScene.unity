@@ -675,6 +675,7 @@ RectTransform:
   m_Children:
   - {fileID: 152238361}
   - {fileID: 779342334}
+  - {fileID: 771943186}
   - {fileID: 95749398}
   - {fileID: 367217818}
   - {fileID: 1965674773}
@@ -772,7 +773,7 @@ MonoBehaviour:
   - {fileID: 1965674773}
   - {fileID: 1318238462}
   - {fileID: 1802003851}
-  startDelay: 2
+  startDelay: 1
   duration: 2
   staggerDelay: 0.4
 --- !u!225 &119303859
@@ -3970,7 +3971,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainUI: {fileID: 119303853}
   exampleGalleryPanel: {fileID: 0}
-  view: {fileID: 11400000, guid: c61b2d22a373279489490a2ba658db2a, type: 2}
   masterMixer: {fileID: 24100000, guid: 0d149d516aeb6ea49b89f93f75a297f2, type: 2}
   volumeSlider: {fileID: 0}
   photoCanvas: {fileID: 895053620}
@@ -3983,6 +3983,14 @@ MonoBehaviour:
   Volume11: {fileID: 1353112533}
   Volume2: {fileID: 471541136}
   Volume22: {fileID: 1081339077}
+  view: {fileID: 11400000, guid: c61b2d22a373279489490a2ba658db2a, type: 2}
+  paperFlip: {fileID: 11400000, guid: 89618ec0b1ddbca46a007348d40dc268, type: 2}
+  credOpen: {fileID: 11400000, guid: 005d2bc77795fdb4190dc1937c6c315a, type: 2}
+  credClose: {fileID: 11400000, guid: 97cf28ad7c36a4a468bff336e7167dd5, type: 2}
+  galleryOpen: {fileID: 11400000, guid: 612c38bf45216b3489445674be1c9048, type: 2}
+  galleryClose: {fileID: 0}
+  confirm: {fileID: 11400000, guid: 021b071673765b5438ae30d395afda90, type: 2}
+  close: {fileID: 11400000, guid: 0eea7a07aa2315542ab49e95221aba2d, type: 2}
   Maxvolume: {fileID: 21300000, guid: cddff198de5553d4cb3f46bd6252c03e, type: 3}
   HalfVolume: {fileID: 21300000, guid: 3e47cf6ae2e63604d96992fa69882ff8, type: 3}
   VolumeOff: {fileID: 21300000, guid: a7878771309023645a7c1ceedb059bfd, type: 3}
@@ -4377,15 +4385,15 @@ RectTransform:
   m_GameObject: {fileID: 771943185}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.4192681, y: 0.67267656, z: 2.6299999}
+  m_LocalScale: {x: 2.6299999, y: 2.6300013, z: 2.6299999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1235286908}
-  m_Father: {fileID: 779342334}
+  m_Father: {fileID: 119303854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1144.3868, y: -127.85538}
+  m_AnchoredPosition: {x: 5.2286377, y: -29.883331}
   m_SizeDelta: {x: 749.5724, y: 444.6725}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &771943187
@@ -4457,8 +4465,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7691704, y: 3.909756, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 771943186}
+  m_Children: []
   m_Father: {fileID: 119303854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -4485,7 +4492,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0.6462264, b: 0.6462264, a: 1}
@@ -4768,6 +4775,7 @@ GameObject:
   - component: {fileID: 886861870}
   - component: {fileID: 886861869}
   - component: {fileID: 886861868}
+  - component: {fileID: 886861871}
   m_Layer: 5
   m_Name: YesButton
   m_TagString: Untagged
@@ -4813,7 +4821,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 0.7688679, b: 0.7688679, a: 1}
@@ -4888,6 +4896,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886861866}
   m_CullTransparentMesh: 1
+--- !u!114 &886861871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886861866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09726d01a67201940a2462b9d5036179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  animationDuration: 0.2
+  easeType: 3
 --- !u!1 &895053620
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,6 +5028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photoCamera: {fileID: 215694486}
   menuManager: {fileID: 668792966}
+  cameraClick: {fileID: 11400000, guid: a1fc6341e3116d846b31aa0eab772e6f, type: 2}
   photos:
   - {fileID: 2800000, guid: 84622a975376d594db3308ed22540908, type: 3}
   - {fileID: 2800000, guid: c1ab02c84e5d6a940be7046c2d135bde, type: 3}
@@ -10760,6 +10784,7 @@ GameObject:
   - component: {fileID: 2056492010}
   - component: {fileID: 2056492009}
   - component: {fileID: 2056492008}
+  - component: {fileID: 2056492011}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -10805,7 +10830,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.66558087, g: 0.8962264, b: 0.629895, a: 1}
@@ -10880,6 +10905,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056492006}
   m_CullTransparentMesh: 1
+--- !u!114 &2056492011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056492006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09726d01a67201940a2462b9d5036179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  animationDuration: 0.2
+  easeType: 3
 --- !u!1 &2115289376
 GameObject:
   m_ObjectHideFlags: 0

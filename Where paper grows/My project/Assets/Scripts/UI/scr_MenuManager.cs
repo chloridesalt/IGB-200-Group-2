@@ -6,7 +6,6 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject exampleGalleryPanel;
-    [SerializeField] private AudioData view;
     [SerializeField] private AudioMixer masterMixer;
     [SerializeField] private Slider volumeSlider;
     public GameObject photoCanvas;
@@ -20,6 +19,16 @@ public class MenuManager : MonoBehaviour
     public GameObject Volume11;
     public GameObject Volume2;
     public GameObject Volume22;
+
+    [Header("SFX")]
+    [SerializeField] private AudioData view;
+    [SerializeField] private AudioData paperFlip;
+    [SerializeField] private AudioData credOpen;
+    [SerializeField] private AudioData credClose;
+    [SerializeField] private AudioData galleryOpen;
+    [SerializeField] private AudioData galleryClose;
+    [SerializeField] private AudioData confirm;
+    [SerializeField] private AudioData close;
 
     private Image volume1Image;
     private Image volume11Image;
@@ -47,34 +56,39 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnToGame()
     {
-        AudioManager.Instance.PlayAtPosition(view, transform.position);
+        AudioManager.Instance.PlayAtPosition(galleryClose, transform.position);
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(SceneManager.sceneCount - 1));
     }
 
     public void OpenCredits()
     {
         creditsPanel.SetActive(true);
+        AudioManager.Instance.PlayAtPosition(credOpen, transform.position);
     }
 
     public void CloseCredits()
     {
         creditsPanel.SetActive(false);
+        AudioManager.Instance.PlayAtPosition(credClose, transform.position);
     }
 
     public void ShowAttributes()
     {
+        AudioManager.Instance.PlayAtPosition(paperFlip, transform.position);
         attributes.SetActive(true);
         brief.SetActive(false);
     }
 
     public void ShowBrief()
     {
+        AudioManager.Instance.PlayAtPosition(paperFlip, transform.position);
         attributes.SetActive(false);
         brief.SetActive(true);
     }
 
     public void OpenPanel()
     {
+        AudioManager.Instance.PlayAtPosition(confirm, transform.position);
         PopupPanel.SetActive(!PopupPanel.activeSelf);
     }
 
@@ -113,25 +127,28 @@ public class MenuManager : MonoBehaviour
     }
     public void ClosePanel()
     {
+        AudioManager.Instance.PlayAtPosition(close, transform.position);
         PopupPanel.SetActive(false);
     }
 
     public void GoToGallery()
     {
-        AudioManager.Instance.PlayAtPosition(view, transform.position);
+        AudioManager.Instance.PlayAtPosition(galleryOpen, transform.position);
         SceneManager.LoadScene("GalleryTemplate", LoadSceneMode.Additive); 
+    }
+    public void GoToGalleryfromPhoto()
+    {
+        SceneManager.LoadScene("GalleryTemplate", LoadSceneMode.Additive);
     }
 
     public void EnablePhoto()
     {
-        AudioManager.Instance.PlayAtPosition(view, transform.position);
         photoCanvas.SetActive(true);
         mainUI.SetActive(false);
     }
 
     public void ClosePhoto()
     {
-        AudioManager.Instance.PlayAtPosition(view, transform.position);
         photoCanvas.SetActive(false);
         mainUI.SetActive(true);
     }

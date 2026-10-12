@@ -18,6 +18,7 @@ public class scr_GalleryHandler : MonoBehaviour
     [SerializeField] private GameObject qrCode;
     [SerializeField] private GameObject qrExit;
     [SerializeField] private GameObject imageHolder;
+    [SerializeField] private AudioData pageFlip;
 
     public Texture2D[] images;
     public RawImage[] imageHolders;
@@ -44,6 +45,7 @@ public class scr_GalleryHandler : MonoBehaviour
 
     public void SwitchPageBack()
     {
+        AudioManager.Instance.PlayAtPosition(pageFlip, transform.position);
         index -= 6;
         page--;
         UpdateImages();
@@ -51,6 +53,7 @@ public class scr_GalleryHandler : MonoBehaviour
 
     public void SwitchPageForward()
     {
+        AudioManager.Instance.PlayAtPosition(pageFlip, transform.position);
         index += 6;
         page++;
         UpdateImages();
