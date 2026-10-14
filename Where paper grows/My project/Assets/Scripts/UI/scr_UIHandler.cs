@@ -1,13 +1,14 @@
+using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class scr_UIHandler : MonoBehaviour
 {
     public GameObject ChoiceContainer;
     public GameObject RoofViewButton;
     public GameObject RoofViewButton2;
-    public GameObject PhotoButton;
+    public RectTransform PhotoButton;
     public bool RoofViewButtonOn = true;
 
     public Slider ScaleSlider;
@@ -33,7 +34,6 @@ public class scr_UIHandler : MonoBehaviour
         {
             RoofViewButton.SetActive(false);
             RoofViewButton2.SetActive(false);
-            PhotoButton.SetActive(false);
         }
     }
 
@@ -52,7 +52,8 @@ public class scr_UIHandler : MonoBehaviour
 
     public void ReActivateCamera()
     {
-        PhotoButton.SetActive(true);
+        GameManager.s_Instance.UiTransitionCameraReset();
+        Debug.Log("wasd");
     }
 
 

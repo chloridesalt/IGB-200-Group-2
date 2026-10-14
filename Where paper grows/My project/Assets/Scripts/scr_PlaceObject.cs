@@ -312,6 +312,7 @@ public class scr_PlaceObject : MonoBehaviour
             hasSelectedPosition = false;
             PreviewBox.SetActive(false);
             GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = true;
+            
         }
 
         //scale button calls here, scales object

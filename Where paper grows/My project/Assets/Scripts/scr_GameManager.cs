@@ -23,13 +23,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RectTransform TransitonTopButton;
     [SerializeField] private RectTransform TransitonBottomButton;
 
+    [SerializeField] private scr_UIHandler uIHandler;
+
     public Vector2 targetPosition = new Vector2(100f, 0f);
-
-    public Vector2 targetPosition3 = new Vector2(0f, 0f);
-
     public Vector2 targetPosition2 = new Vector2(100f, 0f);
-
+    public Vector2 targetPosition3 = new Vector2(0f, 0f);
     public Vector2 targetPosition4 = new Vector2(0f, 0f);
+    public Vector2 targetPosition5 = new Vector2(100f, 0f);
+    public Vector2 targetPosition6 = new Vector2(0f, 0f);
    
     public float duration = 0.5f;
    
@@ -90,6 +91,8 @@ public class GameManager : MonoBehaviour
     {
         TransitonTopButton.DOKill();
         TransitonTopButton.DOAnchorPos(targetPosition, duration).SetEase(Ease.OutCubic);
+        UI.GetComponent<scr_UIHandler>().PhotoButton.DOKill();
+        UI.GetComponent<scr_UIHandler>().PhotoButton.DOAnchorPos(targetPosition6, duration).SetEase(Ease.OutCubic);
     }
 
     public void UiTranstionTopReset()
@@ -108,6 +111,12 @@ public class GameManager : MonoBehaviour
         TransitonBottomButton.DOKill();
         TransitonBottomButton.DOAnchorPos(targetPosition4, duration).SetEase(Ease.OutCubic);
     }
+    public void UiTransitionCameraReset()
+    {
+        UI.GetComponent<scr_UIHandler>().PhotoButton.DOKill();
+        UI.GetComponent<scr_UIHandler>().PhotoButton.DOAnchorPos(targetPosition5, duration).SetEase(Ease.OutCubic);
+    }
+
     public void ChangeView()
     {
         if (RoofView)
