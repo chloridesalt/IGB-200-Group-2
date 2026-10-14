@@ -46,7 +46,8 @@ GameObject:
   - component: {fileID: 3695535130407163207}
   - component: {fileID: 6227562952720403672}
   - component: {fileID: 5230752940521984568}
-  m_Layer: 2
+  - component: {fileID: 2165145537793643889}
+  m_Layer: 3
   m_Name: TreeObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,6 +159,19 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 0
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0
+--- !u!114 &2165145537793643889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820660342460553776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d752e1121048a8f44b4b377c7e8a029f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectName: 
 --- !u!1001 &2289387209356719363
 PrefabInstance:
   m_ObjectHideFlags: 0

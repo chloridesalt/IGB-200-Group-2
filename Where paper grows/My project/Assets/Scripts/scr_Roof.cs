@@ -41,7 +41,7 @@ public class scr_Roof : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inputManager.interactAction.WasPerformedThisFrame() && GameManager.s_Instance != null && GameManager.s_Instance.EnableTear)
+        if (inputManager.interactAction.WasPerformedThisFrame() && GameManager.s_Instance != null && GameManager.s_Instance.EnableTear && GameManager.s_Instance.RoofView)
         {
             RayCast();
             if (isCutoutSuccess)

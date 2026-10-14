@@ -3,10 +3,10 @@ using UnityEngine;
 public class scr_Tutorial : MonoBehaviour
 {
     [SerializeField] private GameObject UITutorial;
-    [SerializeField] private GameObject FirstTearTutorial;
+    [SerializeField] public GameObject FirstTearTutorial;
     [SerializeField] private GameObject AFKTearTutorial;
     [SerializeField] private GameObject CutoutTutorial;
-    [SerializeField] private GameObject IntroTutorial;
+    [SerializeField] public GameObject IntroTutorial;
     [SerializeField] private GameObject PlaceObjectTutorial;
     [SerializeField] private GameObject EditObjectTutorial;
     [SerializeField] private float startDelay = 0.5f;
@@ -15,7 +15,9 @@ public class scr_Tutorial : MonoBehaviour
     private bool CutoutTutorialShown = false;
     private bool PlaceObjectTutorialShown = false;
     private bool EditObjectTutorialShown = false;
-    private bool ButtonTutorialShown = false;
+    public bool ButtonTutorialShown = false;
+    private bool AFKTutorialActive = false;
+    private bool TutorialCompleted = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -131,6 +133,25 @@ public class scr_Tutorial : MonoBehaviour
         if (ButtonTutorialShown)
         {
             UITutorial.SetActive(false);
+            TutorialCompleted = true;
+        }
+    }
+
+    public void ShowAFKTutorial() //triggered when the player is AFK for a certain amount of time and in the roof view, informs about tearing a hole in the roof
+    {
+        if (AFKTutorialActive == false && TutorialCompleted == true)
+        {
+            AFKTearTutorial.SetActive(true);
+            AFKTutorialActive = true;
+        }
+    }
+
+    public void HideAFKTutorial() //triggered when the player is no longer AFK or not in the roof view, hides the AFK tutorial
+    {
+        if (AFKTutorialActive)
+        {
+            AFKTearTutorial.SetActive(false);
+            AFKTutorialActive = false;
         }
     }
 }

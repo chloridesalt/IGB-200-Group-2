@@ -5282,13 +5282,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UITutorial: {fileID: 935195734}
-  FirstTearTutorial: {fileID: 1494000058}
+  FirstTearTutorial: {fileID: 1140982693}
   AFKTearTutorial: {fileID: 2146953024}
   CutoutTutorial: {fileID: 1183785653}
   IntroTutorial: {fileID: 1742034024}
   PlaceObjectTutorial: {fileID: 402163351}
   EditObjectTutorial: {fileID: 52307424}
   startDelay: 5
+  ButtonTutorialShown: 0
 --- !u!1 &974882575
 GameObject:
   m_ObjectHideFlags: 0
@@ -6163,7 +6164,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1140982694
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8491,7 +8492,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1494000059
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8811,7 +8812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Click here to complete the Tutorial
+  m_text: Click anywhere to complete the Tutorial
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bc2adf89e44cc734c8600e53482c6eba, type: 2}
   m_sharedMaterial: {fileID: -1815852092270596144, guid: bc2adf89e44cc734c8600e53482c6eba, type: 2}
@@ -9597,6 +9598,7 @@ MonoBehaviour:
   VcamTarget: {fileID: 207057223}
   UI: {fileID: 96393436}
   TutorialHandler: {fileID: 959480252}
+  InputManager: {fileID: 1813042906}
   EnableTear: 0
   RoofView: 0
   SunRotationSpeed: 0.2
@@ -9688,6 +9690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4954d9b0461298e43a81cca41593eb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AFKTime: 2
 --- !u!1 &1816073178
 GameObject:
   m_ObjectHideFlags: 0

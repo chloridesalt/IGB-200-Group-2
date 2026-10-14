@@ -6,7 +6,9 @@ public class scr_InputManager : MonoBehaviour
     public InputAction lookAction { get; private set; }
     public InputAction interactAction { get; private set; }
     public Vector2 lookValue { get; private set; }
-
+    public bool AFK { get; set; } = false;
+    public float AFKTime = 5f;
+    private float AFKTimer = 0f;
     private float Alpha = 0f;
 
     private void Start()
@@ -18,6 +20,7 @@ public class scr_InputManager : MonoBehaviour
     private void Update()
     {
         lookValue = lookAction.ReadValue<Vector2>();
+        CheckAFK();
     }
 
     public bool IsHitSolid(RaycastHit hit)
@@ -49,5 +52,20 @@ public class scr_InputManager : MonoBehaviour
 
         Color pixelColor = tex.GetPixelBilinear(Mathf.Clamp01(pixelUV.x), Mathf.Clamp01(pixelUV.y));
         return (pixelColor.a * material.color.a) > Alpha;
+    }
+
+    private void CheckAFK()
+    {
+        if (interactAction.triggered)
+        {
+            AFK = false;
+            AFKTimer = 0f;
+        }
+        AFKTimer += Time.deltaTime;
+        if (AFKTimer >= AFKTime)
+        {
+            AFK = true;
+        }
+
     }
 }

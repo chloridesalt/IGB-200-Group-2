@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public CinemachineCamera VcamTarget;
     public GameObject UI;
     public GameObject TutorialHandler;
+    public scr_InputManager InputManager;
     public bool EnableTear = false;
     public bool RoofView = false;
     public float SunRotationSpeed = 1f;
@@ -56,7 +57,32 @@ public class GameManager : MonoBehaviour
             SunTime += Time.deltaTime;
         }
         SunMovement();
-
+        if (InputManager.AFK && RoofView)
+        {
+            scr_Tutorial tutorial = TutorialHandler.GetComponent<scr_Tutorial>();
+            tutorial.ShowAFKTutorial();
+        }
+        else
+        {
+            scr_Tutorial tutorial = TutorialHandler.GetComponent<scr_Tutorial>();
+            tutorial.HideAFKTutorial();
+        }
+        if (InputManager.interactAction.WasPerformedThisFrame() && TutorialHandler.GetComponent<scr_Tutorial>().ButtonTutorialShown)
+        {
+            TutorialHandler.GetComponent<scr_Tutorial>().HideButtonTutorial();
+        }
+        if (RoofView && TutorialHandler.GetComponent<scr_Tutorial>().IntroTutorial.activeSelf)
+        {
+            TutorialHandler.GetComponent<scr_Tutorial>().HideRoofViewTutorial();
+        }
+         if (RoofView && TutorialHandler.GetComponent<scr_Tutorial>().FirstTearTutorial.activeSelf && InputManager.interactAction.WasPerformedThisFrame())
+        {
+            TutorialHandler.GetComponent<scr_Tutorial>().HideFirstTearTutorial();
+        }
+        if (InputManager.interactAction.WasPerformedThisFrame() && !RoofView)
+        {
+            InteractWithEnvironment();
+        }
     }
     // Use this function to change the camera view to the top of the paper bag
     public void CameraTransitionTop()
@@ -144,6 +170,20 @@ public class GameManager : MonoBehaviour
     {
         AutoSunMovement = true;
     }
-    
+    private void InteractWithEnvironment()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(InputManager.lookValue);
+        RaycastHit hit;
+        Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 1f);
+        if (Physics.Raycast(ray, out hit))
+        {
+            Debug.Log($"Hit object: {hit.collider.gameObject.name}");
+            scr_EnvironmentalObject envObject = hit.collider.GetComponent<scr_EnvironmentalObject>();
+            if (envObject != null)
+            {
+                envObject.IsClicked();
+            }
+        }
+    }
 
 }
