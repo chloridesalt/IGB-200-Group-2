@@ -33,11 +33,14 @@ public class scr_InputManager : MonoBehaviour
 
         Texture texture = material.mainTexture;
         if (texture == null) return true;
-
-        if (material.color.a <= Alpha)
+        if (material.HasProperty("_Color"))
         {
-            return false;
+            if (material.color.a <= Alpha)
+            {
+                return false;
+            }
         }
+        
 
         if (texture is not Texture2D tex)
         {

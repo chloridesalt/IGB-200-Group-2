@@ -9690,7 +9690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4954d9b0461298e43a81cca41593eb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AFKTime: 2
+  AFKTime: 10
 --- !u!1 &1816073178
 GameObject:
   m_ObjectHideFlags: 0
