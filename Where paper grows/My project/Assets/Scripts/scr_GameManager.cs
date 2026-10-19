@@ -89,8 +89,8 @@ public class GameManager : MonoBehaviour
 
     {
         /// this a test to see if function works
-        UiTranstionTop();
-        UiTranstionBottom();
+        UITransitionTop();
+        UITransitionBottom();
         AudioManager.Instance.PlayAtPosition(view, transform.position);
         VcamStart.Priority = 5;
         VcamTarget.Priority = 10;
@@ -105,15 +105,15 @@ public class GameManager : MonoBehaviour
     public void CameraTransitionBottom()
 
     {
-        UiTranstionTopReset();
-        UiTranstionBottomReset();
+        UITransitionTopReset();
+        UITransitionBottomReset();
         VcamStart.Priority = 10;
         VcamTarget.Priority = 5;
         EnableTear = false;
         RoofView = false;
     }
 
-    public void UiTranstionTop()
+    public void UITransitionTop()
     {
         TransitonTopButton.DOKill();
         TransitonTopButton.DOAnchorPos(targetPosition, duration).SetEase(Ease.OutCubic);
@@ -121,18 +121,18 @@ public class GameManager : MonoBehaviour
         UI.GetComponent<scr_UIHandler>().PhotoButton.DOAnchorPos(targetPosition6, duration).SetEase(Ease.OutCubic);
     }
 
-    public void UiTranstionTopReset()
+    public void UITransitionTopReset()
     {
         TransitonTopButton.DOKill();
         TransitonTopButton.DOAnchorPos(targetPosition3, duration).SetEase(Ease.OutCubic);
     }
 
-    public void UiTranstionBottom()
+    public void UITransitionBottom()
     {
         TransitonBottomButton.DOKill();
         TransitonBottomButton.DOAnchorPos(targetPosition2, duration).SetEase(Ease.OutCubic);
     }
-    public void UiTranstionBottomReset()
+    public void UITransitionBottomReset()
     {
         TransitonBottomButton.DOKill();
         TransitonBottomButton.DOAnchorPos(targetPosition4, duration).SetEase(Ease.OutCubic);

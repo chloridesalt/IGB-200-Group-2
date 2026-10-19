@@ -73,6 +73,7 @@ MonoBehaviour:
   animator: {fileID: 8225686282702352758}
   BaseOffset: 5
   BirdObject: {fileID: 7447634521742843742}
+  LocationRandomizeChance: 0.5
 --- !u!95 &8225686282702352758
 Animator:
   serializedVersion: 7

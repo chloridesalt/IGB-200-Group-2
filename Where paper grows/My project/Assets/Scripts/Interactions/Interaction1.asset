@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AName: 0
   EName: 1
-  ObjectCount: 2
-  TimeLowerBound: 0
-  TimeUpperBound: 2
+  ObjectCount: 1
+  TimeLowerBound: 1
+  TimeUpperBound: 6

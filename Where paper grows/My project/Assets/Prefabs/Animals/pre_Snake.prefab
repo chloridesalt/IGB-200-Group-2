@@ -71,6 +71,7 @@ MonoBehaviour:
   AnimalEnvironmentData: {fileID: 11400000, guid: 509b074a142244f41bb47deba9422650, type: 2}
   animator: {fileID: 617227237000552083}
   plane: {fileID: 7447634521742843742}
+  LocationRandomizeChance: 0.5
 --- !u!1 &3820660342460553776
 GameObject:
   m_ObjectHideFlags: 0

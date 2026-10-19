@@ -58,8 +58,8 @@ public class scr_Tutorial : MonoBehaviour
         if (!FirstTearTutorialShown)
         {
             FirstTearTutorial.SetActive(true);
-            GameManager.s_Instance.UiTranstionTop();
-            GameManager.s_Instance.UiTranstionBottomReset();
+            GameManager.s_Instance.UITransitionTop();
+            GameManager.s_Instance.UITransitionBottomReset();
             FirstTearTutorialShown = true;
         }
     }

@@ -26,6 +26,7 @@ Material:
   m_ModifiedSerializedProperties: 8
   m_ValidKeywords:
   - _ALPHAPREMULTIPLY_ON
+  - _SPECULAR_SETUP
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -60,7 +61,7 @@ Material:
     - _Cull: 2
     - _Smoothness: 0
     - _SrcBlend: 1
-    - _WorkflowMode: 1
+    - _WorkflowMode: 0
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

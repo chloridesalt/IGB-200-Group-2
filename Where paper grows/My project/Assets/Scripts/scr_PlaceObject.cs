@@ -53,6 +53,7 @@ public class scr_PlaceObject : MonoBehaviour
     public void TargetPosition(GameObject ObjectToPlace)
     {
         DestroyPreview();
+        GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = false;
         this.ObjectToPlace = ObjectToPlace;
         IsPlacingObject = true;
         hasSelectedPosition = false;
@@ -72,7 +73,7 @@ public class scr_PlaceObject : MonoBehaviour
         }
 
         ObjectName = ObjectToPlace.name;
-        GameManager.s_Instance.UiTranstionTopReset();
+        GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = true;
 
    
         switch (ObjectName)
@@ -106,7 +107,7 @@ public class scr_PlaceObject : MonoBehaviour
             default:
                 return;
         }
-        PreviewBox.SetActive(false);
+        RemoveEditBox();
         IsPlacingObject = false;
         hasSelectedPosition = false;
         uiHandler.ReActivateCamera();
@@ -285,7 +286,11 @@ public class scr_PlaceObject : MonoBehaviour
             }
 
             PreviewBox.transform.position = previewPosition;
-
+            Slider ScaleSlider = GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().ScaleSlider;
+            if (ScaleSlider != null)
+            {
+                ScaleSlider.value = placedObject.transform.localScale.x;
+            }
             Canvas canvas = PreviewBox.GetComponentInParent<Canvas>();
             RectTransform uiTransform = PreviewBox.GetComponent<RectTransform>();
             if (uiTransform != null && canvas != null && canvas.renderMode == RenderMode.WorldSpace)
@@ -305,13 +310,10 @@ public class scr_PlaceObject : MonoBehaviour
             if (placedObject != null)
             {
                 Destroy(placedObject);
-                placedObject = null;
+                TargetPosition(ObjectToPlace);
+                RemoveEditBox();
             }
-            DestroyPreview();
-            IsPlacingObject = false;
-            hasSelectedPosition = false;
-            PreviewBox.SetActive(false);
-            GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = true;
+
             
         }
 
@@ -343,6 +345,14 @@ public class scr_PlaceObject : MonoBehaviour
                     }
                     
                 }
+            }
+        }
+
+        private void RemoveEditBox()
+        {
+            if (PreviewBox != null)
+            {
+                PreviewBox.SetActive(false);
             }
         }
     }
