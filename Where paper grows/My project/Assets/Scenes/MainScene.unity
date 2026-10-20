@@ -5109,6 +5109,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  newPhoto: 4
 --- !u!1 &935195734
 GameObject:
   m_ObjectHideFlags: 0

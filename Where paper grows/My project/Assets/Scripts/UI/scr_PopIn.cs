@@ -5,7 +5,7 @@ using DG.Tweening;
 public class Popin : MonoBehaviour
 {
     [Header("Assign separate UI RectTransforms here")]
-    [SerializeField] private RectTransform[] uiElements;
+    [SerializeField] public RectTransform[] uiElements;
 
     [Header("Animation Settings")]
     [SerializeField] private float startDelay = 0.5f;

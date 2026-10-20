@@ -8,7 +8,8 @@ public class scr_PhotoHandler : MonoBehaviour
     [SerializeField] private AudioData cameraClick;
 
     public Texture2D[] photos = new Texture2D[30];
-
+    public int newPhoto = 4;
+    public bool cameFromPhoto;
     private int index = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,6 +49,8 @@ public class scr_PhotoHandler : MonoBehaviour
         RenderTexture.active = null;
 
         photos[index] = photo;
+        newPhoto = index;
+        cameFromPhoto = true;
         index++;
 
         menuManager.ClosePhoto();

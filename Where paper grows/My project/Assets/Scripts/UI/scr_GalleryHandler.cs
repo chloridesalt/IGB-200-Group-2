@@ -1,3 +1,4 @@
+using DG.Tweening;
 using NUnit.Framework;
 using OrbitalNine.QRCode;
 using System;
@@ -19,10 +20,13 @@ public class scr_GalleryHandler : MonoBehaviour
     [SerializeField] private GameObject qrExit;
     [SerializeField] private GameObject imageHolder;
     [SerializeField] private AudioData pageFlip;
+    [SerializeField] private float tweenDuration = 0.35f;
 
     public Texture2D[] images;
     public RawImage[] imageHolders;
     public scr_PhotoHandler photoHandler;
+
+
 
     private int index = 0;
     private int page = 1;
@@ -97,6 +101,14 @@ public class scr_GalleryHandler : MonoBehaviour
             {
                 imageHolders[i / page].texture = images[i];
                 imageHolders[i / page].color = Color.white;
+                imageHolders[i / page].GetComponent<Button>().enabled = true;
+
+                // Plays tween if new
+                if (i == photoHandler.newPhoto && photoHandler.cameFromPhoto)
+                {
+                    photoHandler.cameFromPhoto = false;
+                    TweenPhoto(imageHolders[i / page].GetComponent<RectTransform>(), imageHolders[i / page].GetComponent<RectTransform>().localScale);
+                }
             }
         }
         else
@@ -106,17 +118,26 @@ public class scr_GalleryHandler : MonoBehaviour
             int i = 0;
 
             // Sets as many image holders as there are images to the images
-            for (i=i; i < images.Length - index; i++)
+            for (i = i; i < images.Length - index; i++)
             {
                 imageHolders[i].texture = images[index + i];
                 imageHolders[i].color = Color.white;
+                imageHolders[i / page].GetComponent<Button>().enabled = true;
+
+                // Plays tween if new
+                if (i == photoHandler.newPhoto && photoHandler.cameFromPhoto)
+                {
+                    photoHandler.cameFromPhoto = false;
+                    TweenPhoto(imageHolders[i / page].GetComponent<RectTransform>(), imageHolders[i / page].GetComponent<RectTransform>().localScale);
+                }
             }
 
             // Turns the rest of the image holders transparent
-            for (i=i; i < 6; i++)
+            for (i = i; i < 6; i++)
             {
                 imageHolders[i].texture = null;
-                imageHolders[i].color = new Color(1,1,1,0);
+                imageHolders[i].color = new Color(1, 1, 1, 0);
+                imageHolders[i / page].GetComponent<Button>().enabled = false;
             }
         }
 
@@ -166,5 +187,13 @@ public class scr_GalleryHandler : MonoBehaviour
         Debug.Log(textToEncode);
         qrCode.GetComponentInChildren<QRCodeGenerator>().GenerateQRCode(textToEncode);
         qrExit.SetActive(true);
+    }
+
+    private void TweenPhoto(RectTransform rect, Vector3 originalSize)
+    {
+        rect.localScale = Vector3.zero;
+        rect.DOScale(originalSize, tweenDuration)
+                .SetEase(Ease.OutBack)
+                .SetUpdate(true);
     }
 }
