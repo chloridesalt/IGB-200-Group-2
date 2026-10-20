@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class scr_UIHandler : MonoBehaviour
 {
     public GameObject ChoiceContainer;
+    public GameObject Overlay;
     public GameObject RoofViewButton;
     public GameObject RoofViewButton2;
     public RectTransform PhotoButton;
@@ -56,5 +57,8 @@ public class scr_UIHandler : MonoBehaviour
         Debug.Log("wasd");
     }
 
-
+    public void OverlayChange(bool b)
+    { 
+        Overlay.SetActive(b);
+    }
 }

@@ -11,6 +11,7 @@ using UnityEngine.UIElements;
 public class scr_CutoutShape : MonoBehaviour
 {
     public scr_EnvironmentObjects EnvironmentObject;
+    private scr_UIHandler scr_UIHandler;
     public GameObject ObjectHandler;
     [SerializeField] private GameObject cutoutParticlePrefab;
     private List<BoxCollider> colliders = new List<BoxCollider>();
@@ -25,9 +26,10 @@ public class scr_CutoutShape : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
         ObjectHandler = FindObjectOfType<scr_PlaceObject>().gameObject;
         inputManager = GameManager.s_Instance.GetComponent<scr_InputManager>();
+        scr_UIHandler = FindObjectOfType<scr_UIHandler>();
+        scr_UIHandler.OverlayChange(true);
         src_Cursor.OnMinigameStarted?.Invoke();
     }
 
@@ -51,7 +53,7 @@ public class scr_CutoutShape : MonoBehaviour
 
     private void CutoutComplete()
     {
-        
+        scr_UIHandler.OverlayChange(false);
         GameManager.s_Instance.ChangeView();
         src_Cursor.OnMinigameEnded?.Invoke();
         ObjectHandler.GetComponent<scr_PlaceObject>().TargetPosition(EnvironmentObject.environmentPrefab);
