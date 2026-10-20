@@ -17,7 +17,7 @@ public class scr_Tutorial : MonoBehaviour
     private bool EditObjectTutorialShown = false;
     public bool ButtonTutorialShown = false;
     private bool AFKTutorialActive = false;
-    private bool TutorialCompleted = false;
+    public bool TutorialCompleted = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -54,7 +54,7 @@ public class scr_CutoutShape : MonoBehaviour
     private void CutoutComplete()
     {
         scr_UIHandler.OverlayChange(false);
-        GameManager.s_Instance.ChangeView();
+        GameManager.s_Instance.CameraTransitionBottomfromcutout();
         src_Cursor.OnMinigameEnded?.Invoke();
         ObjectHandler.GetComponent<scr_PlaceObject>().TargetPosition(EnvironmentObject.environmentPrefab);
         Destroy(environmentSilhouette);

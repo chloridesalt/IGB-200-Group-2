@@ -89,14 +89,19 @@ public class GameManager : MonoBehaviour
 
     {
         /// this a test to see if function works
+       scr_Tutorial tutorial = TutorialHandler.GetComponent<scr_Tutorial>();
         UITransitionTop();
-        UITransitionBottom();
+        if (tutorial.TutorialCompleted)
+        {
+            UITransitionBottom();
+        }
+
         AudioManager.Instance.PlayAtPosition(view, transform.position);
         VcamStart.Priority = 5;
         VcamTarget.Priority = 10;
         EnableTear = true;
         RoofView = true;
-        scr_Tutorial tutorial = TutorialHandler.GetComponent<scr_Tutorial>();
+        
         tutorial.Invoke(nameof(scr_Tutorial.ShowFirstTearTutorial), 1f);
         tutorial.HideRoofViewTutorial();
     }
@@ -105,7 +110,21 @@ public class GameManager : MonoBehaviour
     public void CameraTransitionBottom()
 
     {
+        
         UITransitionTopReset();
+        
+        UITransitionBottomReset();
+        VcamStart.Priority = 10;
+        VcamTarget.Priority = 5;
+        EnableTear = false;
+        RoofView = false;
+    }
+    public void CameraTransitionBottomfromcutout()
+
+    {
+
+        
+
         UITransitionBottomReset();
         VcamStart.Priority = 10;
         VcamTarget.Priority = 5;

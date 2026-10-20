@@ -53,7 +53,7 @@ public class scr_PlaceObject : MonoBehaviour
     public void TargetPosition(GameObject ObjectToPlace)
     {
         DestroyPreview();
-        GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = false;
+        //GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = false;
         this.ObjectToPlace = ObjectToPlace;
         IsPlacingObject = true;
         hasSelectedPosition = false;
@@ -117,7 +117,7 @@ public class scr_PlaceObject : MonoBehaviour
             GameManager.s_Instance.TutorialHandler.GetComponent<scr_Tutorial>().ShowButtonTutorial();
         }
         AudioManager.Instance.PlayAtPosition(placeObjectSound, placedObject.transform.position);
-
+        GameManager.s_Instance.UITransitionTopReset();
         placedObject = null;
     }
 
