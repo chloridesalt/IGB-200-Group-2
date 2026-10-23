@@ -178,6 +178,7 @@ MonoBehaviour:
   vibrato: 10
   Event: {fileID: 4867815186243867096}
   objectName: 
+  clickSound: {fileID: 11400000, guid: eeb10f8b9127eff4e861e8271accf276, type: 2}
 --- !u!1 &3944335778098696270
 GameObject:
   m_ObjectHideFlags: 0

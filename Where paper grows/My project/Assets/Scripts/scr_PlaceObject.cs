@@ -6,6 +6,7 @@ public class scr_PlaceObject : MonoBehaviour
 {
     [SerializeField] private NavMeshSurface navmesh;
     [SerializeField] private AudioData placeObjectSound;
+    [SerializeField] private AudioData objectPlaced;
     [SerializeField] public Material[] hologramMaterial;
     [SerializeField] private scr_UIHandler uiHandler;
     public GameObject PreviewBox;
@@ -63,6 +64,7 @@ public class scr_PlaceObject : MonoBehaviour
         ConfigurePreview(objectPreview, ObjectToPlace);
         objectPreview.SetActive(false);
 
+
     }
 
     public void PlaceObject() //called from confirm button in UI
@@ -116,7 +118,7 @@ public class scr_PlaceObject : MonoBehaviour
             GameManager.s_Instance.FirstObjectPlaced = true;
             GameManager.s_Instance.TutorialHandler.GetComponent<scr_Tutorial>().ShowButtonTutorial();
         }
-        AudioManager.Instance.PlayAtPosition(placeObjectSound, placedObject.transform.position);
+        AudioManager.Instance.PlayAtPosition(objectPlaced, placedObject.transform.position);
         GameManager.s_Instance.UITransitionTopReset();
         placedObject = null;
     }
@@ -127,7 +129,7 @@ public class scr_PlaceObject : MonoBehaviour
             {
                 if (objectPreview != null)
                 {
-                    objectPreview.SetActive(false);
+                objectPreview.SetActive(false);
                 }
                 return;
             }
@@ -219,7 +221,8 @@ public class scr_PlaceObject : MonoBehaviour
         {
             if (objectPreview != null)
             {
-                Destroy(objectPreview);
+                AudioManager.Instance.PlayAtPosition(placeObjectSound, objectPreview.transform.position);
+            Destroy(objectPreview);
                 objectPreview = null;
             }
 

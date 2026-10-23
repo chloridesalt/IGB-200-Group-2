@@ -5074,6 +5074,7 @@ MonoBehaviour:
   vibrato: 10
   Event: {fileID: 6264861933915443028}
   objectName: 
+  clickSound: {fileID: 11400000, guid: eeb10f8b9127eff4e861e8271accf276, type: 2}
 --- !u!1001 &7657735603163626357
 PrefabInstance:
   m_ObjectHideFlags: 0

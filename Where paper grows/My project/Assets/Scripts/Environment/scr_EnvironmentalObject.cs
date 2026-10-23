@@ -11,6 +11,9 @@ public class scr_EnvironmentalObject : MonoBehaviour
     public ParticleSystem Event;
     public string objectName;
     private Vector3 originalScale;
+
+    [SerializeField] private AudioData clickSound;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,6 +36,7 @@ public class scr_EnvironmentalObject : MonoBehaviour
 
         // Apply punch/pop effect
         transform.DOPunchScale(punchScale, duration, vibrato, elasticity);
+        AudioManager.Instance.PlayAtPosition(clickSound, transform.position);
         Event.Play();
         Debug.Log($"{objectName} Clicked");
     }

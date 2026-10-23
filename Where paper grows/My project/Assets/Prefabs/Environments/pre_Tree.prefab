@@ -178,6 +178,7 @@ MonoBehaviour:
   vibrato: 10
   Event: {fileID: 5365759445779259275}
   objectName: TreeObject
+  clickSound: {fileID: 11400000, guid: eeb10f8b9127eff4e861e8271accf276, type: 2}
 --- !u!1 &6460415627649372059
 GameObject:
   m_ObjectHideFlags: 0
