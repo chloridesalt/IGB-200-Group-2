@@ -97,15 +97,9 @@ public class scr_Roof : MonoBehaviour
         // For each pixel in the y coordinate of the hole
         for (int y=startY-halfHoleY; y<startY+halfHoleY; y++)
         {
-            // Skips if it goes over the edge of the sprite
-            if (y < 0 || y > newRoofTexture.height) continue;
-
             // For each pixel in the x coordinate of the hole
             for (int x=startX-halfHoleX; x<startX+halfHoleX; x++)
             {
-                // Skips if it goes over the edge of the sprite
-                if (x < 0 || x > newRoofTexture.width) continue;
-
                 // Get the position of this pixel of the hole
                 int holePosX = x - startX + halfHoleX;
                 int holePosY = y - startY + halfHoleY;
@@ -115,7 +109,7 @@ public class scr_Roof : MonoBehaviour
                 Color roofPixel = newRoofTexture.GetPixel(x, y);
 
                 // Checks if the hole pixel is below a certain transparency
-                if (holePixel.a < 0.5f)
+                if (holePixel.a < 0.5f && !(y < 0 || y > newRoofTexture.height || x < 0 || x > newRoofTexture.width))
                 {
                     // Adds the roof pixel to the temporary cutout texture
                     cutTexture.SetPixel(holePosX, holePosY, roofPixel);
