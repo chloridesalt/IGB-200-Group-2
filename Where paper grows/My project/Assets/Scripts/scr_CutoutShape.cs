@@ -61,6 +61,7 @@ public class scr_CutoutShape : MonoBehaviour
         Destroy(gameObject);
         GameManager.s_Instance.TutorialHandler.GetComponent<scr_Tutorial>().HideCutoutTutorial();
         GameManager.s_Instance.TutorialHandler.GetComponent<scr_Tutorial>().ShowPlaceObjectTutorial();
+        scr_UIHandler.TrayOpenClose(true);
     }
 
     // Checks to see if the cursor is over a collider on the cutout and removes it if so

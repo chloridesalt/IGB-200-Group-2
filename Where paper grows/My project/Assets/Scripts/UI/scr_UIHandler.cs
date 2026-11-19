@@ -10,6 +10,7 @@ public class scr_UIHandler : MonoBehaviour
     public GameObject RoofViewButton;
     public GameObject RoofViewButton2;
     public RectTransform PhotoButton;
+    public GameObject Tray;
     public bool RoofViewButtonOn = true;
 
     public Slider ScaleSlider;
@@ -60,5 +61,10 @@ public class scr_UIHandler : MonoBehaviour
     public void OverlayChange(bool b)
     { 
         Overlay.SetActive(b);
+    }
+    public void TrayOpenClose(bool b)
+    {
+        Tray.SetActive(b);
+        Tray.GetComponent<scr_Tray>().SetObjectSprite();
     }
 }

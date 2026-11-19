@@ -1,5 +1,6 @@
 using Unity.AI.Navigation;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class scr_PlaceObject : MonoBehaviour
@@ -10,6 +11,8 @@ public class scr_PlaceObject : MonoBehaviour
     [SerializeField] public Material[] hologramMaterial;
     [SerializeField] private scr_UIHandler uiHandler;
     public GameObject PreviewBox;
+    public GameObject EditMenu;
+    public GameObject DraggableObject;
     
 
     private bool IsPlacingObject = false;
@@ -19,12 +22,22 @@ public class scr_PlaceObject : MonoBehaviour
     private GameObject placedObject;
     private bool hasSelectedPosition;
     private bool scaleSliderInitialized;
+    private bool isDraggingDraggableObject;
+    private RectTransform draggableObjectRect;
+    private RectTransform draggableObjectParent;
+    private Canvas draggableObjectCanvas;
+    private Vector3 draggableObjectStartLocalPosition;
+    private Image[] draggableObjectImages;
+    private bool[] draggableObjectImageEnabledStates;
+    private SpriteRenderer[] draggableObjectSpriteRenderers;
+    private bool[] draggableObjectSpriteRendererEnabledStates;
     private scr_InputManager inputManager;
     public int TreeCount = 0;
     public int BushCount = 0;
     public int FlowerCount = 0;
     private string ObjectName;
     private bool MusicOn = false;
+    private bool ShouldTrayBeOpen = false;
 
     void Start()
     {
@@ -33,14 +46,60 @@ public class scr_PlaceObject : MonoBehaviour
         if (MainCamera == null)
             MainCamera = Camera.main;
 
-        
+        if (DraggableObject != null)
+        {
+            draggableObjectRect = DraggableObject.GetComponent<RectTransform>();
+            draggableObjectParent = draggableObjectRect != null
+                ? draggableObjectRect.parent as RectTransform
+                : null;
+            draggableObjectCanvas = DraggableObject.GetComponentInParent<Canvas>();
+            draggableObjectImages = DraggableObject.GetComponentsInChildren<Image>(true);
+            draggableObjectImageEnabledStates = new bool[draggableObjectImages.Length];
+            for (int i = 0; i < draggableObjectImages.Length; i++)
+            {
+                draggableObjectImageEnabledStates[i] = draggableObjectImages[i].enabled;
+            }
+
+            draggableObjectSpriteRenderers = DraggableObject.GetComponentsInChildren<SpriteRenderer>(true);
+            draggableObjectSpriteRendererEnabledStates = new bool[draggableObjectSpriteRenderers.Length];
+            for (int i = 0; i < draggableObjectSpriteRenderers.Length; i++)
+            {
+                draggableObjectSpriteRendererEnabledStates[i] = draggableObjectSpriteRenderers[i].enabled;
+            }
+
+            if (draggableObjectRect == null || draggableObjectParent == null || draggableObjectCanvas == null)
+            {
+                Debug.LogError("DraggableObject must be a UI GameObject with a RectTransform under a Canvas.", this);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Assign DraggableObject to enable drag-and-drop placement. Click placement remains available.", this);
+        }
     }
 
     void Update()
     {
-        if (IsPlacingObject && !hasSelectedPosition)
+        if (isDraggingDraggableObject)
         {
-            ObjectPreview(ObjectToPlace);
+            UpdateDraggableObjectPosition(inputManager.lookValue);
+            bool hasValidPlacementPosition = ObjectPreview(ObjectToPlace);
+            SetDraggableObjectSpriteVisible(!hasValidPlacementPosition);
+
+            if (inputManager.interactAction.WasReleasedThisFrame())
+            {
+                EndDraggableObjectDrag();
+            }
+
+            return;
+        }
+
+        if (inputManager.interactAction.WasPressedThisFrame() &&
+            IsPlacingObject &&
+            !hasSelectedPosition &&
+            TryBeginDraggableObjectDrag(inputManager.lookValue))
+        {
+            return;
         }
 
         if (inputManager.interactAction.WasPerformedThisFrame() && IsPlacingObject && !hasSelectedPosition)
@@ -51,8 +110,10 @@ public class scr_PlaceObject : MonoBehaviour
         }
     }
 
-    public void TargetPosition(GameObject ObjectToPlace)
+    public void TargetPosition(GameObject ObjectToPlace) //start of placement
     {
+        uiHandler.TrayOpenClose(true);
+        CancelDraggableObjectDrag();
         DestroyPreview();
         //GameManager.s_Instance.UI.GetComponent<scr_UIHandler>().RoofViewButtonOn = false;
         this.ObjectToPlace = ObjectToPlace;
@@ -123,19 +184,20 @@ public class scr_PlaceObject : MonoBehaviour
         placedObject = null;
     }
 
-        public void ObjectPreview(GameObject ObjectToPlace)
+        public bool ObjectPreview(GameObject ObjectToPlace)
         {
             if (objectPreview == null || !TryGetPlacementPosition(out Vector3 placementPosition))
             {
                 if (objectPreview != null)
                 {
-                objectPreview.SetActive(false);
+                    objectPreview.SetActive(false);
                 }
-                return;
+                return false;
             }
 
             objectPreview.transform.SetPositionAndRotation(placementPosition, Quaternion.identity);
             objectPreview.SetActive(true);
+            return true;
         }
 
         private bool TryGetPlacementPosition(out Vector3 placementPosition)
@@ -235,13 +297,120 @@ public class scr_PlaceObject : MonoBehaviour
             {
                 return;
             }
-
+            uiHandler.TrayOpenClose(false);
             placedObject = Instantiate(ObjectToPlace, placementPosition, Quaternion.identity);
             GameManager.s_Instance.TutorialHandler.GetComponent<scr_Tutorial>().HidePlaceObjectTutorial();
             scaleSliderInitialized = false;
             hasSelectedPosition = true;
             DestroyPreview();
             ActivatePreviewBox();
+        }
+
+        private bool TryBeginDraggableObjectDrag(Vector2 screenPosition)
+        {
+            if (DraggableObject == null ||
+                draggableObjectRect == null ||
+                draggableObjectParent == null ||
+                draggableObjectCanvas == null ||
+                !IsPointerOverDraggableObject(screenPosition))
+            {
+                return false;
+            }
+
+            draggableObjectStartLocalPosition = draggableObjectRect.localPosition;
+            isDraggingDraggableObject = true;
+            UpdateDraggableObjectPosition(screenPosition);
+            bool hasValidPlacementPosition = ObjectPreview(ObjectToPlace);
+            SetDraggableObjectSpriteVisible(!hasValidPlacementPosition);
+            return true;
+        }
+
+        private bool IsPointerOverDraggableObject(Vector2 screenPosition)
+        {
+            EventSystem eventSystem = EventSystem.current;
+            if (eventSystem == null)
+            {
+                return false;
+            }
+
+            PointerEventData pointerData = new PointerEventData(eventSystem)
+            {
+                position = screenPosition
+            };
+            System.Collections.Generic.List<RaycastResult> raycastResults = new();
+            eventSystem.RaycastAll(pointerData, raycastResults);
+
+            foreach (RaycastResult result in raycastResults)
+            {
+                Transform hitTransform = result.gameObject.transform;
+                if (hitTransform == DraggableObject.transform || hitTransform.IsChildOf(DraggableObject.transform))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void UpdateDraggableObjectPosition(Vector2 screenPosition)
+        {
+            Camera canvasCamera = draggableObjectCanvas.renderMode == RenderMode.ScreenSpaceOverlay
+                ? null
+                : draggableObjectCanvas.worldCamera;
+
+            if (RectTransformUtility.ScreenPointToWorldPointInRectangle(
+                    draggableObjectParent,
+                    screenPosition,
+                    canvasCamera,
+                    out Vector3 worldPosition))
+            {
+                Vector3 localPosition = draggableObjectParent.InverseTransformPoint(worldPosition);
+                localPosition.z = draggableObjectStartLocalPosition.z;
+                draggableObjectRect.localPosition = localPosition;
+            }
+        }
+
+        private void EndDraggableObjectDrag()
+        {
+            bool hasValidPlacementPosition = TryGetPlacementPosition(out _);
+            CancelDraggableObjectDrag();
+            if (hasValidPlacementPosition)
+            {
+                EditObject(ObjectToPlace);
+            }
+            else if (objectPreview != null)
+            {
+                objectPreview.SetActive(false);
+            }
+        }
+
+        private void CancelDraggableObjectDrag()
+        {
+            if (!isDraggingDraggableObject)
+            {
+                return;
+            }
+
+            isDraggingDraggableObject = false;
+            if (draggableObjectRect != null)
+            {
+                draggableObjectRect.localPosition = draggableObjectStartLocalPosition;
+            }
+
+            SetDraggableObjectSpriteVisible(true);
+        }
+
+        private void SetDraggableObjectSpriteVisible(bool visible)
+        {
+            for (int i = 0; i < draggableObjectImages.Length; i++)
+            {
+                draggableObjectImages[i].enabled = visible && draggableObjectImageEnabledStates[i];
+            }
+
+            for (int i = 0; i < draggableObjectSpriteRenderers.Length; i++)
+            {
+                draggableObjectSpriteRenderers[i].enabled = visible && draggableObjectSpriteRendererEnabledStates[i];
+            }
         }
 
 
@@ -255,6 +424,10 @@ public class scr_PlaceObject : MonoBehaviour
             Vector3 previewPosition = PreviewBoxDimensionCheck();
             previewPosition.z = placedObject.transform.position.z - 0.5f;
             PreviewBox.SetActive(true);
+            if (EditMenu != null)
+            {
+                EditMenu.SetActive(true);
+            }
             RectTransform uiTransform = PreviewBox.GetComponent<RectTransform>();
             Canvas canvas = PreviewBox.GetComponentInParent<Canvas>();
 
@@ -356,7 +529,10 @@ public class scr_PlaceObject : MonoBehaviour
             if (PreviewBox != null)
             {
                 PreviewBox.SetActive(false);
+                if (EditMenu != null)
+                {
+                    EditMenu.SetActive(false);
+                }
             }
         }
     }
-
