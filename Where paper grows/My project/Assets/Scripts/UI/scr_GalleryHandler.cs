@@ -31,6 +31,8 @@ public class scr_GalleryHandler : MonoBehaviour
     private int index = 0;
     private int page = 1;
 
+    private int downloadNum = 0;
+
     private string downloadString;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -76,8 +78,11 @@ public class scr_GalleryHandler : MonoBehaviour
 
     public void DownloadImage(RawImage image)
     {
-        OpenQR();
-        StartCoroutine(PostImage(((Texture2D)image.texture).EncodeToPNG()));
+        //OpenQR();
+        //StartCoroutine(PostImage(((Texture2D)image.texture).EncodeToPNG()));
+
+        var Bytes = ((Texture2D)image.texture).EncodeToPNG();
+        File.WriteAllBytes(Application.dataPath + "/Downloaded Photos/Photo " + downloadNum + ".png", Bytes);
     }
 
     private void SetImages()
